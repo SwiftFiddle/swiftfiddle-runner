@@ -1,0 +1,54 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: %NAME%
+spec:
+  selector:
+    app.kubernetes.io/name: %NAME%
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8080
+  type: NodePort
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: %NAME%
+  labels:
+    app.kubernetes.io/name: %NAME%
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: %NAME%
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: %NAME%
+      annotations:
+        commit_sha: %COMMIT_SHA%
+    spec:
+      containers:
+        - image: %IMAGE%
+          name: %NAME%
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 8080
+          volumeMounts:
+            - name: docker-socket
+              mountPath: /var/run/docker.sock
+            - name: sandbox
+              mountPath: /tmp
+      volumes:
+        - name: docker-socket
+          hostPath:
+            path: /var/run/docker.sock
+        - name: sandbox
+          hostPath:
+            path: /tmp
+---
+

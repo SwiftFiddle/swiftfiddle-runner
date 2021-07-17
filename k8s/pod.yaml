@@ -1,0 +1,1296 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: runner-v542
+spec:
+  selector:
+    app.kubernetes.io/name: runner-v542
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8080
+  type: NodePort
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: runner-v542
+  labels:
+    app.kubernetes.io/name: runner-v542
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: runner-v542
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: runner-v542
+      annotations:
+        commit_sha: 80b18cfa6ca13778a8ec5ccd9c3a5d1ea9bbd58b
+    spec:
+      containers:
+        - image: swiftfiddle/runner:5.4.2
+          name: runner-v542
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 8080
+          volumeMounts:
+            - name: docker-socket
+              mountPath: /var/run/docker.sock
+            - name: sandbox
+              mountPath: /tmp
+      volumes:
+        - name: docker-socket
+          hostPath:
+            path: /var/run/docker.sock
+        - name: sandbox
+          hostPath:
+            path: /tmp
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: runner-v541
+spec:
+  selector:
+    app.kubernetes.io/name: runner-v541
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8080
+  type: NodePort
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: runner-v541
+  labels:
+    app.kubernetes.io/name: runner-v541
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: runner-v541
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: runner-v541
+      annotations:
+        commit_sha: 80b18cfa6ca13778a8ec5ccd9c3a5d1ea9bbd58b
+    spec:
+      containers:
+        - image: swiftfiddle/runner:5.4.1
+          name: runner-v541
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 8080
+          volumeMounts:
+            - name: docker-socket
+              mountPath: /var/run/docker.sock
+            - name: sandbox
+              mountPath: /tmp
+      volumes:
+        - name: docker-socket
+          hostPath:
+            path: /var/run/docker.sock
+        - name: sandbox
+          hostPath:
+            path: /tmp
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: runner-v54
+spec:
+  selector:
+    app.kubernetes.io/name: runner-v54
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8080
+  type: NodePort
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: runner-v54
+  labels:
+    app.kubernetes.io/name: runner-v54
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: runner-v54
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: runner-v54
+      annotations:
+        commit_sha: 80b18cfa6ca13778a8ec5ccd9c3a5d1ea9bbd58b
+    spec:
+      containers:
+        - image: swiftfiddle/runner:5.4
+          name: runner-v54
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 8080
+          volumeMounts:
+            - name: docker-socket
+              mountPath: /var/run/docker.sock
+            - name: sandbox
+              mountPath: /tmp
+      volumes:
+        - name: docker-socket
+          hostPath:
+            path: /var/run/docker.sock
+        - name: sandbox
+          hostPath:
+            path: /tmp
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: runner-v533
+spec:
+  selector:
+    app.kubernetes.io/name: runner-v533
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8080
+  type: NodePort
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: runner-v533
+  labels:
+    app.kubernetes.io/name: runner-v533
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: runner-v533
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: runner-v533
+      annotations:
+        commit_sha: 80b18cfa6ca13778a8ec5ccd9c3a5d1ea9bbd58b
+    spec:
+      containers:
+        - image: swiftfiddle/runner:5.3.3
+          name: runner-v533
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 8080
+          volumeMounts:
+            - name: docker-socket
+              mountPath: /var/run/docker.sock
+            - name: sandbox
+              mountPath: /tmp
+      volumes:
+        - name: docker-socket
+          hostPath:
+            path: /var/run/docker.sock
+        - name: sandbox
+          hostPath:
+            path: /tmp
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: runner-v532
+spec:
+  selector:
+    app.kubernetes.io/name: runner-v532
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8080
+  type: NodePort
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: runner-v532
+  labels:
+    app.kubernetes.io/name: runner-v532
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: runner-v532
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: runner-v532
+      annotations:
+        commit_sha: 80b18cfa6ca13778a8ec5ccd9c3a5d1ea9bbd58b
+    spec:
+      containers:
+        - image: swiftfiddle/runner:5.3.2
+          name: runner-v532
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 8080
+          volumeMounts:
+            - name: docker-socket
+              mountPath: /var/run/docker.sock
+            - name: sandbox
+              mountPath: /tmp
+      volumes:
+        - name: docker-socket
+          hostPath:
+            path: /var/run/docker.sock
+        - name: sandbox
+          hostPath:
+            path: /tmp
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: runner-v531
+spec:
+  selector:
+    app.kubernetes.io/name: runner-v531
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8080
+  type: NodePort
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: runner-v531
+  labels:
+    app.kubernetes.io/name: runner-v531
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: runner-v531
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: runner-v531
+      annotations:
+        commit_sha: 80b18cfa6ca13778a8ec5ccd9c3a5d1ea9bbd58b
+    spec:
+      containers:
+        - image: swiftfiddle/runner:5.3.1
+          name: runner-v531
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 8080
+          volumeMounts:
+            - name: docker-socket
+              mountPath: /var/run/docker.sock
+            - name: sandbox
+              mountPath: /tmp
+      volumes:
+        - name: docker-socket
+          hostPath:
+            path: /var/run/docker.sock
+        - name: sandbox
+          hostPath:
+            path: /tmp
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: runner-v53
+spec:
+  selector:
+    app.kubernetes.io/name: runner-v53
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8080
+  type: NodePort
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: runner-v53
+  labels:
+    app.kubernetes.io/name: runner-v53
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: runner-v53
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: runner-v53
+      annotations:
+        commit_sha: 80b18cfa6ca13778a8ec5ccd9c3a5d1ea9bbd58b
+    spec:
+      containers:
+        - image: swiftfiddle/runner:5.3
+          name: runner-v53
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 8080
+          volumeMounts:
+            - name: docker-socket
+              mountPath: /var/run/docker.sock
+            - name: sandbox
+              mountPath: /tmp
+      volumes:
+        - name: docker-socket
+          hostPath:
+            path: /var/run/docker.sock
+        - name: sandbox
+          hostPath:
+            path: /tmp
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: runner-v52
+spec:
+  selector:
+    app.kubernetes.io/name: runner-v52
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8080
+  type: NodePort
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: runner-v52
+  labels:
+    app.kubernetes.io/name: runner-v52
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: runner-v52
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: runner-v52
+      annotations:
+        commit_sha: 80b18cfa6ca13778a8ec5ccd9c3a5d1ea9bbd58b
+    spec:
+      containers:
+        - image: swiftfiddle/runner:5.2
+          name: runner-v52
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 8080
+          volumeMounts:
+            - name: docker-socket
+              mountPath: /var/run/docker.sock
+            - name: sandbox
+              mountPath: /tmp
+      volumes:
+        - name: docker-socket
+          hostPath:
+            path: /var/run/docker.sock
+        - name: sandbox
+          hostPath:
+            path: /tmp
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: runner-v51
+spec:
+  selector:
+    app.kubernetes.io/name: runner-v51
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8080
+  type: NodePort
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: runner-v51
+  labels:
+    app.kubernetes.io/name: runner-v51
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: runner-v51
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: runner-v51
+      annotations:
+        commit_sha: 80b18cfa6ca13778a8ec5ccd9c3a5d1ea9bbd58b
+    spec:
+      containers:
+        - image: swiftfiddle/runner:5.1
+          name: runner-v51
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 8080
+          volumeMounts:
+            - name: docker-socket
+              mountPath: /var/run/docker.sock
+            - name: sandbox
+              mountPath: /tmp
+      volumes:
+        - name: docker-socket
+          hostPath:
+            path: /var/run/docker.sock
+        - name: sandbox
+          hostPath:
+            path: /tmp
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: runner-v50
+spec:
+  selector:
+    app.kubernetes.io/name: runner-v50
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8080
+  type: NodePort
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: runner-v50
+  labels:
+    app.kubernetes.io/name: runner-v50
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: runner-v50
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: runner-v50
+      annotations:
+        commit_sha: 80b18cfa6ca13778a8ec5ccd9c3a5d1ea9bbd58b
+    spec:
+      containers:
+        - image: swiftfiddle/runner:5.0
+          name: runner-v50
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 8080
+          volumeMounts:
+            - name: docker-socket
+              mountPath: /var/run/docker.sock
+            - name: sandbox
+              mountPath: /tmp
+      volumes:
+        - name: docker-socket
+          hostPath:
+            path: /var/run/docker.sock
+        - name: sandbox
+          hostPath:
+            path: /tmp
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: runner-v42
+spec:
+  selector:
+    app.kubernetes.io/name: runner-v42
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8080
+  type: NodePort
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: runner-v42
+  labels:
+    app.kubernetes.io/name: runner-v42
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: runner-v42
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: runner-v42
+      annotations:
+        commit_sha: 80b18cfa6ca13778a8ec5ccd9c3a5d1ea9bbd58b
+    spec:
+      containers:
+        - image: swiftfiddle/runner:4.2
+          name: runner-v42
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 8080
+          volumeMounts:
+            - name: docker-socket
+              mountPath: /var/run/docker.sock
+            - name: sandbox
+              mountPath: /tmp
+      volumes:
+        - name: docker-socket
+          hostPath:
+            path: /var/run/docker.sock
+        - name: sandbox
+          hostPath:
+            path: /tmp
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: runner-v412
+spec:
+  selector:
+    app.kubernetes.io/name: runner-v412
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8080
+  type: NodePort
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: runner-v412
+  labels:
+    app.kubernetes.io/name: runner-v412
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: runner-v412
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: runner-v412
+      annotations:
+        commit_sha: 80b18cfa6ca13778a8ec5ccd9c3a5d1ea9bbd58b
+    spec:
+      containers:
+        - image: swiftfiddle/runner:4.1.2
+          name: runner-v412
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 8080
+          volumeMounts:
+            - name: docker-socket
+              mountPath: /var/run/docker.sock
+            - name: sandbox
+              mountPath: /tmp
+      volumes:
+        - name: docker-socket
+          hostPath:
+            path: /var/run/docker.sock
+        - name: sandbox
+          hostPath:
+            path: /tmp
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: runner-v411
+spec:
+  selector:
+    app.kubernetes.io/name: runner-v411
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8080
+  type: NodePort
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: runner-v411
+  labels:
+    app.kubernetes.io/name: runner-v411
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: runner-v411
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: runner-v411
+      annotations:
+        commit_sha: 80b18cfa6ca13778a8ec5ccd9c3a5d1ea9bbd58b
+    spec:
+      containers:
+        - image: swiftfiddle/runner:4.1.1
+          name: runner-v411
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 8080
+          volumeMounts:
+            - name: docker-socket
+              mountPath: /var/run/docker.sock
+            - name: sandbox
+              mountPath: /tmp
+      volumes:
+        - name: docker-socket
+          hostPath:
+            path: /var/run/docker.sock
+        - name: sandbox
+          hostPath:
+            path: /tmp
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: runner-v41
+spec:
+  selector:
+    app.kubernetes.io/name: runner-v41
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8080
+  type: NodePort
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: runner-v41
+  labels:
+    app.kubernetes.io/name: runner-v41
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: runner-v41
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: runner-v41
+      annotations:
+        commit_sha: 80b18cfa6ca13778a8ec5ccd9c3a5d1ea9bbd58b
+    spec:
+      containers:
+        - image: swiftfiddle/runner:4.1
+          name: runner-v41
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 8080
+          volumeMounts:
+            - name: docker-socket
+              mountPath: /var/run/docker.sock
+            - name: sandbox
+              mountPath: /tmp
+      volumes:
+        - name: docker-socket
+          hostPath:
+            path: /var/run/docker.sock
+        - name: sandbox
+          hostPath:
+            path: /tmp
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: runner-v40
+spec:
+  selector:
+    app.kubernetes.io/name: runner-v40
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8080
+  type: NodePort
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: runner-v40
+  labels:
+    app.kubernetes.io/name: runner-v40
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: runner-v40
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: runner-v40
+      annotations:
+        commit_sha: 80b18cfa6ca13778a8ec5ccd9c3a5d1ea9bbd58b
+    spec:
+      containers:
+        - image: swiftfiddle/runner:4.0
+          name: runner-v40
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 8080
+          volumeMounts:
+            - name: docker-socket
+              mountPath: /var/run/docker.sock
+            - name: sandbox
+              mountPath: /tmp
+      volumes:
+        - name: docker-socket
+          hostPath:
+            path: /var/run/docker.sock
+        - name: sandbox
+          hostPath:
+            path: /tmp
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: runner-v31
+spec:
+  selector:
+    app.kubernetes.io/name: runner-v31
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8080
+  type: NodePort
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: runner-v31
+  labels:
+    app.kubernetes.io/name: runner-v31
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: runner-v31
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: runner-v31
+      annotations:
+        commit_sha: 80b18cfa6ca13778a8ec5ccd9c3a5d1ea9bbd58b
+    spec:
+      containers:
+        - image: swiftfiddle/runner:3.1
+          name: runner-v31
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 8080
+          volumeMounts:
+            - name: docker-socket
+              mountPath: /var/run/docker.sock
+            - name: sandbox
+              mountPath: /tmp
+      volumes:
+        - name: docker-socket
+          hostPath:
+            path: /var/run/docker.sock
+        - name: sandbox
+          hostPath:
+            path: /tmp
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: runner-v301
+spec:
+  selector:
+    app.kubernetes.io/name: runner-v301
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8080
+  type: NodePort
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: runner-v301
+  labels:
+    app.kubernetes.io/name: runner-v301
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: runner-v301
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: runner-v301
+      annotations:
+        commit_sha: 80b18cfa6ca13778a8ec5ccd9c3a5d1ea9bbd58b
+    spec:
+      containers:
+        - image: swiftfiddle/runner:3.0.1
+          name: runner-v301
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 8080
+          volumeMounts:
+            - name: docker-socket
+              mountPath: /var/run/docker.sock
+            - name: sandbox
+              mountPath: /tmp
+      volumes:
+        - name: docker-socket
+          hostPath:
+            path: /var/run/docker.sock
+        - name: sandbox
+          hostPath:
+            path: /tmp
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: runner-v30
+spec:
+  selector:
+    app.kubernetes.io/name: runner-v30
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8080
+  type: NodePort
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: runner-v30
+  labels:
+    app.kubernetes.io/name: runner-v30
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: runner-v30
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: runner-v30
+      annotations:
+        commit_sha: 80b18cfa6ca13778a8ec5ccd9c3a5d1ea9bbd58b
+    spec:
+      containers:
+        - image: swiftfiddle/runner:3.0
+          name: runner-v30
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 8080
+          volumeMounts:
+            - name: docker-socket
+              mountPath: /var/run/docker.sock
+            - name: sandbox
+              mountPath: /tmp
+      volumes:
+        - name: docker-socket
+          hostPath:
+            path: /var/run/docker.sock
+        - name: sandbox
+          hostPath:
+            path: /tmp
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: runner-v221
+spec:
+  selector:
+    app.kubernetes.io/name: runner-v221
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8080
+  type: NodePort
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: runner-v221
+  labels:
+    app.kubernetes.io/name: runner-v221
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: runner-v221
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: runner-v221
+      annotations:
+        commit_sha: 80b18cfa6ca13778a8ec5ccd9c3a5d1ea9bbd58b
+    spec:
+      containers:
+        - image: swiftfiddle/runner:2.2.1
+          name: runner-v221
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 8080
+          volumeMounts:
+            - name: docker-socket
+              mountPath: /var/run/docker.sock
+            - name: sandbox
+              mountPath: /tmp
+      volumes:
+        - name: docker-socket
+          hostPath:
+            path: /var/run/docker.sock
+        - name: sandbox
+          hostPath:
+            path: /tmp
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: runner-v22
+spec:
+  selector:
+    app.kubernetes.io/name: runner-v22
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8080
+  type: NodePort
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: runner-v22
+  labels:
+    app.kubernetes.io/name: runner-v22
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: runner-v22
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: runner-v22
+      annotations:
+        commit_sha: 80b18cfa6ca13778a8ec5ccd9c3a5d1ea9bbd58b
+    spec:
+      containers:
+        - image: swiftfiddle/runner:2.2
+          name: runner-v22
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 8080
+          volumeMounts:
+            - name: docker-socket
+              mountPath: /var/run/docker.sock
+            - name: sandbox
+              mountPath: /tmp
+      volumes:
+        - name: docker-socket
+          hostPath:
+            path: /var/run/docker.sock
+        - name: sandbox
+          hostPath:
+            path: /tmp
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: runner-vnightly-main
+spec:
+  selector:
+    app.kubernetes.io/name: runner-vnightly-main
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8080
+  type: NodePort
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: runner-vnightly-main
+  labels:
+    app.kubernetes.io/name: runner-vnightly-main
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: runner-vnightly-main
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: runner-vnightly-main
+      annotations:
+        commit_sha: 80b18cfa6ca13778a8ec5ccd9c3a5d1ea9bbd58b
+    spec:
+      containers:
+        - image: swiftfiddle/runner:nightly-main
+          name: runner-vnightly-main
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 8080
+          volumeMounts:
+            - name: docker-socket
+              mountPath: /var/run/docker.sock
+            - name: sandbox
+              mountPath: /tmp
+      volumes:
+        - name: docker-socket
+          hostPath:
+            path: /var/run/docker.sock
+        - name: sandbox
+          hostPath:
+            path: /tmp
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: runner-vnightly-55
+spec:
+  selector:
+    app.kubernetes.io/name: runner-vnightly-55
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8080
+  type: NodePort
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: runner-vnightly-55
+  labels:
+    app.kubernetes.io/name: runner-vnightly-55
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: runner-vnightly-55
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: runner-vnightly-55
+      annotations:
+        commit_sha: 80b18cfa6ca13778a8ec5ccd9c3a5d1ea9bbd58b
+    spec:
+      containers:
+        - image: swiftfiddle/runner:nightly-5.5
+          name: runner-vnightly-55
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 8080
+          volumeMounts:
+            - name: docker-socket
+              mountPath: /var/run/docker.sock
+            - name: sandbox
+              mountPath: /tmp
+      volumes:
+        - name: docker-socket
+          hostPath:
+            path: /var/run/docker.sock
+        - name: sandbox
+          hostPath:
+            path: /tmp
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: runner-vnightly-54
+spec:
+  selector:
+    app.kubernetes.io/name: runner-vnightly-54
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8080
+  type: NodePort
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: runner-vnightly-54
+  labels:
+    app.kubernetes.io/name: runner-vnightly-54
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: runner-vnightly-54
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: runner-vnightly-54
+      annotations:
+        commit_sha: 80b18cfa6ca13778a8ec5ccd9c3a5d1ea9bbd58b
+    spec:
+      containers:
+        - image: swiftfiddle/runner:nightly-5.4
+          name: runner-vnightly-54
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 8080
+          volumeMounts:
+            - name: docker-socket
+              mountPath: /var/run/docker.sock
+            - name: sandbox
+              mountPath: /tmp
+      volumes:
+        - name: docker-socket
+          hostPath:
+            path: /var/run/docker.sock
+        - name: sandbox
+          hostPath:
+            path: /tmp
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: runner-vnightly-53
+spec:
+  selector:
+    app.kubernetes.io/name: runner-vnightly-53
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8080
+  type: NodePort
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: runner-vnightly-53
+  labels:
+    app.kubernetes.io/name: runner-vnightly-53
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: runner-vnightly-53
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: runner-vnightly-53
+      annotations:
+        commit_sha: 80b18cfa6ca13778a8ec5ccd9c3a5d1ea9bbd58b
+    spec:
+      containers:
+        - image: swiftfiddle/runner:nightly-5.3
+          name: runner-vnightly-53
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 8080
+          volumeMounts:
+            - name: docker-socket
+              mountPath: /var/run/docker.sock
+            - name: sandbox
+              mountPath: /tmp
+      volumes:
+        - name: docker-socket
+          hostPath:
+            path: /var/run/docker.sock
+        - name: sandbox
+          hostPath:
+            path: /tmp
+---
+
