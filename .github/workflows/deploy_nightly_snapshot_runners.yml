@@ -33,12 +33,12 @@ jobs:
         run: |
           set -ex
 
-          cat <<- EOF
+          cat <<-EOF > versions.txt
           nightly-main
           nightly-5.5
           nightly-5.4
           nightly-5.3
-          EOF > versions.txt
+          EOF
 
           /bin/bash k8s/pod.yaml.sh
           kubectl apply -f k8s/pod.yaml
