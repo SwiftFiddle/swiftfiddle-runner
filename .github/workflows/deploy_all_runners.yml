@@ -57,7 +57,7 @@ jobs:
         run: |
           set -ex
 
-          /bin/bash k8s/pod.yaml.sh '0'
+          /bin/bash k8s/pod.yaml.sh '-'
           kubectl apply -f k8s/pod.yaml
 
           versions=($(cat versions.txt | tr "\n" " "))
