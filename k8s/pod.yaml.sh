@@ -1,11 +1,12 @@
 #!/bin/bash
 set -e
 
-rm pod.yaml
+CWD=$(cd $(dirname $0); pwd)
+rm -f "$CWD/pod.yaml"
 
-versions=($(cat ../versions.txt | tr "\n" " "))
+versions=($(cat $CWD/../versions.txt | tr "\n" " "))
 for version in "${versions[@]}"; do
   name="runner-v$(sed 's/\.//g' <<<"$version")"
   commit_sha=$(git rev-parse HEAD)
-  sed "s/%NAME%/$name/g;s/%IMAGE%/swiftfiddle\/runner:$version/g;s/%COMMIT_SHA%/$commit_sha/g;"  pod_template.yaml >> pod.yaml
+  sed "s/%NAME%/$name/g;s/%IMAGE%/swiftfiddle\/runner:$version/g;s/%COMMIT_SHA%/$commit_sha/g;" "$CWD/pod_template.yaml" >> "$CWD/pod.yaml"
 done
