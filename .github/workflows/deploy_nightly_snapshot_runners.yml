@@ -40,7 +40,7 @@ jobs:
           nightly-5.3
           EOF
 
-          /bin/bash k8s/pod.yaml.sh
+          /bin/bash k8s/pod.yaml.sh $(date +%s%3N)
           kubectl apply -f k8s/pod.yaml
 
           versions=($(cat versions.txt | tr "\n" " "))
