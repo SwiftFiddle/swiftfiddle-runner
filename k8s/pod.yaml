@@ -2,6 +2,8 @@ apiVersion: v1
 kind: Service
 metadata:
   name: runner-v542
+  annotations:
+    cloud.google.com/backend-config: '{"ports": {"80": "runner-v542-backendconfig"}}'
 spec:
   selector:
     app.kubernetes.io/name: runner-v542
@@ -10,6 +12,15 @@ spec:
       port: 80
       targetPort: 8080
   type: NodePort
+---
+apiVersion: cloud.google.com/v1
+kind: BackendConfig
+metadata:
+  name: runner-v542-backendconfig
+spec:
+  timeoutSec: 660
+  connectionDraining:
+    drainingTimeoutSec: 720
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -26,7 +37,7 @@ spec:
       labels:
         app.kubernetes.io/name: runner-v542
       annotations:
-        commit_sha: "2e9cb9a7ef616e8050d2aac500b0299172246231"
+        commit_sha: "83fac396831371a97b5c3e8943b8e405325964c3"
         timestamp: "0"
     spec:
       containers:
@@ -57,6 +68,8 @@ apiVersion: v1
 kind: Service
 metadata:
   name: runner-v541
+  annotations:
+    cloud.google.com/backend-config: '{"ports": {"80": "runner-v541-backendconfig"}}'
 spec:
   selector:
     app.kubernetes.io/name: runner-v541
@@ -65,6 +78,15 @@ spec:
       port: 80
       targetPort: 8080
   type: NodePort
+---
+apiVersion: cloud.google.com/v1
+kind: BackendConfig
+metadata:
+  name: runner-v541-backendconfig
+spec:
+  timeoutSec: 660
+  connectionDraining:
+    drainingTimeoutSec: 720
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -81,7 +103,7 @@ spec:
       labels:
         app.kubernetes.io/name: runner-v541
       annotations:
-        commit_sha: "2e9cb9a7ef616e8050d2aac500b0299172246231"
+        commit_sha: "83fac396831371a97b5c3e8943b8e405325964c3"
         timestamp: "0"
     spec:
       containers:
@@ -112,6 +134,8 @@ apiVersion: v1
 kind: Service
 metadata:
   name: runner-v54
+  annotations:
+    cloud.google.com/backend-config: '{"ports": {"80": "runner-v54-backendconfig"}}'
 spec:
   selector:
     app.kubernetes.io/name: runner-v54
@@ -120,6 +144,15 @@ spec:
       port: 80
       targetPort: 8080
   type: NodePort
+---
+apiVersion: cloud.google.com/v1
+kind: BackendConfig
+metadata:
+  name: runner-v54-backendconfig
+spec:
+  timeoutSec: 660
+  connectionDraining:
+    drainingTimeoutSec: 720
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -136,7 +169,7 @@ spec:
       labels:
         app.kubernetes.io/name: runner-v54
       annotations:
-        commit_sha: "2e9cb9a7ef616e8050d2aac500b0299172246231"
+        commit_sha: "83fac396831371a97b5c3e8943b8e405325964c3"
         timestamp: "0"
     spec:
       containers:
@@ -167,6 +200,8 @@ apiVersion: v1
 kind: Service
 metadata:
   name: runner-v533
+  annotations:
+    cloud.google.com/backend-config: '{"ports": {"80": "runner-v533-backendconfig"}}'
 spec:
   selector:
     app.kubernetes.io/name: runner-v533
@@ -175,6 +210,15 @@ spec:
       port: 80
       targetPort: 8080
   type: NodePort
+---
+apiVersion: cloud.google.com/v1
+kind: BackendConfig
+metadata:
+  name: runner-v533-backendconfig
+spec:
+  timeoutSec: 660
+  connectionDraining:
+    drainingTimeoutSec: 720
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -191,7 +235,7 @@ spec:
       labels:
         app.kubernetes.io/name: runner-v533
       annotations:
-        commit_sha: "2e9cb9a7ef616e8050d2aac500b0299172246231"
+        commit_sha: "83fac396831371a97b5c3e8943b8e405325964c3"
         timestamp: "0"
     spec:
       containers:
@@ -222,6 +266,8 @@ apiVersion: v1
 kind: Service
 metadata:
   name: runner-v532
+  annotations:
+    cloud.google.com/backend-config: '{"ports": {"80": "runner-v532-backendconfig"}}'
 spec:
   selector:
     app.kubernetes.io/name: runner-v532
@@ -230,6 +276,15 @@ spec:
       port: 80
       targetPort: 8080
   type: NodePort
+---
+apiVersion: cloud.google.com/v1
+kind: BackendConfig
+metadata:
+  name: runner-v532-backendconfig
+spec:
+  timeoutSec: 660
+  connectionDraining:
+    drainingTimeoutSec: 720
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -246,7 +301,7 @@ spec:
       labels:
         app.kubernetes.io/name: runner-v532
       annotations:
-        commit_sha: "2e9cb9a7ef616e8050d2aac500b0299172246231"
+        commit_sha: "83fac396831371a97b5c3e8943b8e405325964c3"
         timestamp: "0"
     spec:
       containers:
@@ -277,6 +332,8 @@ apiVersion: v1
 kind: Service
 metadata:
   name: runner-v531
+  annotations:
+    cloud.google.com/backend-config: '{"ports": {"80": "runner-v531-backendconfig"}}'
 spec:
   selector:
     app.kubernetes.io/name: runner-v531
@@ -285,6 +342,15 @@ spec:
       port: 80
       targetPort: 8080
   type: NodePort
+---
+apiVersion: cloud.google.com/v1
+kind: BackendConfig
+metadata:
+  name: runner-v531-backendconfig
+spec:
+  timeoutSec: 660
+  connectionDraining:
+    drainingTimeoutSec: 720
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -301,7 +367,7 @@ spec:
       labels:
         app.kubernetes.io/name: runner-v531
       annotations:
-        commit_sha: "2e9cb9a7ef616e8050d2aac500b0299172246231"
+        commit_sha: "83fac396831371a97b5c3e8943b8e405325964c3"
         timestamp: "0"
     spec:
       containers:
@@ -332,6 +398,8 @@ apiVersion: v1
 kind: Service
 metadata:
   name: runner-v53
+  annotations:
+    cloud.google.com/backend-config: '{"ports": {"80": "runner-v53-backendconfig"}}'
 spec:
   selector:
     app.kubernetes.io/name: runner-v53
@@ -340,6 +408,15 @@ spec:
       port: 80
       targetPort: 8080
   type: NodePort
+---
+apiVersion: cloud.google.com/v1
+kind: BackendConfig
+metadata:
+  name: runner-v53-backendconfig
+spec:
+  timeoutSec: 660
+  connectionDraining:
+    drainingTimeoutSec: 720
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -356,7 +433,7 @@ spec:
       labels:
         app.kubernetes.io/name: runner-v53
       annotations:
-        commit_sha: "2e9cb9a7ef616e8050d2aac500b0299172246231"
+        commit_sha: "83fac396831371a97b5c3e8943b8e405325964c3"
         timestamp: "0"
     spec:
       containers:
@@ -387,6 +464,8 @@ apiVersion: v1
 kind: Service
 metadata:
   name: runner-v52
+  annotations:
+    cloud.google.com/backend-config: '{"ports": {"80": "runner-v52-backendconfig"}}'
 spec:
   selector:
     app.kubernetes.io/name: runner-v52
@@ -395,6 +474,15 @@ spec:
       port: 80
       targetPort: 8080
   type: NodePort
+---
+apiVersion: cloud.google.com/v1
+kind: BackendConfig
+metadata:
+  name: runner-v52-backendconfig
+spec:
+  timeoutSec: 660
+  connectionDraining:
+    drainingTimeoutSec: 720
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -411,7 +499,7 @@ spec:
       labels:
         app.kubernetes.io/name: runner-v52
       annotations:
-        commit_sha: "2e9cb9a7ef616e8050d2aac500b0299172246231"
+        commit_sha: "83fac396831371a97b5c3e8943b8e405325964c3"
         timestamp: "0"
     spec:
       containers:
@@ -442,6 +530,8 @@ apiVersion: v1
 kind: Service
 metadata:
   name: runner-v51
+  annotations:
+    cloud.google.com/backend-config: '{"ports": {"80": "runner-v51-backendconfig"}}'
 spec:
   selector:
     app.kubernetes.io/name: runner-v51
@@ -450,6 +540,15 @@ spec:
       port: 80
       targetPort: 8080
   type: NodePort
+---
+apiVersion: cloud.google.com/v1
+kind: BackendConfig
+metadata:
+  name: runner-v51-backendconfig
+spec:
+  timeoutSec: 660
+  connectionDraining:
+    drainingTimeoutSec: 720
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -466,7 +565,7 @@ spec:
       labels:
         app.kubernetes.io/name: runner-v51
       annotations:
-        commit_sha: "2e9cb9a7ef616e8050d2aac500b0299172246231"
+        commit_sha: "83fac396831371a97b5c3e8943b8e405325964c3"
         timestamp: "0"
     spec:
       containers:
@@ -497,6 +596,8 @@ apiVersion: v1
 kind: Service
 metadata:
   name: runner-v50
+  annotations:
+    cloud.google.com/backend-config: '{"ports": {"80": "runner-v50-backendconfig"}}'
 spec:
   selector:
     app.kubernetes.io/name: runner-v50
@@ -505,6 +606,15 @@ spec:
       port: 80
       targetPort: 8080
   type: NodePort
+---
+apiVersion: cloud.google.com/v1
+kind: BackendConfig
+metadata:
+  name: runner-v50-backendconfig
+spec:
+  timeoutSec: 660
+  connectionDraining:
+    drainingTimeoutSec: 720
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -521,7 +631,7 @@ spec:
       labels:
         app.kubernetes.io/name: runner-v50
       annotations:
-        commit_sha: "2e9cb9a7ef616e8050d2aac500b0299172246231"
+        commit_sha: "83fac396831371a97b5c3e8943b8e405325964c3"
         timestamp: "0"
     spec:
       containers:
@@ -552,6 +662,8 @@ apiVersion: v1
 kind: Service
 metadata:
   name: runner-v42
+  annotations:
+    cloud.google.com/backend-config: '{"ports": {"80": "runner-v42-backendconfig"}}'
 spec:
   selector:
     app.kubernetes.io/name: runner-v42
@@ -560,6 +672,15 @@ spec:
       port: 80
       targetPort: 8080
   type: NodePort
+---
+apiVersion: cloud.google.com/v1
+kind: BackendConfig
+metadata:
+  name: runner-v42-backendconfig
+spec:
+  timeoutSec: 660
+  connectionDraining:
+    drainingTimeoutSec: 720
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -576,7 +697,7 @@ spec:
       labels:
         app.kubernetes.io/name: runner-v42
       annotations:
-        commit_sha: "2e9cb9a7ef616e8050d2aac500b0299172246231"
+        commit_sha: "83fac396831371a97b5c3e8943b8e405325964c3"
         timestamp: "0"
     spec:
       containers:
@@ -607,6 +728,8 @@ apiVersion: v1
 kind: Service
 metadata:
   name: runner-v412
+  annotations:
+    cloud.google.com/backend-config: '{"ports": {"80": "runner-v412-backendconfig"}}'
 spec:
   selector:
     app.kubernetes.io/name: runner-v412
@@ -615,6 +738,15 @@ spec:
       port: 80
       targetPort: 8080
   type: NodePort
+---
+apiVersion: cloud.google.com/v1
+kind: BackendConfig
+metadata:
+  name: runner-v412-backendconfig
+spec:
+  timeoutSec: 660
+  connectionDraining:
+    drainingTimeoutSec: 720
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -631,7 +763,7 @@ spec:
       labels:
         app.kubernetes.io/name: runner-v412
       annotations:
-        commit_sha: "2e9cb9a7ef616e8050d2aac500b0299172246231"
+        commit_sha: "83fac396831371a97b5c3e8943b8e405325964c3"
         timestamp: "0"
     spec:
       containers:
@@ -662,6 +794,8 @@ apiVersion: v1
 kind: Service
 metadata:
   name: runner-v411
+  annotations:
+    cloud.google.com/backend-config: '{"ports": {"80": "runner-v411-backendconfig"}}'
 spec:
   selector:
     app.kubernetes.io/name: runner-v411
@@ -670,6 +804,15 @@ spec:
       port: 80
       targetPort: 8080
   type: NodePort
+---
+apiVersion: cloud.google.com/v1
+kind: BackendConfig
+metadata:
+  name: runner-v411-backendconfig
+spec:
+  timeoutSec: 660
+  connectionDraining:
+    drainingTimeoutSec: 720
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -686,7 +829,7 @@ spec:
       labels:
         app.kubernetes.io/name: runner-v411
       annotations:
-        commit_sha: "2e9cb9a7ef616e8050d2aac500b0299172246231"
+        commit_sha: "83fac396831371a97b5c3e8943b8e405325964c3"
         timestamp: "0"
     spec:
       containers:
@@ -717,6 +860,8 @@ apiVersion: v1
 kind: Service
 metadata:
   name: runner-v41
+  annotations:
+    cloud.google.com/backend-config: '{"ports": {"80": "runner-v41-backendconfig"}}'
 spec:
   selector:
     app.kubernetes.io/name: runner-v41
@@ -725,6 +870,15 @@ spec:
       port: 80
       targetPort: 8080
   type: NodePort
+---
+apiVersion: cloud.google.com/v1
+kind: BackendConfig
+metadata:
+  name: runner-v41-backendconfig
+spec:
+  timeoutSec: 660
+  connectionDraining:
+    drainingTimeoutSec: 720
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -741,7 +895,7 @@ spec:
       labels:
         app.kubernetes.io/name: runner-v41
       annotations:
-        commit_sha: "2e9cb9a7ef616e8050d2aac500b0299172246231"
+        commit_sha: "83fac396831371a97b5c3e8943b8e405325964c3"
         timestamp: "0"
     spec:
       containers:
@@ -772,6 +926,8 @@ apiVersion: v1
 kind: Service
 metadata:
   name: runner-v40
+  annotations:
+    cloud.google.com/backend-config: '{"ports": {"80": "runner-v40-backendconfig"}}'
 spec:
   selector:
     app.kubernetes.io/name: runner-v40
@@ -780,6 +936,15 @@ spec:
       port: 80
       targetPort: 8080
   type: NodePort
+---
+apiVersion: cloud.google.com/v1
+kind: BackendConfig
+metadata:
+  name: runner-v40-backendconfig
+spec:
+  timeoutSec: 660
+  connectionDraining:
+    drainingTimeoutSec: 720
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -796,7 +961,7 @@ spec:
       labels:
         app.kubernetes.io/name: runner-v40
       annotations:
-        commit_sha: "2e9cb9a7ef616e8050d2aac500b0299172246231"
+        commit_sha: "83fac396831371a97b5c3e8943b8e405325964c3"
         timestamp: "0"
     spec:
       containers:
@@ -827,6 +992,8 @@ apiVersion: v1
 kind: Service
 metadata:
   name: runner-v31
+  annotations:
+    cloud.google.com/backend-config: '{"ports": {"80": "runner-v31-backendconfig"}}'
 spec:
   selector:
     app.kubernetes.io/name: runner-v31
@@ -835,6 +1002,15 @@ spec:
       port: 80
       targetPort: 8080
   type: NodePort
+---
+apiVersion: cloud.google.com/v1
+kind: BackendConfig
+metadata:
+  name: runner-v31-backendconfig
+spec:
+  timeoutSec: 660
+  connectionDraining:
+    drainingTimeoutSec: 720
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -851,7 +1027,7 @@ spec:
       labels:
         app.kubernetes.io/name: runner-v31
       annotations:
-        commit_sha: "2e9cb9a7ef616e8050d2aac500b0299172246231"
+        commit_sha: "83fac396831371a97b5c3e8943b8e405325964c3"
         timestamp: "0"
     spec:
       containers:
@@ -882,6 +1058,8 @@ apiVersion: v1
 kind: Service
 metadata:
   name: runner-v301
+  annotations:
+    cloud.google.com/backend-config: '{"ports": {"80": "runner-v301-backendconfig"}}'
 spec:
   selector:
     app.kubernetes.io/name: runner-v301
@@ -890,6 +1068,15 @@ spec:
       port: 80
       targetPort: 8080
   type: NodePort
+---
+apiVersion: cloud.google.com/v1
+kind: BackendConfig
+metadata:
+  name: runner-v301-backendconfig
+spec:
+  timeoutSec: 660
+  connectionDraining:
+    drainingTimeoutSec: 720
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -906,7 +1093,7 @@ spec:
       labels:
         app.kubernetes.io/name: runner-v301
       annotations:
-        commit_sha: "2e9cb9a7ef616e8050d2aac500b0299172246231"
+        commit_sha: "83fac396831371a97b5c3e8943b8e405325964c3"
         timestamp: "0"
     spec:
       containers:
@@ -937,6 +1124,8 @@ apiVersion: v1
 kind: Service
 metadata:
   name: runner-v30
+  annotations:
+    cloud.google.com/backend-config: '{"ports": {"80": "runner-v30-backendconfig"}}'
 spec:
   selector:
     app.kubernetes.io/name: runner-v30
@@ -945,6 +1134,15 @@ spec:
       port: 80
       targetPort: 8080
   type: NodePort
+---
+apiVersion: cloud.google.com/v1
+kind: BackendConfig
+metadata:
+  name: runner-v30-backendconfig
+spec:
+  timeoutSec: 660
+  connectionDraining:
+    drainingTimeoutSec: 720
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -961,7 +1159,7 @@ spec:
       labels:
         app.kubernetes.io/name: runner-v30
       annotations:
-        commit_sha: "2e9cb9a7ef616e8050d2aac500b0299172246231"
+        commit_sha: "83fac396831371a97b5c3e8943b8e405325964c3"
         timestamp: "0"
     spec:
       containers:
@@ -992,6 +1190,8 @@ apiVersion: v1
 kind: Service
 metadata:
   name: runner-v221
+  annotations:
+    cloud.google.com/backend-config: '{"ports": {"80": "runner-v221-backendconfig"}}'
 spec:
   selector:
     app.kubernetes.io/name: runner-v221
@@ -1000,6 +1200,15 @@ spec:
       port: 80
       targetPort: 8080
   type: NodePort
+---
+apiVersion: cloud.google.com/v1
+kind: BackendConfig
+metadata:
+  name: runner-v221-backendconfig
+spec:
+  timeoutSec: 660
+  connectionDraining:
+    drainingTimeoutSec: 720
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -1016,7 +1225,7 @@ spec:
       labels:
         app.kubernetes.io/name: runner-v221
       annotations:
-        commit_sha: "2e9cb9a7ef616e8050d2aac500b0299172246231"
+        commit_sha: "83fac396831371a97b5c3e8943b8e405325964c3"
         timestamp: "0"
     spec:
       containers:
@@ -1047,6 +1256,8 @@ apiVersion: v1
 kind: Service
 metadata:
   name: runner-v22
+  annotations:
+    cloud.google.com/backend-config: '{"ports": {"80": "runner-v22-backendconfig"}}'
 spec:
   selector:
     app.kubernetes.io/name: runner-v22
@@ -1055,6 +1266,15 @@ spec:
       port: 80
       targetPort: 8080
   type: NodePort
+---
+apiVersion: cloud.google.com/v1
+kind: BackendConfig
+metadata:
+  name: runner-v22-backendconfig
+spec:
+  timeoutSec: 660
+  connectionDraining:
+    drainingTimeoutSec: 720
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -1071,7 +1291,7 @@ spec:
       labels:
         app.kubernetes.io/name: runner-v22
       annotations:
-        commit_sha: "2e9cb9a7ef616e8050d2aac500b0299172246231"
+        commit_sha: "83fac396831371a97b5c3e8943b8e405325964c3"
         timestamp: "0"
     spec:
       containers:
@@ -1102,6 +1322,8 @@ apiVersion: v1
 kind: Service
 metadata:
   name: runner-vnightly-main
+  annotations:
+    cloud.google.com/backend-config: '{"ports": {"80": "runner-vnightly-main-backendconfig"}}'
 spec:
   selector:
     app.kubernetes.io/name: runner-vnightly-main
@@ -1110,6 +1332,15 @@ spec:
       port: 80
       targetPort: 8080
   type: NodePort
+---
+apiVersion: cloud.google.com/v1
+kind: BackendConfig
+metadata:
+  name: runner-vnightly-main-backendconfig
+spec:
+  timeoutSec: 660
+  connectionDraining:
+    drainingTimeoutSec: 720
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -1126,7 +1357,7 @@ spec:
       labels:
         app.kubernetes.io/name: runner-vnightly-main
       annotations:
-        commit_sha: "2e9cb9a7ef616e8050d2aac500b0299172246231"
+        commit_sha: "83fac396831371a97b5c3e8943b8e405325964c3"
         timestamp: "0"
     spec:
       containers:
@@ -1157,6 +1388,8 @@ apiVersion: v1
 kind: Service
 metadata:
   name: runner-vnightly-55
+  annotations:
+    cloud.google.com/backend-config: '{"ports": {"80": "runner-vnightly-55-backendconfig"}}'
 spec:
   selector:
     app.kubernetes.io/name: runner-vnightly-55
@@ -1165,6 +1398,15 @@ spec:
       port: 80
       targetPort: 8080
   type: NodePort
+---
+apiVersion: cloud.google.com/v1
+kind: BackendConfig
+metadata:
+  name: runner-vnightly-55-backendconfig
+spec:
+  timeoutSec: 660
+  connectionDraining:
+    drainingTimeoutSec: 720
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -1181,7 +1423,7 @@ spec:
       labels:
         app.kubernetes.io/name: runner-vnightly-55
       annotations:
-        commit_sha: "2e9cb9a7ef616e8050d2aac500b0299172246231"
+        commit_sha: "83fac396831371a97b5c3e8943b8e405325964c3"
         timestamp: "0"
     spec:
       containers:
@@ -1212,6 +1454,8 @@ apiVersion: v1
 kind: Service
 metadata:
   name: runner-vnightly-54
+  annotations:
+    cloud.google.com/backend-config: '{"ports": {"80": "runner-vnightly-54-backendconfig"}}'
 spec:
   selector:
     app.kubernetes.io/name: runner-vnightly-54
@@ -1220,6 +1464,15 @@ spec:
       port: 80
       targetPort: 8080
   type: NodePort
+---
+apiVersion: cloud.google.com/v1
+kind: BackendConfig
+metadata:
+  name: runner-vnightly-54-backendconfig
+spec:
+  timeoutSec: 660
+  connectionDraining:
+    drainingTimeoutSec: 720
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -1236,7 +1489,7 @@ spec:
       labels:
         app.kubernetes.io/name: runner-vnightly-54
       annotations:
-        commit_sha: "2e9cb9a7ef616e8050d2aac500b0299172246231"
+        commit_sha: "83fac396831371a97b5c3e8943b8e405325964c3"
         timestamp: "0"
     spec:
       containers:
@@ -1267,6 +1520,8 @@ apiVersion: v1
 kind: Service
 metadata:
   name: runner-vnightly-53
+  annotations:
+    cloud.google.com/backend-config: '{"ports": {"80": "runner-vnightly-53-backendconfig"}}'
 spec:
   selector:
     app.kubernetes.io/name: runner-vnightly-53
@@ -1275,6 +1530,15 @@ spec:
       port: 80
       targetPort: 8080
   type: NodePort
+---
+apiVersion: cloud.google.com/v1
+kind: BackendConfig
+metadata:
+  name: runner-vnightly-53-backendconfig
+spec:
+  timeoutSec: 660
+  connectionDraining:
+    drainingTimeoutSec: 720
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -1291,7 +1555,7 @@ spec:
       labels:
         app.kubernetes.io/name: runner-vnightly-53
       annotations:
-        commit_sha: "2e9cb9a7ef616e8050d2aac500b0299172246231"
+        commit_sha: "83fac396831371a97b5c3e8943b8e405325964c3"
         timestamp: "0"
     spec:
       containers:
