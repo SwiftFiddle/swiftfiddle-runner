@@ -158,7 +158,7 @@ struct Runner {
 
             self.command = command
             self.options = options
-            self.timeout = timeout
+            self.timeout = max(30, min(600, timeout))
             self.nonce = nonce
             self.environment = environment
             self.image = image
