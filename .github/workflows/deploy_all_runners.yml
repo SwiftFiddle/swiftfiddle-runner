@@ -3,6 +3,8 @@ on:
   push:
     branches: [main]
   workflow_dispatch:
+  repository_dispatch:
+    types: [deploy]
 
 env:
   PROJECT_ID: ${{ secrets.GCP_PROJECT }}
