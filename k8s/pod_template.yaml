@@ -32,6 +32,7 @@ spec:
   selector:
     matchLabels:
       app.kubernetes.io/name: %NAME%
+  progressDeadlineSeconds: 900
   template:
     metadata:
       labels:

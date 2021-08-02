@@ -1,13 +1,18 @@
 import Vapor
 
 func routes(_ app: Application) throws {
-    app.get { _ in ["status": "pass"] }
+    app.get { (req) -> [String: String] in
+        let imageTag = try installedImageTag()
+        return ["status": "pass", "version": imageTag,]
+    }
 
     app.get("runner", ":version", "health") { (req) -> [String: String] in
         guard let version = req.parameters.get("version") else { throw Abort(.badRequest) }
+        let imageTag = try installedImageTag()
         return [
             "status": "pass",
             "version": version,
+            "installedVersion": imageTag,
         ]
     }
 
@@ -74,4 +79,19 @@ func routes(_ app: Application) throws {
             timer.cancel()
         }
     }
+}
+
+private func installedImageTag() throws -> String {
+    let process = Process()
+    let standardOutput = Pipe()
+    process.standardOutput = standardOutput
+    process.executableURL = URL(fileURLWithPath: "/usr/bin/env")
+    process.arguments = ["docker", "images", "--filter=reference=*/swift", "--format", "{{.Tag}}"]
+    process.launch()
+    process.waitUntilExit()
+    let data = standardOutput.fileHandleForReading.readDataToEndOfFile()
+    guard let output = String(data: data, encoding: .utf8) else {
+        throw Abort(.internalServerError)
+    }
+    return output.trimmingCharacters(in: .whitespacesAndNewlines)
 }
