@@ -38,7 +38,7 @@ spec:
       labels:
         app.kubernetes.io/name: runner-v542
       annotations:
-        commit_sha: "82eb8c5fbe166deea6588c2ad6ed492f90ba052b"
+        commit_sha: "c3399abe6d71ff4208b8a7ca5bd0329a4ae2b237"
         timestamp: "0"
     spec:
       containers:
@@ -105,7 +105,7 @@ spec:
       labels:
         app.kubernetes.io/name: runner-v541
       annotations:
-        commit_sha: "82eb8c5fbe166deea6588c2ad6ed492f90ba052b"
+        commit_sha: "c3399abe6d71ff4208b8a7ca5bd0329a4ae2b237"
         timestamp: "0"
     spec:
       containers:
@@ -172,7 +172,7 @@ spec:
       labels:
         app.kubernetes.io/name: runner-v54
       annotations:
-        commit_sha: "82eb8c5fbe166deea6588c2ad6ed492f90ba052b"
+        commit_sha: "c3399abe6d71ff4208b8a7ca5bd0329a4ae2b237"
         timestamp: "0"
     spec:
       containers:
@@ -239,7 +239,7 @@ spec:
       labels:
         app.kubernetes.io/name: runner-v533
       annotations:
-        commit_sha: "82eb8c5fbe166deea6588c2ad6ed492f90ba052b"
+        commit_sha: "c3399abe6d71ff4208b8a7ca5bd0329a4ae2b237"
         timestamp: "0"
     spec:
       containers:
@@ -306,7 +306,7 @@ spec:
       labels:
         app.kubernetes.io/name: runner-v532
       annotations:
-        commit_sha: "82eb8c5fbe166deea6588c2ad6ed492f90ba052b"
+        commit_sha: "c3399abe6d71ff4208b8a7ca5bd0329a4ae2b237"
         timestamp: "0"
     spec:
       containers:
@@ -373,7 +373,7 @@ spec:
       labels:
         app.kubernetes.io/name: runner-v531
       annotations:
-        commit_sha: "82eb8c5fbe166deea6588c2ad6ed492f90ba052b"
+        commit_sha: "c3399abe6d71ff4208b8a7ca5bd0329a4ae2b237"
         timestamp: "0"
     spec:
       containers:
@@ -440,7 +440,7 @@ spec:
       labels:
         app.kubernetes.io/name: runner-v53
       annotations:
-        commit_sha: "82eb8c5fbe166deea6588c2ad6ed492f90ba052b"
+        commit_sha: "c3399abe6d71ff4208b8a7ca5bd0329a4ae2b237"
         timestamp: "0"
     spec:
       containers:
@@ -507,7 +507,7 @@ spec:
       labels:
         app.kubernetes.io/name: runner-v525
       annotations:
-        commit_sha: "82eb8c5fbe166deea6588c2ad6ed492f90ba052b"
+        commit_sha: "c3399abe6d71ff4208b8a7ca5bd0329a4ae2b237"
         timestamp: "0"
     spec:
       containers:
@@ -574,7 +574,7 @@ spec:
       labels:
         app.kubernetes.io/name: runner-v524
       annotations:
-        commit_sha: "82eb8c5fbe166deea6588c2ad6ed492f90ba052b"
+        commit_sha: "c3399abe6d71ff4208b8a7ca5bd0329a4ae2b237"
         timestamp: "0"
     spec:
       containers:
@@ -641,7 +641,7 @@ spec:
       labels:
         app.kubernetes.io/name: runner-v523
       annotations:
-        commit_sha: "82eb8c5fbe166deea6588c2ad6ed492f90ba052b"
+        commit_sha: "c3399abe6d71ff4208b8a7ca5bd0329a4ae2b237"
         timestamp: "0"
     spec:
       containers:
@@ -708,7 +708,7 @@ spec:
       labels:
         app.kubernetes.io/name: runner-v522
       annotations:
-        commit_sha: "82eb8c5fbe166deea6588c2ad6ed492f90ba052b"
+        commit_sha: "c3399abe6d71ff4208b8a7ca5bd0329a4ae2b237"
         timestamp: "0"
     spec:
       containers:
@@ -775,7 +775,7 @@ spec:
       labels:
         app.kubernetes.io/name: runner-v521
       annotations:
-        commit_sha: "82eb8c5fbe166deea6588c2ad6ed492f90ba052b"
+        commit_sha: "c3399abe6d71ff4208b8a7ca5bd0329a4ae2b237"
         timestamp: "0"
     spec:
       containers:
@@ -842,347 +842,12 @@ spec:
       labels:
         app.kubernetes.io/name: runner-v52
       annotations:
-        commit_sha: "82eb8c5fbe166deea6588c2ad6ed492f90ba052b"
+        commit_sha: "c3399abe6d71ff4208b8a7ca5bd0329a4ae2b237"
         timestamp: "0"
     spec:
       containers:
         - image: swiftfiddle/runner:5.2
           name: runner-v52
-          imagePullPolicy: Always
-          ports:
-            - containerPort: 8080
-          readinessProbe:
-            httpGet:
-              path: /
-              port: 8080
-          volumeMounts:
-            - name: docker-socket
-              mountPath: /var/run/docker.sock
-            - name: sandbox
-              mountPath: /tmp
-      volumes:
-        - name: docker-socket
-          hostPath:
-            path: /var/run/docker.sock
-        - name: sandbox
-          hostPath:
-            path: /tmp
----
-
-apiVersion: v1
-kind: Service
-metadata:
-  name: runner-v515
-  annotations:
-    cloud.google.com/backend-config: '{"ports": {"80": "runner-v515-backendconfig"}}'
-spec:
-  selector:
-    app.kubernetes.io/name: runner-v515
-  ports:
-    - protocol: TCP
-      port: 80
-      targetPort: 8080
-  type: NodePort
----
-apiVersion: cloud.google.com/v1
-kind: BackendConfig
-metadata:
-  name: runner-v515-backendconfig
-spec:
-  timeoutSec: 660
-  connectionDraining:
-    drainingTimeoutSec: 720
----
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: runner-v515
-  labels:
-    app.kubernetes.io/name: runner-v515
-spec:
-  selector:
-    matchLabels:
-      app.kubernetes.io/name: runner-v515
-  progressDeadlineSeconds: 900
-  template:
-    metadata:
-      labels:
-        app.kubernetes.io/name: runner-v515
-      annotations:
-        commit_sha: "82eb8c5fbe166deea6588c2ad6ed492f90ba052b"
-        timestamp: "0"
-    spec:
-      containers:
-        - image: swiftfiddle/runner:5.1.5
-          name: runner-v515
-          imagePullPolicy: Always
-          ports:
-            - containerPort: 8080
-          readinessProbe:
-            httpGet:
-              path: /
-              port: 8080
-          volumeMounts:
-            - name: docker-socket
-              mountPath: /var/run/docker.sock
-            - name: sandbox
-              mountPath: /tmp
-      volumes:
-        - name: docker-socket
-          hostPath:
-            path: /var/run/docker.sock
-        - name: sandbox
-          hostPath:
-            path: /tmp
----
-
-apiVersion: v1
-kind: Service
-metadata:
-  name: runner-v514
-  annotations:
-    cloud.google.com/backend-config: '{"ports": {"80": "runner-v514-backendconfig"}}'
-spec:
-  selector:
-    app.kubernetes.io/name: runner-v514
-  ports:
-    - protocol: TCP
-      port: 80
-      targetPort: 8080
-  type: NodePort
----
-apiVersion: cloud.google.com/v1
-kind: BackendConfig
-metadata:
-  name: runner-v514-backendconfig
-spec:
-  timeoutSec: 660
-  connectionDraining:
-    drainingTimeoutSec: 720
----
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: runner-v514
-  labels:
-    app.kubernetes.io/name: runner-v514
-spec:
-  selector:
-    matchLabels:
-      app.kubernetes.io/name: runner-v514
-  progressDeadlineSeconds: 900
-  template:
-    metadata:
-      labels:
-        app.kubernetes.io/name: runner-v514
-      annotations:
-        commit_sha: "82eb8c5fbe166deea6588c2ad6ed492f90ba052b"
-        timestamp: "0"
-    spec:
-      containers:
-        - image: swiftfiddle/runner:5.1.4
-          name: runner-v514
-          imagePullPolicy: Always
-          ports:
-            - containerPort: 8080
-          readinessProbe:
-            httpGet:
-              path: /
-              port: 8080
-          volumeMounts:
-            - name: docker-socket
-              mountPath: /var/run/docker.sock
-            - name: sandbox
-              mountPath: /tmp
-      volumes:
-        - name: docker-socket
-          hostPath:
-            path: /var/run/docker.sock
-        - name: sandbox
-          hostPath:
-            path: /tmp
----
-
-apiVersion: v1
-kind: Service
-metadata:
-  name: runner-v513
-  annotations:
-    cloud.google.com/backend-config: '{"ports": {"80": "runner-v513-backendconfig"}}'
-spec:
-  selector:
-    app.kubernetes.io/name: runner-v513
-  ports:
-    - protocol: TCP
-      port: 80
-      targetPort: 8080
-  type: NodePort
----
-apiVersion: cloud.google.com/v1
-kind: BackendConfig
-metadata:
-  name: runner-v513-backendconfig
-spec:
-  timeoutSec: 660
-  connectionDraining:
-    drainingTimeoutSec: 720
----
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: runner-v513
-  labels:
-    app.kubernetes.io/name: runner-v513
-spec:
-  selector:
-    matchLabels:
-      app.kubernetes.io/name: runner-v513
-  progressDeadlineSeconds: 900
-  template:
-    metadata:
-      labels:
-        app.kubernetes.io/name: runner-v513
-      annotations:
-        commit_sha: "82eb8c5fbe166deea6588c2ad6ed492f90ba052b"
-        timestamp: "0"
-    spec:
-      containers:
-        - image: swiftfiddle/runner:5.1.3
-          name: runner-v513
-          imagePullPolicy: Always
-          ports:
-            - containerPort: 8080
-          readinessProbe:
-            httpGet:
-              path: /
-              port: 8080
-          volumeMounts:
-            - name: docker-socket
-              mountPath: /var/run/docker.sock
-            - name: sandbox
-              mountPath: /tmp
-      volumes:
-        - name: docker-socket
-          hostPath:
-            path: /var/run/docker.sock
-        - name: sandbox
-          hostPath:
-            path: /tmp
----
-
-apiVersion: v1
-kind: Service
-metadata:
-  name: runner-v512
-  annotations:
-    cloud.google.com/backend-config: '{"ports": {"80": "runner-v512-backendconfig"}}'
-spec:
-  selector:
-    app.kubernetes.io/name: runner-v512
-  ports:
-    - protocol: TCP
-      port: 80
-      targetPort: 8080
-  type: NodePort
----
-apiVersion: cloud.google.com/v1
-kind: BackendConfig
-metadata:
-  name: runner-v512-backendconfig
-spec:
-  timeoutSec: 660
-  connectionDraining:
-    drainingTimeoutSec: 720
----
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: runner-v512
-  labels:
-    app.kubernetes.io/name: runner-v512
-spec:
-  selector:
-    matchLabels:
-      app.kubernetes.io/name: runner-v512
-  progressDeadlineSeconds: 900
-  template:
-    metadata:
-      labels:
-        app.kubernetes.io/name: runner-v512
-      annotations:
-        commit_sha: "82eb8c5fbe166deea6588c2ad6ed492f90ba052b"
-        timestamp: "0"
-    spec:
-      containers:
-        - image: swiftfiddle/runner:5.1.2
-          name: runner-v512
-          imagePullPolicy: Always
-          ports:
-            - containerPort: 8080
-          readinessProbe:
-            httpGet:
-              path: /
-              port: 8080
-          volumeMounts:
-            - name: docker-socket
-              mountPath: /var/run/docker.sock
-            - name: sandbox
-              mountPath: /tmp
-      volumes:
-        - name: docker-socket
-          hostPath:
-            path: /var/run/docker.sock
-        - name: sandbox
-          hostPath:
-            path: /tmp
----
-
-apiVersion: v1
-kind: Service
-metadata:
-  name: runner-v511
-  annotations:
-    cloud.google.com/backend-config: '{"ports": {"80": "runner-v511-backendconfig"}}'
-spec:
-  selector:
-    app.kubernetes.io/name: runner-v511
-  ports:
-    - protocol: TCP
-      port: 80
-      targetPort: 8080
-  type: NodePort
----
-apiVersion: cloud.google.com/v1
-kind: BackendConfig
-metadata:
-  name: runner-v511-backendconfig
-spec:
-  timeoutSec: 660
-  connectionDraining:
-    drainingTimeoutSec: 720
----
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: runner-v511
-  labels:
-    app.kubernetes.io/name: runner-v511
-spec:
-  selector:
-    matchLabels:
-      app.kubernetes.io/name: runner-v511
-  progressDeadlineSeconds: 900
-  template:
-    metadata:
-      labels:
-        app.kubernetes.io/name: runner-v511
-      annotations:
-        commit_sha: "82eb8c5fbe166deea6588c2ad6ed492f90ba052b"
-        timestamp: "0"
-    spec:
-      containers:
-        - image: swiftfiddle/runner:5.1.1
-          name: runner-v511
           imagePullPolicy: Always
           ports:
             - containerPort: 8080
@@ -1244,213 +909,12 @@ spec:
       labels:
         app.kubernetes.io/name: runner-v51
       annotations:
-        commit_sha: "82eb8c5fbe166deea6588c2ad6ed492f90ba052b"
+        commit_sha: "c3399abe6d71ff4208b8a7ca5bd0329a4ae2b237"
         timestamp: "0"
     spec:
       containers:
         - image: swiftfiddle/runner:5.1
           name: runner-v51
-          imagePullPolicy: Always
-          ports:
-            - containerPort: 8080
-          readinessProbe:
-            httpGet:
-              path: /
-              port: 8080
-          volumeMounts:
-            - name: docker-socket
-              mountPath: /var/run/docker.sock
-            - name: sandbox
-              mountPath: /tmp
-      volumes:
-        - name: docker-socket
-          hostPath:
-            path: /var/run/docker.sock
-        - name: sandbox
-          hostPath:
-            path: /tmp
----
-
-apiVersion: v1
-kind: Service
-metadata:
-  name: runner-v503
-  annotations:
-    cloud.google.com/backend-config: '{"ports": {"80": "runner-v503-backendconfig"}}'
-spec:
-  selector:
-    app.kubernetes.io/name: runner-v503
-  ports:
-    - protocol: TCP
-      port: 80
-      targetPort: 8080
-  type: NodePort
----
-apiVersion: cloud.google.com/v1
-kind: BackendConfig
-metadata:
-  name: runner-v503-backendconfig
-spec:
-  timeoutSec: 660
-  connectionDraining:
-    drainingTimeoutSec: 720
----
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: runner-v503
-  labels:
-    app.kubernetes.io/name: runner-v503
-spec:
-  selector:
-    matchLabels:
-      app.kubernetes.io/name: runner-v503
-  progressDeadlineSeconds: 900
-  template:
-    metadata:
-      labels:
-        app.kubernetes.io/name: runner-v503
-      annotations:
-        commit_sha: "82eb8c5fbe166deea6588c2ad6ed492f90ba052b"
-        timestamp: "0"
-    spec:
-      containers:
-        - image: swiftfiddle/runner:5.0.3
-          name: runner-v503
-          imagePullPolicy: Always
-          ports:
-            - containerPort: 8080
-          readinessProbe:
-            httpGet:
-              path: /
-              port: 8080
-          volumeMounts:
-            - name: docker-socket
-              mountPath: /var/run/docker.sock
-            - name: sandbox
-              mountPath: /tmp
-      volumes:
-        - name: docker-socket
-          hostPath:
-            path: /var/run/docker.sock
-        - name: sandbox
-          hostPath:
-            path: /tmp
----
-
-apiVersion: v1
-kind: Service
-metadata:
-  name: runner-v502
-  annotations:
-    cloud.google.com/backend-config: '{"ports": {"80": "runner-v502-backendconfig"}}'
-spec:
-  selector:
-    app.kubernetes.io/name: runner-v502
-  ports:
-    - protocol: TCP
-      port: 80
-      targetPort: 8080
-  type: NodePort
----
-apiVersion: cloud.google.com/v1
-kind: BackendConfig
-metadata:
-  name: runner-v502-backendconfig
-spec:
-  timeoutSec: 660
-  connectionDraining:
-    drainingTimeoutSec: 720
----
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: runner-v502
-  labels:
-    app.kubernetes.io/name: runner-v502
-spec:
-  selector:
-    matchLabels:
-      app.kubernetes.io/name: runner-v502
-  progressDeadlineSeconds: 900
-  template:
-    metadata:
-      labels:
-        app.kubernetes.io/name: runner-v502
-      annotations:
-        commit_sha: "82eb8c5fbe166deea6588c2ad6ed492f90ba052b"
-        timestamp: "0"
-    spec:
-      containers:
-        - image: swiftfiddle/runner:5.0.2
-          name: runner-v502
-          imagePullPolicy: Always
-          ports:
-            - containerPort: 8080
-          readinessProbe:
-            httpGet:
-              path: /
-              port: 8080
-          volumeMounts:
-            - name: docker-socket
-              mountPath: /var/run/docker.sock
-            - name: sandbox
-              mountPath: /tmp
-      volumes:
-        - name: docker-socket
-          hostPath:
-            path: /var/run/docker.sock
-        - name: sandbox
-          hostPath:
-            path: /tmp
----
-
-apiVersion: v1
-kind: Service
-metadata:
-  name: runner-v501
-  annotations:
-    cloud.google.com/backend-config: '{"ports": {"80": "runner-v501-backendconfig"}}'
-spec:
-  selector:
-    app.kubernetes.io/name: runner-v501
-  ports:
-    - protocol: TCP
-      port: 80
-      targetPort: 8080
-  type: NodePort
----
-apiVersion: cloud.google.com/v1
-kind: BackendConfig
-metadata:
-  name: runner-v501-backendconfig
-spec:
-  timeoutSec: 660
-  connectionDraining:
-    drainingTimeoutSec: 720
----
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: runner-v501
-  labels:
-    app.kubernetes.io/name: runner-v501
-spec:
-  selector:
-    matchLabels:
-      app.kubernetes.io/name: runner-v501
-  progressDeadlineSeconds: 900
-  template:
-    metadata:
-      labels:
-        app.kubernetes.io/name: runner-v501
-      annotations:
-        commit_sha: "82eb8c5fbe166deea6588c2ad6ed492f90ba052b"
-        timestamp: "0"
-    spec:
-      containers:
-        - image: swiftfiddle/runner:5.0.1
-          name: runner-v501
           imagePullPolicy: Always
           ports:
             - containerPort: 8080
@@ -1512,280 +976,12 @@ spec:
       labels:
         app.kubernetes.io/name: runner-v50
       annotations:
-        commit_sha: "82eb8c5fbe166deea6588c2ad6ed492f90ba052b"
+        commit_sha: "c3399abe6d71ff4208b8a7ca5bd0329a4ae2b237"
         timestamp: "0"
     spec:
       containers:
         - image: swiftfiddle/runner:5.0
           name: runner-v50
-          imagePullPolicy: Always
-          ports:
-            - containerPort: 8080
-          readinessProbe:
-            httpGet:
-              path: /
-              port: 8080
-          volumeMounts:
-            - name: docker-socket
-              mountPath: /var/run/docker.sock
-            - name: sandbox
-              mountPath: /tmp
-      volumes:
-        - name: docker-socket
-          hostPath:
-            path: /var/run/docker.sock
-        - name: sandbox
-          hostPath:
-            path: /tmp
----
-
-apiVersion: v1
-kind: Service
-metadata:
-  name: runner-v424
-  annotations:
-    cloud.google.com/backend-config: '{"ports": {"80": "runner-v424-backendconfig"}}'
-spec:
-  selector:
-    app.kubernetes.io/name: runner-v424
-  ports:
-    - protocol: TCP
-      port: 80
-      targetPort: 8080
-  type: NodePort
----
-apiVersion: cloud.google.com/v1
-kind: BackendConfig
-metadata:
-  name: runner-v424-backendconfig
-spec:
-  timeoutSec: 660
-  connectionDraining:
-    drainingTimeoutSec: 720
----
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: runner-v424
-  labels:
-    app.kubernetes.io/name: runner-v424
-spec:
-  selector:
-    matchLabels:
-      app.kubernetes.io/name: runner-v424
-  progressDeadlineSeconds: 900
-  template:
-    metadata:
-      labels:
-        app.kubernetes.io/name: runner-v424
-      annotations:
-        commit_sha: "82eb8c5fbe166deea6588c2ad6ed492f90ba052b"
-        timestamp: "0"
-    spec:
-      containers:
-        - image: swiftfiddle/runner:4.2.4
-          name: runner-v424
-          imagePullPolicy: Always
-          ports:
-            - containerPort: 8080
-          readinessProbe:
-            httpGet:
-              path: /
-              port: 8080
-          volumeMounts:
-            - name: docker-socket
-              mountPath: /var/run/docker.sock
-            - name: sandbox
-              mountPath: /tmp
-      volumes:
-        - name: docker-socket
-          hostPath:
-            path: /var/run/docker.sock
-        - name: sandbox
-          hostPath:
-            path: /tmp
----
-
-apiVersion: v1
-kind: Service
-metadata:
-  name: runner-v423
-  annotations:
-    cloud.google.com/backend-config: '{"ports": {"80": "runner-v423-backendconfig"}}'
-spec:
-  selector:
-    app.kubernetes.io/name: runner-v423
-  ports:
-    - protocol: TCP
-      port: 80
-      targetPort: 8080
-  type: NodePort
----
-apiVersion: cloud.google.com/v1
-kind: BackendConfig
-metadata:
-  name: runner-v423-backendconfig
-spec:
-  timeoutSec: 660
-  connectionDraining:
-    drainingTimeoutSec: 720
----
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: runner-v423
-  labels:
-    app.kubernetes.io/name: runner-v423
-spec:
-  selector:
-    matchLabels:
-      app.kubernetes.io/name: runner-v423
-  progressDeadlineSeconds: 900
-  template:
-    metadata:
-      labels:
-        app.kubernetes.io/name: runner-v423
-      annotations:
-        commit_sha: "82eb8c5fbe166deea6588c2ad6ed492f90ba052b"
-        timestamp: "0"
-    spec:
-      containers:
-        - image: swiftfiddle/runner:4.2.3
-          name: runner-v423
-          imagePullPolicy: Always
-          ports:
-            - containerPort: 8080
-          readinessProbe:
-            httpGet:
-              path: /
-              port: 8080
-          volumeMounts:
-            - name: docker-socket
-              mountPath: /var/run/docker.sock
-            - name: sandbox
-              mountPath: /tmp
-      volumes:
-        - name: docker-socket
-          hostPath:
-            path: /var/run/docker.sock
-        - name: sandbox
-          hostPath:
-            path: /tmp
----
-
-apiVersion: v1
-kind: Service
-metadata:
-  name: runner-v422
-  annotations:
-    cloud.google.com/backend-config: '{"ports": {"80": "runner-v422-backendconfig"}}'
-spec:
-  selector:
-    app.kubernetes.io/name: runner-v422
-  ports:
-    - protocol: TCP
-      port: 80
-      targetPort: 8080
-  type: NodePort
----
-apiVersion: cloud.google.com/v1
-kind: BackendConfig
-metadata:
-  name: runner-v422-backendconfig
-spec:
-  timeoutSec: 660
-  connectionDraining:
-    drainingTimeoutSec: 720
----
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: runner-v422
-  labels:
-    app.kubernetes.io/name: runner-v422
-spec:
-  selector:
-    matchLabels:
-      app.kubernetes.io/name: runner-v422
-  progressDeadlineSeconds: 900
-  template:
-    metadata:
-      labels:
-        app.kubernetes.io/name: runner-v422
-      annotations:
-        commit_sha: "82eb8c5fbe166deea6588c2ad6ed492f90ba052b"
-        timestamp: "0"
-    spec:
-      containers:
-        - image: swiftfiddle/runner:4.2.2
-          name: runner-v422
-          imagePullPolicy: Always
-          ports:
-            - containerPort: 8080
-          readinessProbe:
-            httpGet:
-              path: /
-              port: 8080
-          volumeMounts:
-            - name: docker-socket
-              mountPath: /var/run/docker.sock
-            - name: sandbox
-              mountPath: /tmp
-      volumes:
-        - name: docker-socket
-          hostPath:
-            path: /var/run/docker.sock
-        - name: sandbox
-          hostPath:
-            path: /tmp
----
-
-apiVersion: v1
-kind: Service
-metadata:
-  name: runner-v421
-  annotations:
-    cloud.google.com/backend-config: '{"ports": {"80": "runner-v421-backendconfig"}}'
-spec:
-  selector:
-    app.kubernetes.io/name: runner-v421
-  ports:
-    - protocol: TCP
-      port: 80
-      targetPort: 8080
-  type: NodePort
----
-apiVersion: cloud.google.com/v1
-kind: BackendConfig
-metadata:
-  name: runner-v421-backendconfig
-spec:
-  timeoutSec: 660
-  connectionDraining:
-    drainingTimeoutSec: 720
----
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: runner-v421
-  labels:
-    app.kubernetes.io/name: runner-v421
-spec:
-  selector:
-    matchLabels:
-      app.kubernetes.io/name: runner-v421
-  progressDeadlineSeconds: 900
-  template:
-    metadata:
-      labels:
-        app.kubernetes.io/name: runner-v421
-      annotations:
-        commit_sha: "82eb8c5fbe166deea6588c2ad6ed492f90ba052b"
-        timestamp: "0"
-    spec:
-      containers:
-        - image: swiftfiddle/runner:4.2.1
-          name: runner-v421
           imagePullPolicy: Always
           ports:
             - containerPort: 8080
@@ -1847,414 +1043,12 @@ spec:
       labels:
         app.kubernetes.io/name: runner-v42
       annotations:
-        commit_sha: "82eb8c5fbe166deea6588c2ad6ed492f90ba052b"
+        commit_sha: "c3399abe6d71ff4208b8a7ca5bd0329a4ae2b237"
         timestamp: "0"
     spec:
       containers:
         - image: swiftfiddle/runner:4.2
           name: runner-v42
-          imagePullPolicy: Always
-          ports:
-            - containerPort: 8080
-          readinessProbe:
-            httpGet:
-              path: /
-              port: 8080
-          volumeMounts:
-            - name: docker-socket
-              mountPath: /var/run/docker.sock
-            - name: sandbox
-              mountPath: /tmp
-      volumes:
-        - name: docker-socket
-          hostPath:
-            path: /var/run/docker.sock
-        - name: sandbox
-          hostPath:
-            path: /tmp
----
-
-apiVersion: v1
-kind: Service
-metadata:
-  name: runner-v413
-  annotations:
-    cloud.google.com/backend-config: '{"ports": {"80": "runner-v413-backendconfig"}}'
-spec:
-  selector:
-    app.kubernetes.io/name: runner-v413
-  ports:
-    - protocol: TCP
-      port: 80
-      targetPort: 8080
-  type: NodePort
----
-apiVersion: cloud.google.com/v1
-kind: BackendConfig
-metadata:
-  name: runner-v413-backendconfig
-spec:
-  timeoutSec: 660
-  connectionDraining:
-    drainingTimeoutSec: 720
----
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: runner-v413
-  labels:
-    app.kubernetes.io/name: runner-v413
-spec:
-  selector:
-    matchLabels:
-      app.kubernetes.io/name: runner-v413
-  progressDeadlineSeconds: 900
-  template:
-    metadata:
-      labels:
-        app.kubernetes.io/name: runner-v413
-      annotations:
-        commit_sha: "82eb8c5fbe166deea6588c2ad6ed492f90ba052b"
-        timestamp: "0"
-    spec:
-      containers:
-        - image: swiftfiddle/runner:4.1.3
-          name: runner-v413
-          imagePullPolicy: Always
-          ports:
-            - containerPort: 8080
-          readinessProbe:
-            httpGet:
-              path: /
-              port: 8080
-          volumeMounts:
-            - name: docker-socket
-              mountPath: /var/run/docker.sock
-            - name: sandbox
-              mountPath: /tmp
-      volumes:
-        - name: docker-socket
-          hostPath:
-            path: /var/run/docker.sock
-        - name: sandbox
-          hostPath:
-            path: /tmp
----
-
-apiVersion: v1
-kind: Service
-metadata:
-  name: runner-v412
-  annotations:
-    cloud.google.com/backend-config: '{"ports": {"80": "runner-v412-backendconfig"}}'
-spec:
-  selector:
-    app.kubernetes.io/name: runner-v412
-  ports:
-    - protocol: TCP
-      port: 80
-      targetPort: 8080
-  type: NodePort
----
-apiVersion: cloud.google.com/v1
-kind: BackendConfig
-metadata:
-  name: runner-v412-backendconfig
-spec:
-  timeoutSec: 660
-  connectionDraining:
-    drainingTimeoutSec: 720
----
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: runner-v412
-  labels:
-    app.kubernetes.io/name: runner-v412
-spec:
-  selector:
-    matchLabels:
-      app.kubernetes.io/name: runner-v412
-  progressDeadlineSeconds: 900
-  template:
-    metadata:
-      labels:
-        app.kubernetes.io/name: runner-v412
-      annotations:
-        commit_sha: "82eb8c5fbe166deea6588c2ad6ed492f90ba052b"
-        timestamp: "0"
-    spec:
-      containers:
-        - image: swiftfiddle/runner:4.1.2
-          name: runner-v412
-          imagePullPolicy: Always
-          ports:
-            - containerPort: 8080
-          readinessProbe:
-            httpGet:
-              path: /
-              port: 8080
-          volumeMounts:
-            - name: docker-socket
-              mountPath: /var/run/docker.sock
-            - name: sandbox
-              mountPath: /tmp
-      volumes:
-        - name: docker-socket
-          hostPath:
-            path: /var/run/docker.sock
-        - name: sandbox
-          hostPath:
-            path: /tmp
----
-
-apiVersion: v1
-kind: Service
-metadata:
-  name: runner-v411
-  annotations:
-    cloud.google.com/backend-config: '{"ports": {"80": "runner-v411-backendconfig"}}'
-spec:
-  selector:
-    app.kubernetes.io/name: runner-v411
-  ports:
-    - protocol: TCP
-      port: 80
-      targetPort: 8080
-  type: NodePort
----
-apiVersion: cloud.google.com/v1
-kind: BackendConfig
-metadata:
-  name: runner-v411-backendconfig
-spec:
-  timeoutSec: 660
-  connectionDraining:
-    drainingTimeoutSec: 720
----
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: runner-v411
-  labels:
-    app.kubernetes.io/name: runner-v411
-spec:
-  selector:
-    matchLabels:
-      app.kubernetes.io/name: runner-v411
-  progressDeadlineSeconds: 900
-  template:
-    metadata:
-      labels:
-        app.kubernetes.io/name: runner-v411
-      annotations:
-        commit_sha: "82eb8c5fbe166deea6588c2ad6ed492f90ba052b"
-        timestamp: "0"
-    spec:
-      containers:
-        - image: swiftfiddle/runner:4.1.1
-          name: runner-v411
-          imagePullPolicy: Always
-          ports:
-            - containerPort: 8080
-          readinessProbe:
-            httpGet:
-              path: /
-              port: 8080
-          volumeMounts:
-            - name: docker-socket
-              mountPath: /var/run/docker.sock
-            - name: sandbox
-              mountPath: /tmp
-      volumes:
-        - name: docker-socket
-          hostPath:
-            path: /var/run/docker.sock
-        - name: sandbox
-          hostPath:
-            path: /tmp
----
-
-apiVersion: v1
-kind: Service
-metadata:
-  name: runner-v41
-  annotations:
-    cloud.google.com/backend-config: '{"ports": {"80": "runner-v41-backendconfig"}}'
-spec:
-  selector:
-    app.kubernetes.io/name: runner-v41
-  ports:
-    - protocol: TCP
-      port: 80
-      targetPort: 8080
-  type: NodePort
----
-apiVersion: cloud.google.com/v1
-kind: BackendConfig
-metadata:
-  name: runner-v41-backendconfig
-spec:
-  timeoutSec: 660
-  connectionDraining:
-    drainingTimeoutSec: 720
----
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: runner-v41
-  labels:
-    app.kubernetes.io/name: runner-v41
-spec:
-  selector:
-    matchLabels:
-      app.kubernetes.io/name: runner-v41
-  progressDeadlineSeconds: 900
-  template:
-    metadata:
-      labels:
-        app.kubernetes.io/name: runner-v41
-      annotations:
-        commit_sha: "82eb8c5fbe166deea6588c2ad6ed492f90ba052b"
-        timestamp: "0"
-    spec:
-      containers:
-        - image: swiftfiddle/runner:4.1
-          name: runner-v41
-          imagePullPolicy: Always
-          ports:
-            - containerPort: 8080
-          readinessProbe:
-            httpGet:
-              path: /
-              port: 8080
-          volumeMounts:
-            - name: docker-socket
-              mountPath: /var/run/docker.sock
-            - name: sandbox
-              mountPath: /tmp
-      volumes:
-        - name: docker-socket
-          hostPath:
-            path: /var/run/docker.sock
-        - name: sandbox
-          hostPath:
-            path: /tmp
----
-
-apiVersion: v1
-kind: Service
-metadata:
-  name: runner-v403
-  annotations:
-    cloud.google.com/backend-config: '{"ports": {"80": "runner-v403-backendconfig"}}'
-spec:
-  selector:
-    app.kubernetes.io/name: runner-v403
-  ports:
-    - protocol: TCP
-      port: 80
-      targetPort: 8080
-  type: NodePort
----
-apiVersion: cloud.google.com/v1
-kind: BackendConfig
-metadata:
-  name: runner-v403-backendconfig
-spec:
-  timeoutSec: 660
-  connectionDraining:
-    drainingTimeoutSec: 720
----
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: runner-v403
-  labels:
-    app.kubernetes.io/name: runner-v403
-spec:
-  selector:
-    matchLabels:
-      app.kubernetes.io/name: runner-v403
-  progressDeadlineSeconds: 900
-  template:
-    metadata:
-      labels:
-        app.kubernetes.io/name: runner-v403
-      annotations:
-        commit_sha: "82eb8c5fbe166deea6588c2ad6ed492f90ba052b"
-        timestamp: "0"
-    spec:
-      containers:
-        - image: swiftfiddle/runner:4.0.3
-          name: runner-v403
-          imagePullPolicy: Always
-          ports:
-            - containerPort: 8080
-          readinessProbe:
-            httpGet:
-              path: /
-              port: 8080
-          volumeMounts:
-            - name: docker-socket
-              mountPath: /var/run/docker.sock
-            - name: sandbox
-              mountPath: /tmp
-      volumes:
-        - name: docker-socket
-          hostPath:
-            path: /var/run/docker.sock
-        - name: sandbox
-          hostPath:
-            path: /tmp
----
-
-apiVersion: v1
-kind: Service
-metadata:
-  name: runner-v402
-  annotations:
-    cloud.google.com/backend-config: '{"ports": {"80": "runner-v402-backendconfig"}}'
-spec:
-  selector:
-    app.kubernetes.io/name: runner-v402
-  ports:
-    - protocol: TCP
-      port: 80
-      targetPort: 8080
-  type: NodePort
----
-apiVersion: cloud.google.com/v1
-kind: BackendConfig
-metadata:
-  name: runner-v402-backendconfig
-spec:
-  timeoutSec: 660
-  connectionDraining:
-    drainingTimeoutSec: 720
----
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: runner-v402
-  labels:
-    app.kubernetes.io/name: runner-v402
-spec:
-  selector:
-    matchLabels:
-      app.kubernetes.io/name: runner-v402
-  progressDeadlineSeconds: 900
-  template:
-    metadata:
-      labels:
-        app.kubernetes.io/name: runner-v402
-      annotations:
-        commit_sha: "82eb8c5fbe166deea6588c2ad6ed492f90ba052b"
-        timestamp: "0"
-    spec:
-      containers:
-        - image: swiftfiddle/runner:4.0.2
-          name: runner-v402
           imagePullPolicy: Always
           ports:
             - containerPort: 8080
@@ -2316,280 +1110,12 @@ spec:
       labels:
         app.kubernetes.io/name: runner-v40
       annotations:
-        commit_sha: "82eb8c5fbe166deea6588c2ad6ed492f90ba052b"
+        commit_sha: "c3399abe6d71ff4208b8a7ca5bd0329a4ae2b237"
         timestamp: "0"
     spec:
       containers:
         - image: swiftfiddle/runner:4.0
           name: runner-v40
-          imagePullPolicy: Always
-          ports:
-            - containerPort: 8080
-          readinessProbe:
-            httpGet:
-              path: /
-              port: 8080
-          volumeMounts:
-            - name: docker-socket
-              mountPath: /var/run/docker.sock
-            - name: sandbox
-              mountPath: /tmp
-      volumes:
-        - name: docker-socket
-          hostPath:
-            path: /var/run/docker.sock
-        - name: sandbox
-          hostPath:
-            path: /tmp
----
-
-apiVersion: v1
-kind: Service
-metadata:
-  name: runner-v311
-  annotations:
-    cloud.google.com/backend-config: '{"ports": {"80": "runner-v311-backendconfig"}}'
-spec:
-  selector:
-    app.kubernetes.io/name: runner-v311
-  ports:
-    - protocol: TCP
-      port: 80
-      targetPort: 8080
-  type: NodePort
----
-apiVersion: cloud.google.com/v1
-kind: BackendConfig
-metadata:
-  name: runner-v311-backendconfig
-spec:
-  timeoutSec: 660
-  connectionDraining:
-    drainingTimeoutSec: 720
----
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: runner-v311
-  labels:
-    app.kubernetes.io/name: runner-v311
-spec:
-  selector:
-    matchLabels:
-      app.kubernetes.io/name: runner-v311
-  progressDeadlineSeconds: 900
-  template:
-    metadata:
-      labels:
-        app.kubernetes.io/name: runner-v311
-      annotations:
-        commit_sha: "82eb8c5fbe166deea6588c2ad6ed492f90ba052b"
-        timestamp: "0"
-    spec:
-      containers:
-        - image: swiftfiddle/runner:3.1.1
-          name: runner-v311
-          imagePullPolicy: Always
-          ports:
-            - containerPort: 8080
-          readinessProbe:
-            httpGet:
-              path: /
-              port: 8080
-          volumeMounts:
-            - name: docker-socket
-              mountPath: /var/run/docker.sock
-            - name: sandbox
-              mountPath: /tmp
-      volumes:
-        - name: docker-socket
-          hostPath:
-            path: /var/run/docker.sock
-        - name: sandbox
-          hostPath:
-            path: /tmp
----
-
-apiVersion: v1
-kind: Service
-metadata:
-  name: runner-v31
-  annotations:
-    cloud.google.com/backend-config: '{"ports": {"80": "runner-v31-backendconfig"}}'
-spec:
-  selector:
-    app.kubernetes.io/name: runner-v31
-  ports:
-    - protocol: TCP
-      port: 80
-      targetPort: 8080
-  type: NodePort
----
-apiVersion: cloud.google.com/v1
-kind: BackendConfig
-metadata:
-  name: runner-v31-backendconfig
-spec:
-  timeoutSec: 660
-  connectionDraining:
-    drainingTimeoutSec: 720
----
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: runner-v31
-  labels:
-    app.kubernetes.io/name: runner-v31
-spec:
-  selector:
-    matchLabels:
-      app.kubernetes.io/name: runner-v31
-  progressDeadlineSeconds: 900
-  template:
-    metadata:
-      labels:
-        app.kubernetes.io/name: runner-v31
-      annotations:
-        commit_sha: "82eb8c5fbe166deea6588c2ad6ed492f90ba052b"
-        timestamp: "0"
-    spec:
-      containers:
-        - image: swiftfiddle/runner:3.1
-          name: runner-v31
-          imagePullPolicy: Always
-          ports:
-            - containerPort: 8080
-          readinessProbe:
-            httpGet:
-              path: /
-              port: 8080
-          volumeMounts:
-            - name: docker-socket
-              mountPath: /var/run/docker.sock
-            - name: sandbox
-              mountPath: /tmp
-      volumes:
-        - name: docker-socket
-          hostPath:
-            path: /var/run/docker.sock
-        - name: sandbox
-          hostPath:
-            path: /tmp
----
-
-apiVersion: v1
-kind: Service
-metadata:
-  name: runner-v302
-  annotations:
-    cloud.google.com/backend-config: '{"ports": {"80": "runner-v302-backendconfig"}}'
-spec:
-  selector:
-    app.kubernetes.io/name: runner-v302
-  ports:
-    - protocol: TCP
-      port: 80
-      targetPort: 8080
-  type: NodePort
----
-apiVersion: cloud.google.com/v1
-kind: BackendConfig
-metadata:
-  name: runner-v302-backendconfig
-spec:
-  timeoutSec: 660
-  connectionDraining:
-    drainingTimeoutSec: 720
----
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: runner-v302
-  labels:
-    app.kubernetes.io/name: runner-v302
-spec:
-  selector:
-    matchLabels:
-      app.kubernetes.io/name: runner-v302
-  progressDeadlineSeconds: 900
-  template:
-    metadata:
-      labels:
-        app.kubernetes.io/name: runner-v302
-      annotations:
-        commit_sha: "82eb8c5fbe166deea6588c2ad6ed492f90ba052b"
-        timestamp: "0"
-    spec:
-      containers:
-        - image: swiftfiddle/runner:3.0.2
-          name: runner-v302
-          imagePullPolicy: Always
-          ports:
-            - containerPort: 8080
-          readinessProbe:
-            httpGet:
-              path: /
-              port: 8080
-          volumeMounts:
-            - name: docker-socket
-              mountPath: /var/run/docker.sock
-            - name: sandbox
-              mountPath: /tmp
-      volumes:
-        - name: docker-socket
-          hostPath:
-            path: /var/run/docker.sock
-        - name: sandbox
-          hostPath:
-            path: /tmp
----
-
-apiVersion: v1
-kind: Service
-metadata:
-  name: runner-v301
-  annotations:
-    cloud.google.com/backend-config: '{"ports": {"80": "runner-v301-backendconfig"}}'
-spec:
-  selector:
-    app.kubernetes.io/name: runner-v301
-  ports:
-    - protocol: TCP
-      port: 80
-      targetPort: 8080
-  type: NodePort
----
-apiVersion: cloud.google.com/v1
-kind: BackendConfig
-metadata:
-  name: runner-v301-backendconfig
-spec:
-  timeoutSec: 660
-  connectionDraining:
-    drainingTimeoutSec: 720
----
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: runner-v301
-  labels:
-    app.kubernetes.io/name: runner-v301
-spec:
-  selector:
-    matchLabels:
-      app.kubernetes.io/name: runner-v301
-  progressDeadlineSeconds: 900
-  template:
-    metadata:
-      labels:
-        app.kubernetes.io/name: runner-v301
-      annotations:
-        commit_sha: "82eb8c5fbe166deea6588c2ad6ed492f90ba052b"
-        timestamp: "0"
-    spec:
-      containers:
-        - image: swiftfiddle/runner:3.0.1
-          name: runner-v301
           imagePullPolicy: Always
           ports:
             - containerPort: 8080
@@ -2651,79 +1177,12 @@ spec:
       labels:
         app.kubernetes.io/name: runner-v30
       annotations:
-        commit_sha: "82eb8c5fbe166deea6588c2ad6ed492f90ba052b"
+        commit_sha: "c3399abe6d71ff4208b8a7ca5bd0329a4ae2b237"
         timestamp: "0"
     spec:
       containers:
         - image: swiftfiddle/runner:3.0
           name: runner-v30
-          imagePullPolicy: Always
-          ports:
-            - containerPort: 8080
-          readinessProbe:
-            httpGet:
-              path: /
-              port: 8080
-          volumeMounts:
-            - name: docker-socket
-              mountPath: /var/run/docker.sock
-            - name: sandbox
-              mountPath: /tmp
-      volumes:
-        - name: docker-socket
-          hostPath:
-            path: /var/run/docker.sock
-        - name: sandbox
-          hostPath:
-            path: /tmp
----
-
-apiVersion: v1
-kind: Service
-metadata:
-  name: runner-v221
-  annotations:
-    cloud.google.com/backend-config: '{"ports": {"80": "runner-v221-backendconfig"}}'
-spec:
-  selector:
-    app.kubernetes.io/name: runner-v221
-  ports:
-    - protocol: TCP
-      port: 80
-      targetPort: 8080
-  type: NodePort
----
-apiVersion: cloud.google.com/v1
-kind: BackendConfig
-metadata:
-  name: runner-v221-backendconfig
-spec:
-  timeoutSec: 660
-  connectionDraining:
-    drainingTimeoutSec: 720
----
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: runner-v221
-  labels:
-    app.kubernetes.io/name: runner-v221
-spec:
-  selector:
-    matchLabels:
-      app.kubernetes.io/name: runner-v221
-  progressDeadlineSeconds: 900
-  template:
-    metadata:
-      labels:
-        app.kubernetes.io/name: runner-v221
-      annotations:
-        commit_sha: "82eb8c5fbe166deea6588c2ad6ed492f90ba052b"
-        timestamp: "0"
-    spec:
-      containers:
-        - image: swiftfiddle/runner:2.2.1
-          name: runner-v221
           imagePullPolicy: Always
           ports:
             - containerPort: 8080
@@ -2785,7 +1244,7 @@ spec:
       labels:
         app.kubernetes.io/name: runner-v22
       annotations:
-        commit_sha: "82eb8c5fbe166deea6588c2ad6ed492f90ba052b"
+        commit_sha: "c3399abe6d71ff4208b8a7ca5bd0329a4ae2b237"
         timestamp: "0"
     spec:
       containers:
@@ -2852,7 +1311,7 @@ spec:
       labels:
         app.kubernetes.io/name: runner-vnightly-main
       annotations:
-        commit_sha: "82eb8c5fbe166deea6588c2ad6ed492f90ba052b"
+        commit_sha: "c3399abe6d71ff4208b8a7ca5bd0329a4ae2b237"
         timestamp: "0"
     spec:
       containers:
@@ -2919,7 +1378,7 @@ spec:
       labels:
         app.kubernetes.io/name: runner-vnightly-55
       annotations:
-        commit_sha: "82eb8c5fbe166deea6588c2ad6ed492f90ba052b"
+        commit_sha: "c3399abe6d71ff4208b8a7ca5bd0329a4ae2b237"
         timestamp: "0"
     spec:
       containers:
@@ -2986,7 +1445,7 @@ spec:
       labels:
         app.kubernetes.io/name: runner-vnightly-54
       annotations:
-        commit_sha: "82eb8c5fbe166deea6588c2ad6ed492f90ba052b"
+        commit_sha: "c3399abe6d71ff4208b8a7ca5bd0329a4ae2b237"
         timestamp: "0"
     spec:
       containers:
@@ -3053,7 +1512,7 @@ spec:
       labels:
         app.kubernetes.io/name: runner-vnightly-53
       annotations:
-        commit_sha: "82eb8c5fbe166deea6588c2ad6ed492f90ba052b"
+        commit_sha: "c3399abe6d71ff4208b8a7ca5bd0329a4ae2b237"
         timestamp: "0"
     spec:
       containers:
