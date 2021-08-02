@@ -11,6 +11,21 @@ struct Runner {
         self.sandboxPath = sandboxPath
     }
 
+    static func installedVersions() throws -> [String] {
+        let process = Process()
+        let standardOutput = Pipe()
+        process.standardOutput = standardOutput
+        process.executableURL = URL(fileURLWithPath: "/usr/bin/env")
+        process.arguments = ["docker", "images", "--filter=reference=*/swift", "--format", "{{.Tag}}"]
+        process.launch()
+        process.waitUntilExit()
+        let data = standardOutput.fileHandleForReading.readDataToEndOfFile()
+        guard let output = String(data: data, encoding: .utf8) else {
+            throw Abort(.internalServerError)
+        }
+        return output.split(separator: "\n").map { String($0) }.sorted(by: <)
+    }
+
     func run(
         parameter: ExecutionRequestParameter,
         onComplete: @escaping (ExecutionResponse) -> Void,

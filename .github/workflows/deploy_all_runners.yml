@@ -31,9 +31,11 @@ jobs:
           set -ex
 
           versions=($(cat versions.txt | tr "\n" " "))
-          for version in "${versions[@]}"; do
-            docker build --build-arg version="$version" --rm --tag "swiftfiddle/runner:$version" .
-            docker push "swiftfiddle/runner:$version"
+          for versionGroup in "${versions[@]}"; do
+            for version in $(echo $versionGroup | sed "s/,/ /g"); do
+              docker build --build-arg version="$versionGroup" --rm --tag "swiftfiddle/runner:$version" .
+              docker push "swiftfiddle/runner:$version"
+            done
           done
 
   deploy:
@@ -57,13 +59,16 @@ jobs:
 
       - name: Deploy
         run: |
-          set -ex
+          set -e
 
           /bin/bash k8s/pod.yaml.sh '0'
           kubectl apply -f k8s/pod.yaml
 
           versions=($(cat versions.txt | tr "\n" " "))
-          for version in "${versions[@]}"; do
+          for versionGroup in "${versions[@]}"; do
+            read -r -a group <<< $(echo $versionGroup | sed "s/,/ /g")
+            version=${group[${#group[@]}-1]}
+
             name="runner-v$(sed 's/\.//g' <<<"$version")"
             kubectl rollout status deployment/$name
           done

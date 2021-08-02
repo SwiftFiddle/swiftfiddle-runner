@@ -8,8 +8,10 @@ commit_sha=$(git rev-parse HEAD)
 timestamp=$1
 
 versions=($(cat $CWD/../versions.txt | tr "\n" " "))
-for version in "${versions[@]}"; do
-  name="runner-v$(sed 's/\.//g' <<<"$version")"
+for versionGroup in "${versions[@]}"; do
+  read -r -a group <<< $(echo $versionGroup | sed "s/,/ /g")
+  version=${group[${#group[@]}-1]}
+
   sed "s/%NAME%/$name/g;s/%IMAGE%/swiftfiddle\/runner:$version/g;s/%COMMIT_SHA%/$commit_sha/g;s/%TIMESTAMP%/$timestamp/g;" \
-      "$CWD/pod_template.yaml" >> "$CWD/pod.yaml"
+    "$CWD/pod_template.yaml" >> "$CWD/pod.yaml"
 done
