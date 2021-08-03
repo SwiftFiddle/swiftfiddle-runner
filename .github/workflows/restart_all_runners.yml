@@ -1,0 +1,42 @@
+name: Restart All Deployments
+on:
+  workflow_dispatch:
+
+env:
+  PROJECT_ID: ${{ secrets.GCP_PROJECT }}
+  GCP_SA_KEY: ${{ secrets.GCP_SA_KEY }}
+  GKE_CLUSTER: swiftfiddle-cluster
+  GKE_ZONE: us-central1-c
+
+jobs:
+  restart:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Setup Cloud SDK
+        uses: google-github-actions/setup-gcloud@v0.2.1
+        with:
+          project_id: ${{ env.PROJECT_ID }}
+          service_account_key: ${{ env.GCP_SA_KEY }}
+          export_default_credentials: true
+
+      - uses: google-github-actions/get-gke-credentials@v0.3.0
+        with:
+          cluster_name: ${{ env.GKE_CLUSTER }}
+          location: ${{ env.GKE_ZONE }}
+          credentials: ${{ env.GCP_SA_KEY }}
+
+      - name: Restart
+        run: |
+          set -e
+
+          versions=($(cat versions.txt | tr "\n" " "))
+          for versionGroup in "${versions[@]}"; do
+            read -r -a group <<< $(echo $versionGroup | sed "s/,/ /g")
+            version=${group[${#group[@]}-1]}
+
+            name="runner-v$(sed 's/\.//g' <<<"$version")"
+            kubectl rollout restart deploy $name
+          done
