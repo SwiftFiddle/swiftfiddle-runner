@@ -40,13 +40,39 @@ jobs:
           nightly-5.3
           EOF
 
-          /bin/bash k8s/pod.yaml.sh $(date +%s%3N)
-          kubectl apply -f k8s/pod.yaml
+          rm -f k8s/pod.yaml
+
+          timestamp=$(date +%s%3N)
 
           versions=($(cat versions.txt | tr "\n" " "))
-          for version in "${versions[@]}"; do
+          for versionGroup in "${versions[@]}"; do
+            read -r -a group <<< $(echo $versionGroup | sed "s/,/ /g")
+            version=${group[${#group[@]}-1]}
             name="runner-v$(sed 's/\.//g' <<<"$version")"
+
+            /bin/bash k8s/pod.yaml.sh "$version" "$name" "$timestamp"
+
+            kubectl apply -f k8s/pod.yaml
             kubectl rollout status deployment/$name
           done
 
           kubectl get services -o wide
+
+  test:
+    runs-on: ubuntu-latest
+    needs: deploy
+    steps:
+      - uses: actions/checkout@v2
+      - name: Test
+        run: |
+          set -ex
+
+          versions=($(cat versions.txt | tr "\n" " "))
+          for versionGroup in "${versions[@]}"; do
+            read -r -a group <<< $(echo $versionGroup | sed "s/,/ /g")
+            for version in ${group[@]}; do
+              curl --silent --show-error --fail -i -X POST "https://swiftfiddle.com/runner/$version/run" \
+                -H "Content-Type:application/json" \
+                --data "{\"code\":\"print(\\\"Hello, World!\\\")\"}"
+            done
+          done

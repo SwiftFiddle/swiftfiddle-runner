@@ -33,13 +33,14 @@ spec:
     matchLabels:
       app.kubernetes.io/name: runner-v542
   progressDeadlineSeconds: 900
+  minReadySeconds: 60
   template:
     metadata:
       labels:
         app.kubernetes.io/name: runner-v542
       annotations:
-        commit_sha: "dcf9049c8d25e3c18e5466888b469ea5f545aac2"
-        timestamp: "0"
+        commit_sha: "fee8c14118fd210afb71e18d781e2ced268e5396"
+        timestamp: "16284323413N"
     spec:
       containers:
         - image: swiftfiddle/runner:5.4.2
@@ -100,13 +101,14 @@ spec:
     matchLabels:
       app.kubernetes.io/name: runner-v541
   progressDeadlineSeconds: 900
+  minReadySeconds: 60
   template:
     metadata:
       labels:
         app.kubernetes.io/name: runner-v541
       annotations:
-        commit_sha: "dcf9049c8d25e3c18e5466888b469ea5f545aac2"
-        timestamp: "0"
+        commit_sha: "fee8c14118fd210afb71e18d781e2ced268e5396"
+        timestamp: "16284323413N"
     spec:
       containers:
         - image: swiftfiddle/runner:5.4.1
@@ -167,13 +169,14 @@ spec:
     matchLabels:
       app.kubernetes.io/name: runner-v54
   progressDeadlineSeconds: 900
+  minReadySeconds: 60
   template:
     metadata:
       labels:
         app.kubernetes.io/name: runner-v54
       annotations:
-        commit_sha: "dcf9049c8d25e3c18e5466888b469ea5f545aac2"
-        timestamp: "0"
+        commit_sha: "fee8c14118fd210afb71e18d781e2ced268e5396"
+        timestamp: "16284323413N"
     spec:
       containers:
         - image: swiftfiddle/runner:5.4
@@ -234,13 +237,14 @@ spec:
     matchLabels:
       app.kubernetes.io/name: runner-v533
   progressDeadlineSeconds: 900
+  minReadySeconds: 60
   template:
     metadata:
       labels:
         app.kubernetes.io/name: runner-v533
       annotations:
-        commit_sha: "dcf9049c8d25e3c18e5466888b469ea5f545aac2"
-        timestamp: "0"
+        commit_sha: "fee8c14118fd210afb71e18d781e2ced268e5396"
+        timestamp: "16284323413N"
     spec:
       containers:
         - image: swiftfiddle/runner:5.3.3
@@ -301,13 +305,14 @@ spec:
     matchLabels:
       app.kubernetes.io/name: runner-v532
   progressDeadlineSeconds: 900
+  minReadySeconds: 60
   template:
     metadata:
       labels:
         app.kubernetes.io/name: runner-v532
       annotations:
-        commit_sha: "dcf9049c8d25e3c18e5466888b469ea5f545aac2"
-        timestamp: "0"
+        commit_sha: "fee8c14118fd210afb71e18d781e2ced268e5396"
+        timestamp: "16284323413N"
     spec:
       containers:
         - image: swiftfiddle/runner:5.3.2
@@ -368,13 +373,14 @@ spec:
     matchLabels:
       app.kubernetes.io/name: runner-v531
   progressDeadlineSeconds: 900
+  minReadySeconds: 60
   template:
     metadata:
       labels:
         app.kubernetes.io/name: runner-v531
       annotations:
-        commit_sha: "dcf9049c8d25e3c18e5466888b469ea5f545aac2"
-        timestamp: "0"
+        commit_sha: "fee8c14118fd210afb71e18d781e2ced268e5396"
+        timestamp: "16284323413N"
     spec:
       containers:
         - image: swiftfiddle/runner:5.3.1
@@ -435,13 +441,14 @@ spec:
     matchLabels:
       app.kubernetes.io/name: runner-v53
   progressDeadlineSeconds: 900
+  minReadySeconds: 60
   template:
     metadata:
       labels:
         app.kubernetes.io/name: runner-v53
       annotations:
-        commit_sha: "dcf9049c8d25e3c18e5466888b469ea5f545aac2"
-        timestamp: "0"
+        commit_sha: "fee8c14118fd210afb71e18d781e2ced268e5396"
+        timestamp: "16284323413N"
     spec:
       containers:
         - image: swiftfiddle/runner:5.3
@@ -502,13 +509,14 @@ spec:
     matchLabels:
       app.kubernetes.io/name: runner-v525
   progressDeadlineSeconds: 900
+  minReadySeconds: 60
   template:
     metadata:
       labels:
         app.kubernetes.io/name: runner-v525
       annotations:
-        commit_sha: "dcf9049c8d25e3c18e5466888b469ea5f545aac2"
-        timestamp: "0"
+        commit_sha: "fee8c14118fd210afb71e18d781e2ced268e5396"
+        timestamp: "16284323413N"
     spec:
       containers:
         - image: swiftfiddle/runner:5.2.5
@@ -569,13 +577,14 @@ spec:
     matchLabels:
       app.kubernetes.io/name: runner-v524
   progressDeadlineSeconds: 900
+  minReadySeconds: 60
   template:
     metadata:
       labels:
         app.kubernetes.io/name: runner-v524
       annotations:
-        commit_sha: "dcf9049c8d25e3c18e5466888b469ea5f545aac2"
-        timestamp: "0"
+        commit_sha: "fee8c14118fd210afb71e18d781e2ced268e5396"
+        timestamp: "16284323413N"
     spec:
       containers:
         - image: swiftfiddle/runner:5.2.4
@@ -636,13 +645,14 @@ spec:
     matchLabels:
       app.kubernetes.io/name: runner-v523
   progressDeadlineSeconds: 900
+  minReadySeconds: 60
   template:
     metadata:
       labels:
         app.kubernetes.io/name: runner-v523
       annotations:
-        commit_sha: "dcf9049c8d25e3c18e5466888b469ea5f545aac2"
-        timestamp: "0"
+        commit_sha: "fee8c14118fd210afb71e18d781e2ced268e5396"
+        timestamp: "16284323413N"
     spec:
       containers:
         - image: swiftfiddle/runner:5.2.3
@@ -703,13 +713,14 @@ spec:
     matchLabels:
       app.kubernetes.io/name: runner-v522
   progressDeadlineSeconds: 900
+  minReadySeconds: 60
   template:
     metadata:
       labels:
         app.kubernetes.io/name: runner-v522
       annotations:
-        commit_sha: "dcf9049c8d25e3c18e5466888b469ea5f545aac2"
-        timestamp: "0"
+        commit_sha: "fee8c14118fd210afb71e18d781e2ced268e5396"
+        timestamp: "16284323413N"
     spec:
       containers:
         - image: swiftfiddle/runner:5.2.2
@@ -770,13 +781,14 @@ spec:
     matchLabels:
       app.kubernetes.io/name: runner-v521
   progressDeadlineSeconds: 900
+  minReadySeconds: 60
   template:
     metadata:
       labels:
         app.kubernetes.io/name: runner-v521
       annotations:
-        commit_sha: "dcf9049c8d25e3c18e5466888b469ea5f545aac2"
-        timestamp: "0"
+        commit_sha: "fee8c14118fd210afb71e18d781e2ced268e5396"
+        timestamp: "16284323413N"
     spec:
       containers:
         - image: swiftfiddle/runner:5.2.1
@@ -837,13 +849,14 @@ spec:
     matchLabels:
       app.kubernetes.io/name: runner-v52
   progressDeadlineSeconds: 900
+  minReadySeconds: 60
   template:
     metadata:
       labels:
         app.kubernetes.io/name: runner-v52
       annotations:
-        commit_sha: "dcf9049c8d25e3c18e5466888b469ea5f545aac2"
-        timestamp: "0"
+        commit_sha: "fee8c14118fd210afb71e18d781e2ced268e5396"
+        timestamp: "16284323413N"
     spec:
       containers:
         - image: swiftfiddle/runner:5.2
@@ -904,13 +917,14 @@ spec:
     matchLabels:
       app.kubernetes.io/name: runner-v51
   progressDeadlineSeconds: 900
+  minReadySeconds: 60
   template:
     metadata:
       labels:
         app.kubernetes.io/name: runner-v51
       annotations:
-        commit_sha: "dcf9049c8d25e3c18e5466888b469ea5f545aac2"
-        timestamp: "0"
+        commit_sha: "fee8c14118fd210afb71e18d781e2ced268e5396"
+        timestamp: "16284323413N"
     spec:
       containers:
         - image: swiftfiddle/runner:5.1
@@ -971,13 +985,14 @@ spec:
     matchLabels:
       app.kubernetes.io/name: runner-v50
   progressDeadlineSeconds: 900
+  minReadySeconds: 60
   template:
     metadata:
       labels:
         app.kubernetes.io/name: runner-v50
       annotations:
-        commit_sha: "dcf9049c8d25e3c18e5466888b469ea5f545aac2"
-        timestamp: "0"
+        commit_sha: "fee8c14118fd210afb71e18d781e2ced268e5396"
+        timestamp: "16284323413N"
     spec:
       containers:
         - image: swiftfiddle/runner:5.0
@@ -1038,13 +1053,14 @@ spec:
     matchLabels:
       app.kubernetes.io/name: runner-v42
   progressDeadlineSeconds: 900
+  minReadySeconds: 60
   template:
     metadata:
       labels:
         app.kubernetes.io/name: runner-v42
       annotations:
-        commit_sha: "dcf9049c8d25e3c18e5466888b469ea5f545aac2"
-        timestamp: "0"
+        commit_sha: "fee8c14118fd210afb71e18d781e2ced268e5396"
+        timestamp: "16284323413N"
     spec:
       containers:
         - image: swiftfiddle/runner:4.2
@@ -1105,13 +1121,14 @@ spec:
     matchLabels:
       app.kubernetes.io/name: runner-v40
   progressDeadlineSeconds: 900
+  minReadySeconds: 60
   template:
     metadata:
       labels:
         app.kubernetes.io/name: runner-v40
       annotations:
-        commit_sha: "dcf9049c8d25e3c18e5466888b469ea5f545aac2"
-        timestamp: "0"
+        commit_sha: "fee8c14118fd210afb71e18d781e2ced268e5396"
+        timestamp: "16284323413N"
     spec:
       containers:
         - image: swiftfiddle/runner:4.0
@@ -1172,13 +1189,14 @@ spec:
     matchLabels:
       app.kubernetes.io/name: runner-v30
   progressDeadlineSeconds: 900
+  minReadySeconds: 60
   template:
     metadata:
       labels:
         app.kubernetes.io/name: runner-v30
       annotations:
-        commit_sha: "dcf9049c8d25e3c18e5466888b469ea5f545aac2"
-        timestamp: "0"
+        commit_sha: "fee8c14118fd210afb71e18d781e2ced268e5396"
+        timestamp: "16284323413N"
     spec:
       containers:
         - image: swiftfiddle/runner:3.0
@@ -1239,13 +1257,14 @@ spec:
     matchLabels:
       app.kubernetes.io/name: runner-v22
   progressDeadlineSeconds: 900
+  minReadySeconds: 60
   template:
     metadata:
       labels:
         app.kubernetes.io/name: runner-v22
       annotations:
-        commit_sha: "dcf9049c8d25e3c18e5466888b469ea5f545aac2"
-        timestamp: "0"
+        commit_sha: "fee8c14118fd210afb71e18d781e2ced268e5396"
+        timestamp: "16284323413N"
     spec:
       containers:
         - image: swiftfiddle/runner:2.2
@@ -1306,13 +1325,14 @@ spec:
     matchLabels:
       app.kubernetes.io/name: runner-vnightly-main
   progressDeadlineSeconds: 900
+  minReadySeconds: 60
   template:
     metadata:
       labels:
         app.kubernetes.io/name: runner-vnightly-main
       annotations:
-        commit_sha: "dcf9049c8d25e3c18e5466888b469ea5f545aac2"
-        timestamp: "0"
+        commit_sha: "fee8c14118fd210afb71e18d781e2ced268e5396"
+        timestamp: "16284323413N"
     spec:
       containers:
         - image: swiftfiddle/runner:nightly-main
@@ -1373,13 +1393,14 @@ spec:
     matchLabels:
       app.kubernetes.io/name: runner-vnightly-55
   progressDeadlineSeconds: 900
+  minReadySeconds: 60
   template:
     metadata:
       labels:
         app.kubernetes.io/name: runner-vnightly-55
       annotations:
-        commit_sha: "dcf9049c8d25e3c18e5466888b469ea5f545aac2"
-        timestamp: "0"
+        commit_sha: "fee8c14118fd210afb71e18d781e2ced268e5396"
+        timestamp: "16284323413N"
     spec:
       containers:
         - image: swiftfiddle/runner:nightly-5.5
@@ -1440,13 +1461,14 @@ spec:
     matchLabels:
       app.kubernetes.io/name: runner-vnightly-54
   progressDeadlineSeconds: 900
+  minReadySeconds: 60
   template:
     metadata:
       labels:
         app.kubernetes.io/name: runner-vnightly-54
       annotations:
-        commit_sha: "dcf9049c8d25e3c18e5466888b469ea5f545aac2"
-        timestamp: "0"
+        commit_sha: "fee8c14118fd210afb71e18d781e2ced268e5396"
+        timestamp: "16284323413N"
     spec:
       containers:
         - image: swiftfiddle/runner:nightly-5.4
@@ -1507,13 +1529,14 @@ spec:
     matchLabels:
       app.kubernetes.io/name: runner-vnightly-53
   progressDeadlineSeconds: 900
+  minReadySeconds: 60
   template:
     metadata:
       labels:
         app.kubernetes.io/name: runner-vnightly-53
       annotations:
-        commit_sha: "dcf9049c8d25e3c18e5466888b469ea5f545aac2"
-        timestamp: "0"
+        commit_sha: "fee8c14118fd210afb71e18d781e2ced268e5396"
+        timestamp: "16284323413N"
     spec:
       containers:
         - image: swiftfiddle/runner:nightly-5.3
