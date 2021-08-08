@@ -69,6 +69,8 @@ jobs:
 
             name="runner-v$(sed 's/\.//g' <<<"$version")"
             kubectl rollout status deployment/$name
+
+            sleep 60
           done
 
           kubectl get services -o wide
