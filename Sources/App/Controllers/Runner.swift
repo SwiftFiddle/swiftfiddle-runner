@@ -43,7 +43,8 @@ struct Runner {
 
         let random = UUID().uuidString
         let directory = "\(nonce)_\(random)"
-        let temporaryPath = URL(fileURLWithPath: "\(NSTemporaryDirectory())/\(directory)")
+        let temporaryDirectory =  URL(fileURLWithPath: NSTemporaryDirectory())
+        let temporaryPath = temporaryDirectory.appendingPathComponent(directory)
         WorkingDirectoryRegistry.shared.register(prefix: nonce, path: temporaryPath)
 
         let fileManager = FileManager()
@@ -104,7 +105,13 @@ struct Runner {
                 let stderr = (try? String(contentsOf: stderrPath)) ?? ""
                 let version = (try? String(contentsOf: versionPath)) ?? "N/A"
 
-                onComplete(ExecutionResponse(output: completed, errors: stderr, version: version))
+                onComplete(
+                    ExecutionResponse(
+                        output: completed,
+                        errors: fixLineNumber(message: stderr),
+                        version: version
+                    )
+                )
 
                 WorkingDirectoryRegistry.shared.remove(path: path);
                 try? fileManager.removeItem(at: path)
@@ -117,7 +124,13 @@ struct Runner {
                 let stderr = "\((try? String(contentsOf: stderrPath)) ?? "")Maximum execution time of \(timeout) seconds exceeded.\n"
                 let version = (try? String(contentsOf: versionPath)) ?? "N/A"
 
-                onTimeout(ExecutionResponse(output: stdout, errors: stderr, version: version))
+                onTimeout(
+                    ExecutionResponse(
+                        output: stdout,
+                        errors: fixLineNumber(message: stderr),
+                        version: version
+                    )
+                )
 
                 WorkingDirectoryRegistry.shared.remove(path: path);
                 try? fileManager.removeItem(at: path)
@@ -180,4 +193,35 @@ struct Runner {
             self.code = code
         }
     }
+}
+
+let regex = try! NSRegularExpression(pattern: #"\/main\.swift:(\d+):(\d+):\s"#, options: [])
+func fixLineNumber(message: String) -> String {
+    var message = message.replacingOccurrences(of: "/[REDACTED]", with: "")
+
+    let matches = regex.matches(
+        in: message,
+        options: [],
+        range: NSRange(location: 0, length: message.utf16.count)
+    )
+
+    var offset = 0
+    for match in matches {
+        let replacement = regex.replacementString(for: match, in: message, offset: offset, template: "$1")
+
+        guard let replacement = Int(replacement) else { continue }
+        guard match.numberOfRanges != 2 else { continue }
+
+        var range = match.range(at: 1)
+        range.location += offset
+
+        let fixed = "\(replacement - 4)"
+
+        let start = message.index(message.startIndex, offsetBy: range.location)
+        let end = message.index(start, offsetBy: range.length)
+        message = message.replacingCharacters(in: start..<end, with: fixed)
+        offset += fixed.utf16.count - range.length
+    }
+
+    return message
 }

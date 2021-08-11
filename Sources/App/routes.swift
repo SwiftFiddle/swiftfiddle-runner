@@ -63,7 +63,12 @@ func routes(_ app: Application) throws {
             let stderr = (try? String(contentsOf: stderrPath)) ?? ""
 
             let encoder = JSONEncoder()
-            if let response = try? String(data: encoder.encode(ExecutionResponse(output: stdout, errors: stderr, version: version)), encoding: .utf8) {
+            let response = ExecutionResponse(
+                output: stdout,
+                errors: fixLineNumber(message: stderr),
+                version: version
+            )
+            if let response = try? String(data: encoder.encode(response), encoding: .utf8) {
                 ws.send(response)
             }
 
