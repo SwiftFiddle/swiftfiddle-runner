@@ -29,6 +29,7 @@ metadata:
   labels:
     app.kubernetes.io/name: runner-v542
 spec:
+  replicas: 3
   selector:
     matchLabels:
       app.kubernetes.io/name: runner-v542
@@ -39,8 +40,8 @@ spec:
       labels:
         app.kubernetes.io/name: runner-v542
       annotations:
-        commit_sha: "3289d3ac24db10ae346c1251996a1bb781117bc2"
-        timestamp: "1628847920882"
+        commit_sha: "f39335e24eba5c7e2b594ed9e3f2223a75516120"
+        timestamp: "1628888545517"
     spec:
       containers:
         - image: swiftfiddle/runner:5.4.2
@@ -97,6 +98,7 @@ metadata:
   labels:
     app.kubernetes.io/name: runner-v541
 spec:
+  replicas: 1
   selector:
     matchLabels:
       app.kubernetes.io/name: runner-v541
@@ -107,8 +109,8 @@ spec:
       labels:
         app.kubernetes.io/name: runner-v541
       annotations:
-        commit_sha: "3289d3ac24db10ae346c1251996a1bb781117bc2"
-        timestamp: "1628847920882"
+        commit_sha: "f39335e24eba5c7e2b594ed9e3f2223a75516120"
+        timestamp: "1628888545517"
     spec:
       containers:
         - image: swiftfiddle/runner:5.4.1
@@ -165,6 +167,7 @@ metadata:
   labels:
     app.kubernetes.io/name: runner-v54
 spec:
+  replicas: 1
   selector:
     matchLabels:
       app.kubernetes.io/name: runner-v54
@@ -175,8 +178,8 @@ spec:
       labels:
         app.kubernetes.io/name: runner-v54
       annotations:
-        commit_sha: "3289d3ac24db10ae346c1251996a1bb781117bc2"
-        timestamp: "1628847920882"
+        commit_sha: "f39335e24eba5c7e2b594ed9e3f2223a75516120"
+        timestamp: "1628888545517"
     spec:
       containers:
         - image: swiftfiddle/runner:5.4
@@ -233,6 +236,7 @@ metadata:
   labels:
     app.kubernetes.io/name: runner-v533
 spec:
+  replicas: 1
   selector:
     matchLabels:
       app.kubernetes.io/name: runner-v533
@@ -243,8 +247,8 @@ spec:
       labels:
         app.kubernetes.io/name: runner-v533
       annotations:
-        commit_sha: "3289d3ac24db10ae346c1251996a1bb781117bc2"
-        timestamp: "1628847920882"
+        commit_sha: "f39335e24eba5c7e2b594ed9e3f2223a75516120"
+        timestamp: "1628888545517"
     spec:
       containers:
         - image: swiftfiddle/runner:5.3.3
@@ -301,6 +305,7 @@ metadata:
   labels:
     app.kubernetes.io/name: runner-v532
 spec:
+  replicas: 1
   selector:
     matchLabels:
       app.kubernetes.io/name: runner-v532
@@ -311,8 +316,8 @@ spec:
       labels:
         app.kubernetes.io/name: runner-v532
       annotations:
-        commit_sha: "3289d3ac24db10ae346c1251996a1bb781117bc2"
-        timestamp: "1628847920882"
+        commit_sha: "f39335e24eba5c7e2b594ed9e3f2223a75516120"
+        timestamp: "1628888545517"
     spec:
       containers:
         - image: swiftfiddle/runner:5.3.2
@@ -369,6 +374,7 @@ metadata:
   labels:
     app.kubernetes.io/name: runner-v531
 spec:
+  replicas: 1
   selector:
     matchLabels:
       app.kubernetes.io/name: runner-v531
@@ -379,8 +385,8 @@ spec:
       labels:
         app.kubernetes.io/name: runner-v531
       annotations:
-        commit_sha: "3289d3ac24db10ae346c1251996a1bb781117bc2"
-        timestamp: "1628847920882"
+        commit_sha: "f39335e24eba5c7e2b594ed9e3f2223a75516120"
+        timestamp: "1628888545517"
     spec:
       containers:
         - image: swiftfiddle/runner:5.3.1
@@ -437,6 +443,7 @@ metadata:
   labels:
     app.kubernetes.io/name: runner-v53
 spec:
+  replicas: 1
   selector:
     matchLabels:
       app.kubernetes.io/name: runner-v53
@@ -447,8 +454,8 @@ spec:
       labels:
         app.kubernetes.io/name: runner-v53
       annotations:
-        commit_sha: "3289d3ac24db10ae346c1251996a1bb781117bc2"
-        timestamp: "1628847920882"
+        commit_sha: "f39335e24eba5c7e2b594ed9e3f2223a75516120"
+        timestamp: "1628888545517"
     spec:
       containers:
         - image: swiftfiddle/runner:5.3
@@ -505,6 +512,7 @@ metadata:
   labels:
     app.kubernetes.io/name: runner-v525
 spec:
+  replicas: 1
   selector:
     matchLabels:
       app.kubernetes.io/name: runner-v525
@@ -515,8 +523,8 @@ spec:
       labels:
         app.kubernetes.io/name: runner-v525
       annotations:
-        commit_sha: "3289d3ac24db10ae346c1251996a1bb781117bc2"
-        timestamp: "1628847920882"
+        commit_sha: "f39335e24eba5c7e2b594ed9e3f2223a75516120"
+        timestamp: "1628888545517"
     spec:
       containers:
         - image: swiftfiddle/runner:5.2.5
@@ -573,6 +581,7 @@ metadata:
   labels:
     app.kubernetes.io/name: runner-v524
 spec:
+  replicas: 1
   selector:
     matchLabels:
       app.kubernetes.io/name: runner-v524
@@ -583,8 +592,8 @@ spec:
       labels:
         app.kubernetes.io/name: runner-v524
       annotations:
-        commit_sha: "3289d3ac24db10ae346c1251996a1bb781117bc2"
-        timestamp: "1628847920882"
+        commit_sha: "f39335e24eba5c7e2b594ed9e3f2223a75516120"
+        timestamp: "1628888545517"
     spec:
       containers:
         - image: swiftfiddle/runner:5.2.4
@@ -641,6 +650,7 @@ metadata:
   labels:
     app.kubernetes.io/name: runner-v523
 spec:
+  replicas: 1
   selector:
     matchLabels:
       app.kubernetes.io/name: runner-v523
@@ -651,8 +661,8 @@ spec:
       labels:
         app.kubernetes.io/name: runner-v523
       annotations:
-        commit_sha: "3289d3ac24db10ae346c1251996a1bb781117bc2"
-        timestamp: "1628847920882"
+        commit_sha: "f39335e24eba5c7e2b594ed9e3f2223a75516120"
+        timestamp: "1628888545517"
     spec:
       containers:
         - image: swiftfiddle/runner:5.2.3
@@ -709,6 +719,7 @@ metadata:
   labels:
     app.kubernetes.io/name: runner-v522
 spec:
+  replicas: 1
   selector:
     matchLabels:
       app.kubernetes.io/name: runner-v522
@@ -719,8 +730,8 @@ spec:
       labels:
         app.kubernetes.io/name: runner-v522
       annotations:
-        commit_sha: "3289d3ac24db10ae346c1251996a1bb781117bc2"
-        timestamp: "1628847920882"
+        commit_sha: "f39335e24eba5c7e2b594ed9e3f2223a75516120"
+        timestamp: "1628888545517"
     spec:
       containers:
         - image: swiftfiddle/runner:5.2.2
@@ -777,6 +788,7 @@ metadata:
   labels:
     app.kubernetes.io/name: runner-v521
 spec:
+  replicas: 1
   selector:
     matchLabels:
       app.kubernetes.io/name: runner-v521
@@ -787,8 +799,8 @@ spec:
       labels:
         app.kubernetes.io/name: runner-v521
       annotations:
-        commit_sha: "3289d3ac24db10ae346c1251996a1bb781117bc2"
-        timestamp: "1628847920882"
+        commit_sha: "f39335e24eba5c7e2b594ed9e3f2223a75516120"
+        timestamp: "1628888545517"
     spec:
       containers:
         - image: swiftfiddle/runner:5.2.1
@@ -845,6 +857,7 @@ metadata:
   labels:
     app.kubernetes.io/name: runner-v52
 spec:
+  replicas: 1
   selector:
     matchLabels:
       app.kubernetes.io/name: runner-v52
@@ -855,8 +868,8 @@ spec:
       labels:
         app.kubernetes.io/name: runner-v52
       annotations:
-        commit_sha: "3289d3ac24db10ae346c1251996a1bb781117bc2"
-        timestamp: "1628847920882"
+        commit_sha: "f39335e24eba5c7e2b594ed9e3f2223a75516120"
+        timestamp: "1628888545517"
     spec:
       containers:
         - image: swiftfiddle/runner:5.2
@@ -913,6 +926,7 @@ metadata:
   labels:
     app.kubernetes.io/name: runner-v51
 spec:
+  replicas: 1
   selector:
     matchLabels:
       app.kubernetes.io/name: runner-v51
@@ -923,8 +937,8 @@ spec:
       labels:
         app.kubernetes.io/name: runner-v51
       annotations:
-        commit_sha: "3289d3ac24db10ae346c1251996a1bb781117bc2"
-        timestamp: "1628847920882"
+        commit_sha: "f39335e24eba5c7e2b594ed9e3f2223a75516120"
+        timestamp: "1628888545517"
     spec:
       containers:
         - image: swiftfiddle/runner:5.1
@@ -981,6 +995,7 @@ metadata:
   labels:
     app.kubernetes.io/name: runner-v50
 spec:
+  replicas: 1
   selector:
     matchLabels:
       app.kubernetes.io/name: runner-v50
@@ -991,8 +1006,8 @@ spec:
       labels:
         app.kubernetes.io/name: runner-v50
       annotations:
-        commit_sha: "3289d3ac24db10ae346c1251996a1bb781117bc2"
-        timestamp: "1628847920882"
+        commit_sha: "f39335e24eba5c7e2b594ed9e3f2223a75516120"
+        timestamp: "1628888545517"
     spec:
       containers:
         - image: swiftfiddle/runner:5.0
@@ -1049,6 +1064,7 @@ metadata:
   labels:
     app.kubernetes.io/name: runner-v42
 spec:
+  replicas: 1
   selector:
     matchLabels:
       app.kubernetes.io/name: runner-v42
@@ -1059,8 +1075,8 @@ spec:
       labels:
         app.kubernetes.io/name: runner-v42
       annotations:
-        commit_sha: "3289d3ac24db10ae346c1251996a1bb781117bc2"
-        timestamp: "1628847920882"
+        commit_sha: "f39335e24eba5c7e2b594ed9e3f2223a75516120"
+        timestamp: "1628888545517"
     spec:
       containers:
         - image: swiftfiddle/runner:4.2
@@ -1117,6 +1133,7 @@ metadata:
   labels:
     app.kubernetes.io/name: runner-v40
 spec:
+  replicas: 1
   selector:
     matchLabels:
       app.kubernetes.io/name: runner-v40
@@ -1127,8 +1144,8 @@ spec:
       labels:
         app.kubernetes.io/name: runner-v40
       annotations:
-        commit_sha: "3289d3ac24db10ae346c1251996a1bb781117bc2"
-        timestamp: "1628847920882"
+        commit_sha: "f39335e24eba5c7e2b594ed9e3f2223a75516120"
+        timestamp: "1628888545517"
     spec:
       containers:
         - image: swiftfiddle/runner:4.0
@@ -1185,6 +1202,7 @@ metadata:
   labels:
     app.kubernetes.io/name: runner-v30
 spec:
+  replicas: 1
   selector:
     matchLabels:
       app.kubernetes.io/name: runner-v30
@@ -1195,8 +1213,8 @@ spec:
       labels:
         app.kubernetes.io/name: runner-v30
       annotations:
-        commit_sha: "3289d3ac24db10ae346c1251996a1bb781117bc2"
-        timestamp: "1628847920882"
+        commit_sha: "f39335e24eba5c7e2b594ed9e3f2223a75516120"
+        timestamp: "1628888545517"
     spec:
       containers:
         - image: swiftfiddle/runner:3.0
@@ -1253,6 +1271,7 @@ metadata:
   labels:
     app.kubernetes.io/name: runner-v22
 spec:
+  replicas: 1
   selector:
     matchLabels:
       app.kubernetes.io/name: runner-v22
@@ -1263,8 +1282,8 @@ spec:
       labels:
         app.kubernetes.io/name: runner-v22
       annotations:
-        commit_sha: "3289d3ac24db10ae346c1251996a1bb781117bc2"
-        timestamp: "1628847920882"
+        commit_sha: "f39335e24eba5c7e2b594ed9e3f2223a75516120"
+        timestamp: "1628888545517"
     spec:
       containers:
         - image: swiftfiddle/runner:2.2
@@ -1321,6 +1340,7 @@ metadata:
   labels:
     app.kubernetes.io/name: runner-vnightly-main
 spec:
+  replicas: 3
   selector:
     matchLabels:
       app.kubernetes.io/name: runner-vnightly-main
@@ -1331,8 +1351,8 @@ spec:
       labels:
         app.kubernetes.io/name: runner-vnightly-main
       annotations:
-        commit_sha: "3289d3ac24db10ae346c1251996a1bb781117bc2"
-        timestamp: "1628847920882"
+        commit_sha: "f39335e24eba5c7e2b594ed9e3f2223a75516120"
+        timestamp: "1628888545517"
     spec:
       containers:
         - image: swiftfiddle/runner:nightly-main
@@ -1389,6 +1409,7 @@ metadata:
   labels:
     app.kubernetes.io/name: runner-vnightly-55
 spec:
+  replicas: 1
   selector:
     matchLabels:
       app.kubernetes.io/name: runner-vnightly-55
@@ -1399,8 +1420,8 @@ spec:
       labels:
         app.kubernetes.io/name: runner-vnightly-55
       annotations:
-        commit_sha: "3289d3ac24db10ae346c1251996a1bb781117bc2"
-        timestamp: "1628847920882"
+        commit_sha: "f39335e24eba5c7e2b594ed9e3f2223a75516120"
+        timestamp: "1628888545517"
     spec:
       containers:
         - image: swiftfiddle/runner:nightly-5.5
@@ -1457,6 +1478,7 @@ metadata:
   labels:
     app.kubernetes.io/name: runner-vnightly-54
 spec:
+  replicas: 1
   selector:
     matchLabels:
       app.kubernetes.io/name: runner-vnightly-54
@@ -1467,8 +1489,8 @@ spec:
       labels:
         app.kubernetes.io/name: runner-vnightly-54
       annotations:
-        commit_sha: "3289d3ac24db10ae346c1251996a1bb781117bc2"
-        timestamp: "1628847920882"
+        commit_sha: "f39335e24eba5c7e2b594ed9e3f2223a75516120"
+        timestamp: "1628888545517"
     spec:
       containers:
         - image: swiftfiddle/runner:nightly-5.4
@@ -1525,6 +1547,7 @@ metadata:
   labels:
     app.kubernetes.io/name: runner-vnightly-53
 spec:
+  replicas: 1
   selector:
     matchLabels:
       app.kubernetes.io/name: runner-vnightly-53
@@ -1535,8 +1558,8 @@ spec:
       labels:
         app.kubernetes.io/name: runner-vnightly-53
       annotations:
-        commit_sha: "3289d3ac24db10ae346c1251996a1bb781117bc2"
-        timestamp: "1628847920882"
+        commit_sha: "f39335e24eba5c7e2b594ed9e3f2223a75516120"
+        timestamp: "1628888545517"
     spec:
       containers:
         - image: swiftfiddle/runner:nightly-5.3
