@@ -22,6 +22,25 @@ spec:
   connectionDraining:
     drainingTimeoutSec: 720
 ---
+apiVersion: autoscaling/v2beta2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: %NAME%
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: %NAME%
+  minReplicas: 1
+  maxReplicas: 10
+  metrics:
+    - type: Resource
+      resource:
+        name: memory
+        target:
+          type: AverageValue
+          averageValue: 256Mi
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
