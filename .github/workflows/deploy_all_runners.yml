@@ -42,8 +42,13 @@ jobs:
             read -r -a group <<< $(echo $versionGroup | sed "s/,/ /g")
             version=${group[${#group[@]}-1]}
             name="runner-v$(sed 's/\.//g' <<<"$version")"
+            if [ "$version" = "5.4.2" -o "$version" = "nightly-main" ]; then
+              replicas=3
+            else
+              replicas=1
+            fi
 
-            /bin/bash k8s/pod.yaml.sh "$version" "$name" "$timestamp"
+            /bin/bash k8s/pod.yaml.sh "$version" "$name" "$replicas" "$timestamp"
 
             kubectl apply -f k8s/pod.yaml
             kubectl rollout status deployment/$name

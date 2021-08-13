@@ -29,6 +29,7 @@ metadata:
   labels:
     app.kubernetes.io/name: %NAME%
 spec:
+  replicas: %REPLICAS%
   selector:
     matchLabels:
       app.kubernetes.io/name: %NAME%
