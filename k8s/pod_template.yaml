@@ -83,7 +83,7 @@ spec:
               mountPath: /var/run/docker.sock
             - name: sandbox
               mountPath: /tmp
-        terminationGracePeriodSeconds: 120
+      terminationGracePeriodSeconds: 120
       volumes:
         - name: docker-socket
           hostPath:
