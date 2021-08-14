@@ -2,25 +2,46 @@ import Vapor
 
 func routes(_ app: Application) throws {
     app.get { (req) -> [String: String] in
-        let versions = try Runner.installedVersions()
-        return ["status": "pass", "versions": versions.joined(separator: ","),]
+        return ["status": "pass"]
     }
 
-    app.get("runner", ":version", "health") { (req) -> [String: String] in
+    app.get("runner", ":version", "health") { (req) -> EventLoopFuture<ExecutionResponse> in
         guard let version = req.parameters.get("version") else { throw Abort(.badRequest) }
-        let versions = try Runner.installedVersions()
-        return [
-            "status": "pass",
-            "version": version,
-            "versions": versions.joined(separator: ","),
-        ]
+
+        let sandboxPath = URL(fileURLWithPath: app.directory.resourcesDirectory).appendingPathComponent("Sandbox")
+        let runner = Runner( version: version, sandboxPath: sandboxPath)
+
+        let promise = req.eventLoop.makePromise(of: ExecutionResponse.self)
+        do {
+            try runner.run(
+                parameter: ExecutionRequestParameter(
+                    command: nil,
+                    options: nil,
+                    code: "()",
+                    timeout: nil,
+                    _color: nil,
+                    _nonce: nil
+                ),
+                onComplete: { (response) in
+                    promise.succeed(response)
+                },
+                onTimeout: { (response) in
+                    promise.succeed(response)
+                }
+            )
+        } catch {
+            req.logger.error("\(error)")
+            throw error
+        }
+
+        return promise.futureResult
     }
 
     app.on(.POST, "runner", ":version", "run", body: .collect(maxSize: "10mb")) { (req) -> EventLoopFuture<ExecutionResponse> in
         guard let version = req.parameters.get("version") else { throw Abort(.badRequest) }
         
         let parameter = try req.content.decode(ExecutionRequestParameter.self)
-        let sandboxPath = URL(fileURLWithPath: "\(app.directory.resourcesDirectory)Sandbox")
+        let sandboxPath = URL(fileURLWithPath: app.directory.resourcesDirectory).appendingPathComponent("Sandbox")
         let runner = Runner( version: version, sandboxPath: sandboxPath)
 
         let promise = req.eventLoop.makePromise(of: ExecutionResponse.self)

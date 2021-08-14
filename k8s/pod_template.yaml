@@ -38,14 +38,14 @@ spec:
       resource:
         name: cpu
         target:
-          type: Utilization
-          averageUtilization: 10
+          type: AverageValue
+          averageValue: 100m
     - type: Resource
       resource:
         name: memory
         target:
           type: AverageValue
-          averageValue: 256Mi
+          averageValue: 128Mi
 ---
 apiVersion: apps/v1
 kind: Deployment
