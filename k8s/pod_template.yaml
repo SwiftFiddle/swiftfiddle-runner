@@ -39,13 +39,13 @@ spec:
         name: cpu
         target:
           type: AverageValue
-          averageValue: 200m
+          averageValue: 1000m
     - type: Resource
       resource:
         name: memory
         target:
           type: AverageValue
-          averageValue: 128Mi
+          averageValue: 1Gi
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -76,21 +76,15 @@ spec:
             httpGet:
               path: /runner/%VERSION%/health
               port: 8080
-            initialDelaySeconds: 20
-            timeoutSeconds: 30
-            failureThreshold: 2
-          readinessProbe:
-            httpGet:
-              path: /runner/%VERSION%/health
-              port: 8080
-            initialDelaySeconds: 20
-            timeoutSeconds: 30
+            initialDelaySeconds: 30
+            timeoutSeconds: 60
+            periodSeconds: 300
             failureThreshold: 2
           resources:
             limits:
-              memory: "512Mi"
+              memory: "768Mi"
             requests:
-              memory: "64Mi"
+              memory: "128Mi"
           volumeMounts:
             - name: docker-socket
               mountPath: /var/run/docker.sock
