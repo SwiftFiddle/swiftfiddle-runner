@@ -39,13 +39,13 @@ spec:
         name: cpu
         target:
           type: AverageValue
-          averageValue: 100m
+          averageValue: 250m
     - type: Resource
       resource:
         name: memory
         target:
           type: AverageValue
-          averageValue: 128Mi
+          averageValue: 256Mi
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -58,7 +58,7 @@ spec:
   selector:
     matchLabels:
       app.kubernetes.io/name: %NAME%
-  progressDeadlineSeconds: 300
+  progressDeadlineSeconds: 600
   minReadySeconds: 60
   template:
     metadata:
@@ -85,7 +85,7 @@ spec:
             limits:
               memory: "1Gi"
             requests:
-              memory: "256Mi"
+              memory: "128Mi"
           volumeMounts:
             - name: docker-socket
               mountPath: /var/run/docker.sock
