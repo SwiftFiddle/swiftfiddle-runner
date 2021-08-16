@@ -9,6 +9,5 @@ else
     docker pull "swiftfiddle/swift:$version"
   done
 fi
-docker image prune --force
 
 ./Run serve --env production --hostname "0.0.0.0" --port 8080
