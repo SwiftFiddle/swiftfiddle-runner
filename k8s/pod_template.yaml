@@ -39,13 +39,13 @@ spec:
         name: cpu
         target:
           type: AverageValue
-          averageValue: 250m
+          averageValue: 200m
     - type: Resource
       resource:
         name: memory
         target:
           type: AverageValue
-          averageValue: 256Mi
+          averageValue: 128Mi
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -81,9 +81,9 @@ spec:
             failureThreshold: 2
           resources:
             limits:
-              memory: "1Gi"
+              memory: "512Mi"
             requests:
-              memory: "128Mi"
+              memory: "64Mi"
           volumeMounts:
             - name: docker-socket
               mountPath: /var/run/docker.sock
