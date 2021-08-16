@@ -1,10 +1,6 @@
 import Vapor
 
 func routes(_ app: Application) throws {
-    app.get { (req) -> [String: String] in
-        return ["status": "pass"]
-    }
-
     app.get("runner", ":version", "health") { (req) -> EventLoopFuture<ExecutionResponse> in
         guard let version = req.parameters.get("version") else { throw Abort(.badRequest) }
 

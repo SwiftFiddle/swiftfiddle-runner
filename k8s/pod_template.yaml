@@ -58,7 +58,7 @@ spec:
   selector:
     matchLabels:
       app.kubernetes.io/name: %NAME%
-  progressDeadlineSeconds: 900
+  progressDeadlineSeconds: 300
   minReadySeconds: 60
   template:
     metadata:
@@ -74,21 +74,24 @@ spec:
           imagePullPolicy: Always
           ports:
             - containerPort: 8080
-          readinessProbe:
+          livenessProbe:
             httpGet:
-              path: /
+              path: /runner/%VERSION%/health
               port: 8080
+            initialDelaySeconds: 20
+            timeoutSeconds: 30
+            failureThreshold: 1
           resources:
             limits:
               memory: "1Gi"
             requests:
-              memory: "512Mi"
+              memory: "256Mi"
           volumeMounts:
             - name: docker-socket
               mountPath: /var/run/docker.sock
             - name: sandbox
               mountPath: /tmp
-      terminationGracePeriodSeconds: 120
+      terminationGracePeriodSeconds: 60
       volumes:
         - name: docker-socket
           hostPath:

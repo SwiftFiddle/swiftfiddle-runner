@@ -43,7 +43,7 @@ jobs:
             version=${group[${#group[@]}-1]}
             name="runner-v$(sed 's/\.//g' <<<"$version")"
             if [ "$version" = "5.4.2" -o "$version" = "nightly-main" ]; then
-              replicas=3
+              replicas=2
             else
               replicas=1
             fi
