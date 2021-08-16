@@ -18,7 +18,7 @@ func routes(_ app: Application) throws {
                     command: nil,
                     options: nil,
                     code: "()",
-                    timeout: nil,
+                    timeout: 30,
                     _color: nil,
                     _nonce: nil
                 ),

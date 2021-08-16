@@ -75,10 +75,10 @@ jobs:
             fi
 
             /bin/bash k8s/pod.yaml.sh "$version" "$name" "$replicas" "$timestamp"
-
-            kubectl apply -f k8s/pod.yaml
-            kubectl rollout status deployment/$name
           done
+
+          kubectl apply -f k8s/pod.yaml
+          kubectl rollout status deployment/$name
 
           kubectl get services -o wide
 
