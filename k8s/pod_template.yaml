@@ -79,6 +79,13 @@ spec:
             initialDelaySeconds: 20
             timeoutSeconds: 30
             failureThreshold: 2
+          readinessProbe:
+            httpGet:
+              path: /runner/%VERSION%/health
+              port: 8080
+            initialDelaySeconds: 20
+            timeoutSeconds: 30
+            failureThreshold: 2
           resources:
             limits:
               memory: "512Mi"
