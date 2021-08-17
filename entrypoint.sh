@@ -1,6 +1,8 @@
 #!/bin/bash
 set -ex
 
+echo "$DOCKER_HUB_ACCESS_TOKEN" | docker login --username="$DOCKER_HUB_USERNAME" --password-stdin
+
 if [[ $RUNNER_VERSION == nightly* ]] ;
 then
   docker pull "swiftlang/swift:$RUNNER_VERSION"

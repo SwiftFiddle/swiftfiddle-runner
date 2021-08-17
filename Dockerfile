@@ -32,7 +32,11 @@ COPY --from=build /staging /app
 
 EXPOSE 8080
 
+ARG username
+ARG access_token
 ARG version
+ENV DOCKER_HUB_USERNAME=${username}
+ENV DOCKER_HUB_ACCESS_TOKEN=${access_token}
 ENV RUNNER_VERSION=${version}
 ENTRYPOINT ["/bin/bash", "entrypoint.sh"]
 CMD ["serve", "--env", "production", "--hostname", "0.0.0.0", "--port", "8080"]
