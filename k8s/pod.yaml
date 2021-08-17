@@ -39,13 +39,13 @@ spec:
         name: cpu
         target:
           type: AverageValue
-          averageValue: 400m
+          averageValue: 100m
     - type: Resource
       resource:
         name: memory
         target:
           type: AverageValue
-          averageValue: 500Mi
+          averageValue: 128Mi
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -65,8 +65,8 @@ spec:
       labels:
         app.kubernetes.io/name: runner-v542
       annotations:
-        commit_sha: "022e9f017e3429a3da397d201ed0e5a93b41e32b"
-        timestamp: "1629181810939"
+        commit_sha: "f44ce5f386f921fca23689705d1f07e91d750d07"
+        timestamp: "1629226822200"
     spec:
       containers:
         - image: us.gcr.io/swift-playground-fbe87/runner:5.4.2
@@ -100,11 +100,11 @@ spec:
             failureThreshold: 2
           resources:
             limits:
-              cpu: 200m
-              memory: 1Gi
+              cpu: 100m
+              memory: 256Mi
             requests:
               cpu: 10m
-              memory: 64Mi
+              memory: 32Mi
           volumeMounts:
             - name: docker-socket
               mountPath: /var/run/docker.sock
@@ -161,13 +161,13 @@ spec:
         name: cpu
         target:
           type: AverageValue
-          averageValue: 400m
+          averageValue: 100m
     - type: Resource
       resource:
         name: memory
         target:
           type: AverageValue
-          averageValue: 500Mi
+          averageValue: 128Mi
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -187,8 +187,8 @@ spec:
       labels:
         app.kubernetes.io/name: runner-v541
       annotations:
-        commit_sha: "022e9f017e3429a3da397d201ed0e5a93b41e32b"
-        timestamp: "1629181810939"
+        commit_sha: "f44ce5f386f921fca23689705d1f07e91d750d07"
+        timestamp: "1629226822200"
     spec:
       containers:
         - image: us.gcr.io/swift-playground-fbe87/runner:5.4.1
@@ -222,11 +222,11 @@ spec:
             failureThreshold: 2
           resources:
             limits:
-              cpu: 200m
-              memory: 1Gi
+              cpu: 100m
+              memory: 256Mi
             requests:
               cpu: 10m
-              memory: 64Mi
+              memory: 32Mi
           volumeMounts:
             - name: docker-socket
               mountPath: /var/run/docker.sock
@@ -283,13 +283,13 @@ spec:
         name: cpu
         target:
           type: AverageValue
-          averageValue: 400m
+          averageValue: 100m
     - type: Resource
       resource:
         name: memory
         target:
           type: AverageValue
-          averageValue: 500Mi
+          averageValue: 128Mi
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -309,8 +309,8 @@ spec:
       labels:
         app.kubernetes.io/name: runner-v54
       annotations:
-        commit_sha: "022e9f017e3429a3da397d201ed0e5a93b41e32b"
-        timestamp: "1629181810939"
+        commit_sha: "f44ce5f386f921fca23689705d1f07e91d750d07"
+        timestamp: "1629226822200"
     spec:
       containers:
         - image: us.gcr.io/swift-playground-fbe87/runner:5.4
@@ -344,11 +344,11 @@ spec:
             failureThreshold: 2
           resources:
             limits:
-              cpu: 200m
-              memory: 1Gi
+              cpu: 100m
+              memory: 256Mi
             requests:
               cpu: 10m
-              memory: 64Mi
+              memory: 32Mi
           volumeMounts:
             - name: docker-socket
               mountPath: /var/run/docker.sock
@@ -405,13 +405,13 @@ spec:
         name: cpu
         target:
           type: AverageValue
-          averageValue: 400m
+          averageValue: 100m
     - type: Resource
       resource:
         name: memory
         target:
           type: AverageValue
-          averageValue: 500Mi
+          averageValue: 128Mi
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -431,8 +431,8 @@ spec:
       labels:
         app.kubernetes.io/name: runner-v533
       annotations:
-        commit_sha: "022e9f017e3429a3da397d201ed0e5a93b41e32b"
-        timestamp: "1629181810939"
+        commit_sha: "f44ce5f386f921fca23689705d1f07e91d750d07"
+        timestamp: "1629226822200"
     spec:
       containers:
         - image: us.gcr.io/swift-playground-fbe87/runner:5.3.3
@@ -466,11 +466,11 @@ spec:
             failureThreshold: 2
           resources:
             limits:
-              cpu: 200m
-              memory: 1Gi
+              cpu: 100m
+              memory: 256Mi
             requests:
               cpu: 10m
-              memory: 64Mi
+              memory: 32Mi
           volumeMounts:
             - name: docker-socket
               mountPath: /var/run/docker.sock
@@ -527,13 +527,13 @@ spec:
         name: cpu
         target:
           type: AverageValue
-          averageValue: 400m
+          averageValue: 100m
     - type: Resource
       resource:
         name: memory
         target:
           type: AverageValue
-          averageValue: 500Mi
+          averageValue: 128Mi
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -553,8 +553,8 @@ spec:
       labels:
         app.kubernetes.io/name: runner-v532
       annotations:
-        commit_sha: "022e9f017e3429a3da397d201ed0e5a93b41e32b"
-        timestamp: "1629181810939"
+        commit_sha: "f44ce5f386f921fca23689705d1f07e91d750d07"
+        timestamp: "1629226822200"
     spec:
       containers:
         - image: us.gcr.io/swift-playground-fbe87/runner:5.3.2
@@ -588,11 +588,11 @@ spec:
             failureThreshold: 2
           resources:
             limits:
-              cpu: 200m
-              memory: 1Gi
+              cpu: 100m
+              memory: 256Mi
             requests:
               cpu: 10m
-              memory: 64Mi
+              memory: 32Mi
           volumeMounts:
             - name: docker-socket
               mountPath: /var/run/docker.sock
@@ -649,13 +649,13 @@ spec:
         name: cpu
         target:
           type: AverageValue
-          averageValue: 400m
+          averageValue: 100m
     - type: Resource
       resource:
         name: memory
         target:
           type: AverageValue
-          averageValue: 500Mi
+          averageValue: 128Mi
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -675,8 +675,8 @@ spec:
       labels:
         app.kubernetes.io/name: runner-v531
       annotations:
-        commit_sha: "022e9f017e3429a3da397d201ed0e5a93b41e32b"
-        timestamp: "1629181810939"
+        commit_sha: "f44ce5f386f921fca23689705d1f07e91d750d07"
+        timestamp: "1629226822200"
     spec:
       containers:
         - image: us.gcr.io/swift-playground-fbe87/runner:5.3.1
@@ -710,11 +710,11 @@ spec:
             failureThreshold: 2
           resources:
             limits:
-              cpu: 200m
-              memory: 1Gi
+              cpu: 100m
+              memory: 256Mi
             requests:
               cpu: 10m
-              memory: 64Mi
+              memory: 32Mi
           volumeMounts:
             - name: docker-socket
               mountPath: /var/run/docker.sock
@@ -771,13 +771,13 @@ spec:
         name: cpu
         target:
           type: AverageValue
-          averageValue: 400m
+          averageValue: 100m
     - type: Resource
       resource:
         name: memory
         target:
           type: AverageValue
-          averageValue: 500Mi
+          averageValue: 128Mi
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -797,8 +797,8 @@ spec:
       labels:
         app.kubernetes.io/name: runner-v53
       annotations:
-        commit_sha: "022e9f017e3429a3da397d201ed0e5a93b41e32b"
-        timestamp: "1629181810939"
+        commit_sha: "f44ce5f386f921fca23689705d1f07e91d750d07"
+        timestamp: "1629226822200"
     spec:
       containers:
         - image: us.gcr.io/swift-playground-fbe87/runner:5.3
@@ -832,11 +832,11 @@ spec:
             failureThreshold: 2
           resources:
             limits:
-              cpu: 200m
-              memory: 1Gi
+              cpu: 100m
+              memory: 256Mi
             requests:
               cpu: 10m
-              memory: 64Mi
+              memory: 32Mi
           volumeMounts:
             - name: docker-socket
               mountPath: /var/run/docker.sock
@@ -893,13 +893,13 @@ spec:
         name: cpu
         target:
           type: AverageValue
-          averageValue: 400m
+          averageValue: 100m
     - type: Resource
       resource:
         name: memory
         target:
           type: AverageValue
-          averageValue: 500Mi
+          averageValue: 128Mi
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -919,8 +919,8 @@ spec:
       labels:
         app.kubernetes.io/name: runner-v525
       annotations:
-        commit_sha: "022e9f017e3429a3da397d201ed0e5a93b41e32b"
-        timestamp: "1629181810939"
+        commit_sha: "f44ce5f386f921fca23689705d1f07e91d750d07"
+        timestamp: "1629226822200"
     spec:
       containers:
         - image: us.gcr.io/swift-playground-fbe87/runner:5.2.5
@@ -954,11 +954,11 @@ spec:
             failureThreshold: 2
           resources:
             limits:
-              cpu: 200m
-              memory: 1Gi
+              cpu: 100m
+              memory: 256Mi
             requests:
               cpu: 10m
-              memory: 64Mi
+              memory: 32Mi
           volumeMounts:
             - name: docker-socket
               mountPath: /var/run/docker.sock
@@ -1015,13 +1015,13 @@ spec:
         name: cpu
         target:
           type: AverageValue
-          averageValue: 400m
+          averageValue: 100m
     - type: Resource
       resource:
         name: memory
         target:
           type: AverageValue
-          averageValue: 500Mi
+          averageValue: 128Mi
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -1041,8 +1041,8 @@ spec:
       labels:
         app.kubernetes.io/name: runner-v524
       annotations:
-        commit_sha: "022e9f017e3429a3da397d201ed0e5a93b41e32b"
-        timestamp: "1629181810939"
+        commit_sha: "f44ce5f386f921fca23689705d1f07e91d750d07"
+        timestamp: "1629226822200"
     spec:
       containers:
         - image: us.gcr.io/swift-playground-fbe87/runner:5.2.4
@@ -1076,11 +1076,11 @@ spec:
             failureThreshold: 2
           resources:
             limits:
-              cpu: 200m
-              memory: 1Gi
+              cpu: 100m
+              memory: 256Mi
             requests:
               cpu: 10m
-              memory: 64Mi
+              memory: 32Mi
           volumeMounts:
             - name: docker-socket
               mountPath: /var/run/docker.sock
@@ -1137,13 +1137,13 @@ spec:
         name: cpu
         target:
           type: AverageValue
-          averageValue: 400m
+          averageValue: 100m
     - type: Resource
       resource:
         name: memory
         target:
           type: AverageValue
-          averageValue: 500Mi
+          averageValue: 128Mi
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -1163,8 +1163,8 @@ spec:
       labels:
         app.kubernetes.io/name: runner-v523
       annotations:
-        commit_sha: "022e9f017e3429a3da397d201ed0e5a93b41e32b"
-        timestamp: "1629181810939"
+        commit_sha: "f44ce5f386f921fca23689705d1f07e91d750d07"
+        timestamp: "1629226822200"
     spec:
       containers:
         - image: us.gcr.io/swift-playground-fbe87/runner:5.2.3
@@ -1198,11 +1198,11 @@ spec:
             failureThreshold: 2
           resources:
             limits:
-              cpu: 200m
-              memory: 1Gi
+              cpu: 100m
+              memory: 256Mi
             requests:
               cpu: 10m
-              memory: 64Mi
+              memory: 32Mi
           volumeMounts:
             - name: docker-socket
               mountPath: /var/run/docker.sock
@@ -1259,13 +1259,13 @@ spec:
         name: cpu
         target:
           type: AverageValue
-          averageValue: 400m
+          averageValue: 100m
     - type: Resource
       resource:
         name: memory
         target:
           type: AverageValue
-          averageValue: 500Mi
+          averageValue: 128Mi
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -1285,8 +1285,8 @@ spec:
       labels:
         app.kubernetes.io/name: runner-v522
       annotations:
-        commit_sha: "022e9f017e3429a3da397d201ed0e5a93b41e32b"
-        timestamp: "1629181810939"
+        commit_sha: "f44ce5f386f921fca23689705d1f07e91d750d07"
+        timestamp: "1629226822200"
     spec:
       containers:
         - image: us.gcr.io/swift-playground-fbe87/runner:5.2.2
@@ -1320,11 +1320,11 @@ spec:
             failureThreshold: 2
           resources:
             limits:
-              cpu: 200m
-              memory: 1Gi
+              cpu: 100m
+              memory: 256Mi
             requests:
               cpu: 10m
-              memory: 64Mi
+              memory: 32Mi
           volumeMounts:
             - name: docker-socket
               mountPath: /var/run/docker.sock
@@ -1381,13 +1381,13 @@ spec:
         name: cpu
         target:
           type: AverageValue
-          averageValue: 400m
+          averageValue: 100m
     - type: Resource
       resource:
         name: memory
         target:
           type: AverageValue
-          averageValue: 500Mi
+          averageValue: 128Mi
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -1407,8 +1407,8 @@ spec:
       labels:
         app.kubernetes.io/name: runner-v521
       annotations:
-        commit_sha: "022e9f017e3429a3da397d201ed0e5a93b41e32b"
-        timestamp: "1629181810939"
+        commit_sha: "f44ce5f386f921fca23689705d1f07e91d750d07"
+        timestamp: "1629226822200"
     spec:
       containers:
         - image: us.gcr.io/swift-playground-fbe87/runner:5.2.1
@@ -1442,11 +1442,11 @@ spec:
             failureThreshold: 2
           resources:
             limits:
-              cpu: 200m
-              memory: 1Gi
+              cpu: 100m
+              memory: 256Mi
             requests:
               cpu: 10m
-              memory: 64Mi
+              memory: 32Mi
           volumeMounts:
             - name: docker-socket
               mountPath: /var/run/docker.sock
@@ -1503,13 +1503,13 @@ spec:
         name: cpu
         target:
           type: AverageValue
-          averageValue: 400m
+          averageValue: 100m
     - type: Resource
       resource:
         name: memory
         target:
           type: AverageValue
-          averageValue: 500Mi
+          averageValue: 128Mi
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -1529,8 +1529,8 @@ spec:
       labels:
         app.kubernetes.io/name: runner-v52
       annotations:
-        commit_sha: "022e9f017e3429a3da397d201ed0e5a93b41e32b"
-        timestamp: "1629181810939"
+        commit_sha: "f44ce5f386f921fca23689705d1f07e91d750d07"
+        timestamp: "1629226822200"
     spec:
       containers:
         - image: us.gcr.io/swift-playground-fbe87/runner:5.2
@@ -1564,11 +1564,11 @@ spec:
             failureThreshold: 2
           resources:
             limits:
-              cpu: 200m
-              memory: 1Gi
+              cpu: 100m
+              memory: 256Mi
             requests:
               cpu: 10m
-              memory: 64Mi
+              memory: 32Mi
           volumeMounts:
             - name: docker-socket
               mountPath: /var/run/docker.sock
@@ -1625,13 +1625,13 @@ spec:
         name: cpu
         target:
           type: AverageValue
-          averageValue: 400m
+          averageValue: 100m
     - type: Resource
       resource:
         name: memory
         target:
           type: AverageValue
-          averageValue: 500Mi
+          averageValue: 128Mi
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -1651,8 +1651,8 @@ spec:
       labels:
         app.kubernetes.io/name: runner-v51
       annotations:
-        commit_sha: "022e9f017e3429a3da397d201ed0e5a93b41e32b"
-        timestamp: "1629181810939"
+        commit_sha: "f44ce5f386f921fca23689705d1f07e91d750d07"
+        timestamp: "1629226822200"
     spec:
       containers:
         - image: us.gcr.io/swift-playground-fbe87/runner:5.1
@@ -1686,11 +1686,11 @@ spec:
             failureThreshold: 2
           resources:
             limits:
-              cpu: 200m
-              memory: 1Gi
+              cpu: 100m
+              memory: 256Mi
             requests:
               cpu: 10m
-              memory: 64Mi
+              memory: 32Mi
           volumeMounts:
             - name: docker-socket
               mountPath: /var/run/docker.sock
@@ -1747,13 +1747,13 @@ spec:
         name: cpu
         target:
           type: AverageValue
-          averageValue: 400m
+          averageValue: 100m
     - type: Resource
       resource:
         name: memory
         target:
           type: AverageValue
-          averageValue: 500Mi
+          averageValue: 128Mi
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -1773,8 +1773,8 @@ spec:
       labels:
         app.kubernetes.io/name: runner-v50
       annotations:
-        commit_sha: "022e9f017e3429a3da397d201ed0e5a93b41e32b"
-        timestamp: "1629181810939"
+        commit_sha: "f44ce5f386f921fca23689705d1f07e91d750d07"
+        timestamp: "1629226822200"
     spec:
       containers:
         - image: us.gcr.io/swift-playground-fbe87/runner:5.0
@@ -1808,11 +1808,11 @@ spec:
             failureThreshold: 2
           resources:
             limits:
-              cpu: 200m
-              memory: 1Gi
+              cpu: 100m
+              memory: 256Mi
             requests:
               cpu: 10m
-              memory: 64Mi
+              memory: 32Mi
           volumeMounts:
             - name: docker-socket
               mountPath: /var/run/docker.sock
@@ -1869,13 +1869,13 @@ spec:
         name: cpu
         target:
           type: AverageValue
-          averageValue: 400m
+          averageValue: 100m
     - type: Resource
       resource:
         name: memory
         target:
           type: AverageValue
-          averageValue: 500Mi
+          averageValue: 128Mi
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -1895,8 +1895,8 @@ spec:
       labels:
         app.kubernetes.io/name: runner-v42
       annotations:
-        commit_sha: "022e9f017e3429a3da397d201ed0e5a93b41e32b"
-        timestamp: "1629181810939"
+        commit_sha: "f44ce5f386f921fca23689705d1f07e91d750d07"
+        timestamp: "1629226822200"
     spec:
       containers:
         - image: us.gcr.io/swift-playground-fbe87/runner:4.2
@@ -1930,11 +1930,11 @@ spec:
             failureThreshold: 2
           resources:
             limits:
-              cpu: 200m
-              memory: 1Gi
+              cpu: 100m
+              memory: 256Mi
             requests:
               cpu: 10m
-              memory: 64Mi
+              memory: 32Mi
           volumeMounts:
             - name: docker-socket
               mountPath: /var/run/docker.sock
@@ -1991,13 +1991,13 @@ spec:
         name: cpu
         target:
           type: AverageValue
-          averageValue: 400m
+          averageValue: 100m
     - type: Resource
       resource:
         name: memory
         target:
           type: AverageValue
-          averageValue: 500Mi
+          averageValue: 128Mi
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -2017,8 +2017,8 @@ spec:
       labels:
         app.kubernetes.io/name: runner-v40
       annotations:
-        commit_sha: "022e9f017e3429a3da397d201ed0e5a93b41e32b"
-        timestamp: "1629181810939"
+        commit_sha: "f44ce5f386f921fca23689705d1f07e91d750d07"
+        timestamp: "1629226822200"
     spec:
       containers:
         - image: us.gcr.io/swift-playground-fbe87/runner:4.0
@@ -2052,11 +2052,11 @@ spec:
             failureThreshold: 2
           resources:
             limits:
-              cpu: 200m
-              memory: 1Gi
+              cpu: 100m
+              memory: 256Mi
             requests:
               cpu: 10m
-              memory: 64Mi
+              memory: 32Mi
           volumeMounts:
             - name: docker-socket
               mountPath: /var/run/docker.sock
@@ -2113,13 +2113,13 @@ spec:
         name: cpu
         target:
           type: AverageValue
-          averageValue: 400m
+          averageValue: 100m
     - type: Resource
       resource:
         name: memory
         target:
           type: AverageValue
-          averageValue: 500Mi
+          averageValue: 128Mi
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -2139,8 +2139,8 @@ spec:
       labels:
         app.kubernetes.io/name: runner-v30
       annotations:
-        commit_sha: "022e9f017e3429a3da397d201ed0e5a93b41e32b"
-        timestamp: "1629181810939"
+        commit_sha: "f44ce5f386f921fca23689705d1f07e91d750d07"
+        timestamp: "1629226822200"
     spec:
       containers:
         - image: us.gcr.io/swift-playground-fbe87/runner:3.0
@@ -2174,11 +2174,11 @@ spec:
             failureThreshold: 2
           resources:
             limits:
-              cpu: 200m
-              memory: 1Gi
+              cpu: 100m
+              memory: 256Mi
             requests:
               cpu: 10m
-              memory: 64Mi
+              memory: 32Mi
           volumeMounts:
             - name: docker-socket
               mountPath: /var/run/docker.sock
@@ -2235,13 +2235,13 @@ spec:
         name: cpu
         target:
           type: AverageValue
-          averageValue: 400m
+          averageValue: 100m
     - type: Resource
       resource:
         name: memory
         target:
           type: AverageValue
-          averageValue: 500Mi
+          averageValue: 128Mi
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -2261,8 +2261,8 @@ spec:
       labels:
         app.kubernetes.io/name: runner-v22
       annotations:
-        commit_sha: "022e9f017e3429a3da397d201ed0e5a93b41e32b"
-        timestamp: "1629181810939"
+        commit_sha: "f44ce5f386f921fca23689705d1f07e91d750d07"
+        timestamp: "1629226822200"
     spec:
       containers:
         - image: us.gcr.io/swift-playground-fbe87/runner:2.2
@@ -2296,11 +2296,11 @@ spec:
             failureThreshold: 2
           resources:
             limits:
-              cpu: 200m
-              memory: 1Gi
+              cpu: 100m
+              memory: 256Mi
             requests:
               cpu: 10m
-              memory: 64Mi
+              memory: 32Mi
           volumeMounts:
             - name: docker-socket
               mountPath: /var/run/docker.sock
@@ -2357,13 +2357,13 @@ spec:
         name: cpu
         target:
           type: AverageValue
-          averageValue: 400m
+          averageValue: 100m
     - type: Resource
       resource:
         name: memory
         target:
           type: AverageValue
-          averageValue: 500Mi
+          averageValue: 128Mi
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -2383,8 +2383,8 @@ spec:
       labels:
         app.kubernetes.io/name: runner-vnightly-main
       annotations:
-        commit_sha: "022e9f017e3429a3da397d201ed0e5a93b41e32b"
-        timestamp: "1629181810939"
+        commit_sha: "f44ce5f386f921fca23689705d1f07e91d750d07"
+        timestamp: "1629226822200"
     spec:
       containers:
         - image: us.gcr.io/swift-playground-fbe87/runner:nightly-main
@@ -2418,11 +2418,11 @@ spec:
             failureThreshold: 2
           resources:
             limits:
-              cpu: 200m
-              memory: 1Gi
+              cpu: 100m
+              memory: 256Mi
             requests:
               cpu: 10m
-              memory: 64Mi
+              memory: 32Mi
           volumeMounts:
             - name: docker-socket
               mountPath: /var/run/docker.sock
@@ -2479,13 +2479,13 @@ spec:
         name: cpu
         target:
           type: AverageValue
-          averageValue: 400m
+          averageValue: 100m
     - type: Resource
       resource:
         name: memory
         target:
           type: AverageValue
-          averageValue: 500Mi
+          averageValue: 128Mi
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -2505,8 +2505,8 @@ spec:
       labels:
         app.kubernetes.io/name: runner-vnightly-55
       annotations:
-        commit_sha: "022e9f017e3429a3da397d201ed0e5a93b41e32b"
-        timestamp: "1629181810939"
+        commit_sha: "f44ce5f386f921fca23689705d1f07e91d750d07"
+        timestamp: "1629226822200"
     spec:
       containers:
         - image: us.gcr.io/swift-playground-fbe87/runner:nightly-5.5
@@ -2540,11 +2540,11 @@ spec:
             failureThreshold: 2
           resources:
             limits:
-              cpu: 200m
-              memory: 1Gi
+              cpu: 100m
+              memory: 256Mi
             requests:
               cpu: 10m
-              memory: 64Mi
+              memory: 32Mi
           volumeMounts:
             - name: docker-socket
               mountPath: /var/run/docker.sock
@@ -2601,13 +2601,13 @@ spec:
         name: cpu
         target:
           type: AverageValue
-          averageValue: 400m
+          averageValue: 100m
     - type: Resource
       resource:
         name: memory
         target:
           type: AverageValue
-          averageValue: 500Mi
+          averageValue: 128Mi
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -2627,8 +2627,8 @@ spec:
       labels:
         app.kubernetes.io/name: runner-vnightly-54
       annotations:
-        commit_sha: "022e9f017e3429a3da397d201ed0e5a93b41e32b"
-        timestamp: "1629181810939"
+        commit_sha: "f44ce5f386f921fca23689705d1f07e91d750d07"
+        timestamp: "1629226822200"
     spec:
       containers:
         - image: us.gcr.io/swift-playground-fbe87/runner:nightly-5.4
@@ -2662,11 +2662,11 @@ spec:
             failureThreshold: 2
           resources:
             limits:
-              cpu: 200m
-              memory: 1Gi
+              cpu: 100m
+              memory: 256Mi
             requests:
               cpu: 10m
-              memory: 64Mi
+              memory: 32Mi
           volumeMounts:
             - name: docker-socket
               mountPath: /var/run/docker.sock
@@ -2723,13 +2723,13 @@ spec:
         name: cpu
         target:
           type: AverageValue
-          averageValue: 400m
+          averageValue: 100m
     - type: Resource
       resource:
         name: memory
         target:
           type: AverageValue
-          averageValue: 500Mi
+          averageValue: 128Mi
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -2749,8 +2749,8 @@ spec:
       labels:
         app.kubernetes.io/name: runner-vnightly-53
       annotations:
-        commit_sha: "022e9f017e3429a3da397d201ed0e5a93b41e32b"
-        timestamp: "1629181810939"
+        commit_sha: "f44ce5f386f921fca23689705d1f07e91d750d07"
+        timestamp: "1629226822200"
     spec:
       containers:
         - image: us.gcr.io/swift-playground-fbe87/runner:nightly-5.3
@@ -2784,11 +2784,11 @@ spec:
             failureThreshold: 2
           resources:
             limits:
-              cpu: 200m
-              memory: 1Gi
+              cpu: 100m
+              memory: 256Mi
             requests:
               cpu: 10m
-              memory: 64Mi
+              memory: 32Mi
           volumeMounts:
             - name: docker-socket
               mountPath: /var/run/docker.sock
