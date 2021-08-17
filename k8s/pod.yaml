@@ -1,12 +1,12 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: runner-v541
+  name: runner-v42
   annotations:
-    cloud.google.com/backend-config: '{"ports": {"80": "runner-v541-backendconfig"}}'
+    cloud.google.com/backend-config: '{"ports": {"80": "runner-v42-backendconfig"}}'
 spec:
   selector:
-    app.kubernetes.io/name: runner-v541
+    app.kubernetes.io/name: runner-v42
   ports:
     - protocol: TCP
       port: 80
@@ -16,7 +16,7 @@ spec:
 apiVersion: cloud.google.com/v1
 kind: BackendConfig
 metadata:
-  name: runner-v541-backendconfig
+  name: runner-v42-backendconfig
 spec:
   timeoutSec: 660
   connectionDraining:
@@ -25,12 +25,12 @@ spec:
 apiVersion: autoscaling/v2beta2
 kind: HorizontalPodAutoscaler
 metadata:
-  name: runner-v541
+  name: runner-v42
 spec:
   scaleTargetRef:
     apiVersion: apps/v1
     kind: Deployment
-    name: runner-v541
+    name: runner-v42
   minReplicas: 1
   maxReplicas: 10
   metrics:
@@ -50,33 +50,33 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: runner-v541
+  name: runner-v42
   labels:
-    app.kubernetes.io/name: runner-v541
+    app.kubernetes.io/name: runner-v42
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app.kubernetes.io/name: runner-v541
+      app.kubernetes.io/name: runner-v42
   minReadySeconds: 60
   progressDeadlineSeconds: 7200
   template:
     metadata:
       labels:
-        app.kubernetes.io/name: runner-v541
+        app.kubernetes.io/name: runner-v42
       annotations:
-        commit_sha: "0f1af39f2c90544daffe551a7a01535fe1bf41c2"
-        timestamp: "1629172903346"
+        commit_sha: "1bc32d568d66eea3cae1d53af465dfc2441671b8"
+        timestamp: "1629174226195"
     spec:
       containers:
-        - image: us.gcr.io/swift-playground-fbe87/runner:5.4.1
-          name: runner-v541
+        - image: us.gcr.io/swift-playground-fbe87/runner:4.2
+          name: runner-v42
           imagePullPolicy: Always
           ports:
             - containerPort: 8080
           startupProbe:
             httpGet:
-              path: /runner/5.4.1/health
+              path: /runner/4.2/health
               port: 8080
             initialDelaySeconds: 60
             timeoutSeconds: 60
@@ -84,7 +84,7 @@ spec:
             failureThreshold: 2
           livenessProbe:
             httpGet:
-              path: /runner/5.4.1/health
+              path: /runner/4.2/health
               port: 8080
             initialDelaySeconds: 60
             timeoutSeconds: 60
@@ -123,12 +123,12 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: runner-v54
+  name: runner-v40
   annotations:
-    cloud.google.com/backend-config: '{"ports": {"80": "runner-v54-backendconfig"}}'
+    cloud.google.com/backend-config: '{"ports": {"80": "runner-v40-backendconfig"}}'
 spec:
   selector:
-    app.kubernetes.io/name: runner-v54
+    app.kubernetes.io/name: runner-v40
   ports:
     - protocol: TCP
       port: 80
@@ -138,7 +138,7 @@ spec:
 apiVersion: cloud.google.com/v1
 kind: BackendConfig
 metadata:
-  name: runner-v54-backendconfig
+  name: runner-v40-backendconfig
 spec:
   timeoutSec: 660
   connectionDraining:
@@ -147,12 +147,12 @@ spec:
 apiVersion: autoscaling/v2beta2
 kind: HorizontalPodAutoscaler
 metadata:
-  name: runner-v54
+  name: runner-v40
 spec:
   scaleTargetRef:
     apiVersion: apps/v1
     kind: Deployment
-    name: runner-v54
+    name: runner-v40
   minReplicas: 1
   maxReplicas: 10
   metrics:
@@ -172,33 +172,33 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: runner-v54
+  name: runner-v40
   labels:
-    app.kubernetes.io/name: runner-v54
+    app.kubernetes.io/name: runner-v40
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app.kubernetes.io/name: runner-v54
+      app.kubernetes.io/name: runner-v40
   minReadySeconds: 60
   progressDeadlineSeconds: 7200
   template:
     metadata:
       labels:
-        app.kubernetes.io/name: runner-v54
+        app.kubernetes.io/name: runner-v40
       annotations:
-        commit_sha: "0f1af39f2c90544daffe551a7a01535fe1bf41c2"
-        timestamp: "1629172903346"
+        commit_sha: "1bc32d568d66eea3cae1d53af465dfc2441671b8"
+        timestamp: "1629174226195"
     spec:
       containers:
-        - image: us.gcr.io/swift-playground-fbe87/runner:5.4
-          name: runner-v54
+        - image: us.gcr.io/swift-playground-fbe87/runner:4.0
+          name: runner-v40
           imagePullPolicy: Always
           ports:
             - containerPort: 8080
           startupProbe:
             httpGet:
-              path: /runner/5.4/health
+              path: /runner/4.0/health
               port: 8080
             initialDelaySeconds: 60
             timeoutSeconds: 60
@@ -206,7 +206,7 @@ spec:
             failureThreshold: 2
           livenessProbe:
             httpGet:
-              path: /runner/5.4/health
+              path: /runner/4.0/health
               port: 8080
             initialDelaySeconds: 60
             timeoutSeconds: 60
@@ -245,12 +245,12 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: runner-v533
+  name: runner-v30
   annotations:
-    cloud.google.com/backend-config: '{"ports": {"80": "runner-v533-backendconfig"}}'
+    cloud.google.com/backend-config: '{"ports": {"80": "runner-v30-backendconfig"}}'
 spec:
   selector:
-    app.kubernetes.io/name: runner-v533
+    app.kubernetes.io/name: runner-v30
   ports:
     - protocol: TCP
       port: 80
@@ -260,7 +260,7 @@ spec:
 apiVersion: cloud.google.com/v1
 kind: BackendConfig
 metadata:
-  name: runner-v533-backendconfig
+  name: runner-v30-backendconfig
 spec:
   timeoutSec: 660
   connectionDraining:
@@ -269,12 +269,12 @@ spec:
 apiVersion: autoscaling/v2beta2
 kind: HorizontalPodAutoscaler
 metadata:
-  name: runner-v533
+  name: runner-v30
 spec:
   scaleTargetRef:
     apiVersion: apps/v1
     kind: Deployment
-    name: runner-v533
+    name: runner-v30
   minReplicas: 1
   maxReplicas: 10
   metrics:
@@ -294,33 +294,33 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: runner-v533
+  name: runner-v30
   labels:
-    app.kubernetes.io/name: runner-v533
+    app.kubernetes.io/name: runner-v30
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app.kubernetes.io/name: runner-v533
+      app.kubernetes.io/name: runner-v30
   minReadySeconds: 60
   progressDeadlineSeconds: 7200
   template:
     metadata:
       labels:
-        app.kubernetes.io/name: runner-v533
+        app.kubernetes.io/name: runner-v30
       annotations:
-        commit_sha: "0f1af39f2c90544daffe551a7a01535fe1bf41c2"
-        timestamp: "1629172903346"
+        commit_sha: "1bc32d568d66eea3cae1d53af465dfc2441671b8"
+        timestamp: "1629174226195"
     spec:
       containers:
-        - image: us.gcr.io/swift-playground-fbe87/runner:5.3.3
-          name: runner-v533
+        - image: us.gcr.io/swift-playground-fbe87/runner:3.0
+          name: runner-v30
           imagePullPolicy: Always
           ports:
             - containerPort: 8080
           startupProbe:
             httpGet:
-              path: /runner/5.3.3/health
+              path: /runner/3.0/health
               port: 8080
             initialDelaySeconds: 60
             timeoutSeconds: 60
@@ -328,7 +328,7 @@ spec:
             failureThreshold: 2
           livenessProbe:
             httpGet:
-              path: /runner/5.3.3/health
+              path: /runner/3.0/health
               port: 8080
             initialDelaySeconds: 60
             timeoutSeconds: 60
@@ -367,12 +367,12 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: runner-v532
+  name: runner-v22
   annotations:
-    cloud.google.com/backend-config: '{"ports": {"80": "runner-v532-backendconfig"}}'
+    cloud.google.com/backend-config: '{"ports": {"80": "runner-v22-backendconfig"}}'
 spec:
   selector:
-    app.kubernetes.io/name: runner-v532
+    app.kubernetes.io/name: runner-v22
   ports:
     - protocol: TCP
       port: 80
@@ -382,7 +382,7 @@ spec:
 apiVersion: cloud.google.com/v1
 kind: BackendConfig
 metadata:
-  name: runner-v532-backendconfig
+  name: runner-v22-backendconfig
 spec:
   timeoutSec: 660
   connectionDraining:
@@ -391,12 +391,12 @@ spec:
 apiVersion: autoscaling/v2beta2
 kind: HorizontalPodAutoscaler
 metadata:
-  name: runner-v532
+  name: runner-v22
 spec:
   scaleTargetRef:
     apiVersion: apps/v1
     kind: Deployment
-    name: runner-v532
+    name: runner-v22
   minReplicas: 1
   maxReplicas: 10
   metrics:
@@ -416,33 +416,33 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: runner-v532
+  name: runner-v22
   labels:
-    app.kubernetes.io/name: runner-v532
+    app.kubernetes.io/name: runner-v22
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app.kubernetes.io/name: runner-v532
+      app.kubernetes.io/name: runner-v22
   minReadySeconds: 60
   progressDeadlineSeconds: 7200
   template:
     metadata:
       labels:
-        app.kubernetes.io/name: runner-v532
+        app.kubernetes.io/name: runner-v22
       annotations:
-        commit_sha: "0f1af39f2c90544daffe551a7a01535fe1bf41c2"
-        timestamp: "1629172903346"
+        commit_sha: "1bc32d568d66eea3cae1d53af465dfc2441671b8"
+        timestamp: "1629174226195"
     spec:
       containers:
-        - image: us.gcr.io/swift-playground-fbe87/runner:5.3.2
-          name: runner-v532
+        - image: us.gcr.io/swift-playground-fbe87/runner:2.2
+          name: runner-v22
           imagePullPolicy: Always
           ports:
             - containerPort: 8080
           startupProbe:
             httpGet:
-              path: /runner/5.3.2/health
+              path: /runner/2.2/health
               port: 8080
             initialDelaySeconds: 60
             timeoutSeconds: 60
@@ -450,7 +450,251 @@ spec:
             failureThreshold: 2
           livenessProbe:
             httpGet:
-              path: /runner/5.3.2/health
+              path: /runner/2.2/health
+              port: 8080
+            initialDelaySeconds: 60
+            timeoutSeconds: 60
+            periodSeconds: 300
+            failureThreshold: 2
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 8080
+            initialDelaySeconds: 60
+            timeoutSeconds: 20
+            periodSeconds: 60
+            failureThreshold: 2
+          resources:
+            limits:
+              cpu: 200m
+              memory: 1Gi
+            requests:
+              cpu: 10m
+              memory: 64Mi
+          volumeMounts:
+            - name: docker-socket
+              mountPath: /var/run/docker.sock
+            - name: sandbox
+              mountPath: /tmp
+      volumes:
+        - name: docker-socket
+          hostPath:
+            path: /var/run/docker.sock
+        - name: sandbox
+          hostPath:
+            path: /tmp
+      terminationGracePeriodSeconds: 60
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: runner-vnightly-55
+  annotations:
+    cloud.google.com/backend-config: '{"ports": {"80": "runner-vnightly-55-backendconfig"}}'
+spec:
+  selector:
+    app.kubernetes.io/name: runner-vnightly-55
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8080
+  type: NodePort
+---
+apiVersion: cloud.google.com/v1
+kind: BackendConfig
+metadata:
+  name: runner-vnightly-55-backendconfig
+spec:
+  timeoutSec: 660
+  connectionDraining:
+    drainingTimeoutSec: 720
+---
+apiVersion: autoscaling/v2beta2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: runner-vnightly-55
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: runner-vnightly-55
+  minReplicas: 1
+  maxReplicas: 10
+  metrics:
+    - type: Resource
+      resource:
+        name: cpu
+        target:
+          type: AverageValue
+          averageValue: 400m
+    - type: Resource
+      resource:
+        name: memory
+        target:
+          type: AverageValue
+          averageValue: 500Mi
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: runner-vnightly-55
+  labels:
+    app.kubernetes.io/name: runner-vnightly-55
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: runner-vnightly-55
+  minReadySeconds: 60
+  progressDeadlineSeconds: 7200
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: runner-vnightly-55
+      annotations:
+        commit_sha: "1bc32d568d66eea3cae1d53af465dfc2441671b8"
+        timestamp: "1629174226195"
+    spec:
+      containers:
+        - image: us.gcr.io/swift-playground-fbe87/runner:nightly-5.5
+          name: runner-vnightly-55
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+          startupProbe:
+            httpGet:
+              path: /runner/nightly-5.5/health
+              port: 8080
+            initialDelaySeconds: 60
+            timeoutSeconds: 60
+            periodSeconds: 300
+            failureThreshold: 2
+          livenessProbe:
+            httpGet:
+              path: /runner/nightly-5.5/health
+              port: 8080
+            initialDelaySeconds: 60
+            timeoutSeconds: 60
+            periodSeconds: 300
+            failureThreshold: 2
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 8080
+            initialDelaySeconds: 60
+            timeoutSeconds: 20
+            periodSeconds: 60
+            failureThreshold: 2
+          resources:
+            limits:
+              cpu: 200m
+              memory: 1Gi
+            requests:
+              cpu: 10m
+              memory: 64Mi
+          volumeMounts:
+            - name: docker-socket
+              mountPath: /var/run/docker.sock
+            - name: sandbox
+              mountPath: /tmp
+      volumes:
+        - name: docker-socket
+          hostPath:
+            path: /var/run/docker.sock
+        - name: sandbox
+          hostPath:
+            path: /tmp
+      terminationGracePeriodSeconds: 60
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: runner-vnightly-54
+  annotations:
+    cloud.google.com/backend-config: '{"ports": {"80": "runner-vnightly-54-backendconfig"}}'
+spec:
+  selector:
+    app.kubernetes.io/name: runner-vnightly-54
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8080
+  type: NodePort
+---
+apiVersion: cloud.google.com/v1
+kind: BackendConfig
+metadata:
+  name: runner-vnightly-54-backendconfig
+spec:
+  timeoutSec: 660
+  connectionDraining:
+    drainingTimeoutSec: 720
+---
+apiVersion: autoscaling/v2beta2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: runner-vnightly-54
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: runner-vnightly-54
+  minReplicas: 1
+  maxReplicas: 10
+  metrics:
+    - type: Resource
+      resource:
+        name: cpu
+        target:
+          type: AverageValue
+          averageValue: 400m
+    - type: Resource
+      resource:
+        name: memory
+        target:
+          type: AverageValue
+          averageValue: 500Mi
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: runner-vnightly-54
+  labels:
+    app.kubernetes.io/name: runner-vnightly-54
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: runner-vnightly-54
+  minReadySeconds: 60
+  progressDeadlineSeconds: 7200
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: runner-vnightly-54
+      annotations:
+        commit_sha: "1bc32d568d66eea3cae1d53af465dfc2441671b8"
+        timestamp: "1629174226195"
+    spec:
+      containers:
+        - image: us.gcr.io/swift-playground-fbe87/runner:nightly-5.4
+          name: runner-vnightly-54
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+          startupProbe:
+            httpGet:
+              path: /runner/nightly-5.4/health
+              port: 8080
+            initialDelaySeconds: 60
+            timeoutSeconds: 60
+            periodSeconds: 300
+            failureThreshold: 2
+          livenessProbe:
+            httpGet:
+              path: /runner/nightly-5.4/health
               port: 8080
             initialDelaySeconds: 60
             timeoutSeconds: 60
