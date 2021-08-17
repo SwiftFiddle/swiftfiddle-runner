@@ -59,7 +59,7 @@ spec:
     matchLabels:
       app.kubernetes.io/name: %NAME%
   minReadySeconds: 60
-  progressDeadlineSeconds: 7200
+  progressDeadlineSeconds: 10800
   template:
     metadata:
       labels:
