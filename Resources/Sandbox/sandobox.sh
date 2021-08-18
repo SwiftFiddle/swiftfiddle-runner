@@ -10,10 +10,10 @@ else
 fi
 
 # 10MB file size limit
-# 8 processes limit
-# 64 MB memory limit
-# 20% CPU usage
-containerId=$(docker run --pull never --env _COLOR=$_COLOR --rm --detach --ulimit fsize=10000000:10000000 --pids-limit 8 --memory 64m --cpus="0.2" "$@")
+# 10 processes limit
+# 256 MB memory limit
+# 60% CPU usage
+containerId=$(docker run --pull never --env _COLOR=$_COLOR --rm --detach --ulimit fsize=10000000:10000000 --pids-limit 10 --memory 256m --cpus="0.6" "$@")
 status=$($timeoutCommand "$to" docker wait "$containerId" || true)
 docker kill $containerId &> /dev/null
 docker rm -f $containerId &> /dev/null
