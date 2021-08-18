@@ -1,0 +1,25 @@
+name: Test
+on:
+  pull_request:
+    branches: [master]
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Build
+        run: |
+          set -ex
+
+          versions=($(cat versions.txt | tr "\n" " "))
+          for versionGroup in "${versions[@]}"; do
+            for version in $(echo $versionGroup | sed "s/,/ /g"); do
+              docker build \
+                --build-arg username="${{ env.DOCKER_HUB_USERNAME}}" \
+                --build-arg access_token="${{ env.DOCKER_HUB_ACCESS_TOKEN}}" \
+                --build-arg version="$versionGroup" \
+                --rm --tag .
+            done
+          done

@@ -5,34 +5,45 @@ func routes(_ app: Application) throws {
         return ["status": "pass"]
     }
     
-    app.get("runner", ":version", "health") { (req) -> EventLoopFuture<ExecutionResponse> in
+    app.get("runner", ":version", "health") { (req) -> EventLoopFuture<Response> in
         guard let version = req.parameters.get("version") else { throw Abort(.badRequest) }
 
-        let sandboxPath = URL(fileURLWithPath: app.directory.resourcesDirectory).appendingPathComponent("Sandbox")
-        let runner = Runner( version: version, sandboxPath: sandboxPath)
+        let promise = req.eventLoop.makePromise(of: Response.self)
+        let timer = DispatchSource.makeTimerSource()
+        let headers = HTTPHeaders([("Cache-Control", "no-store")])
 
-        let promise = req.eventLoop.makePromise(of: ExecutionResponse.self)
-        do {
-            try runner.run(
-                parameter: ExecutionRequestParameter(
-                    command: nil,
-                    options: nil,
-                    code: "()",
-                    timeout: 30,
-                    _color: nil,
-                    _nonce: nil
-                ),
-                onComplete: { (response) in
-                    promise.succeed(response)
-                },
-                onTimeout: { (response) in
-                    promise.succeed(response)
-                }
-            )
-        } catch {
-            req.logger.error("\(error)")
-            throw error
+        let process = Process()
+        process.executableURL = URL(fileURLWithPath: "/usr/bin/env")
+        process.arguments = [
+            "docker",
+            "run",
+            "--rm",
+            "swiftfiddle/swift:\(version)",
+            "sh",
+            "-c",
+            "echo '()' | swiftc -"
+        ]
+        process.terminationHandler = { (process) in
+            timer.cancel()
+
+            let status: HTTPResponseStatus = process.terminationStatus == 0 ? .ok : .internalServerError
+            HealthCheckResponse(status: status)
+                .encodeResponse(status: status, headers: headers, for: req)
+                .cascade(to: promise)
         }
+        process.launch()
+
+        timer.setEventHandler {
+            timer.cancel()
+            process.terminate()
+
+            let status: HTTPResponseStatus = .internalServerError
+            HealthCheckResponse(status: status)
+                .encodeResponse(status: status, headers: headers, for: req)
+                .cascade(to: promise)
+        }
+        timer.schedule(deadline: .now() + .seconds(20))
+        timer.resume()
 
         return promise.futureResult
     }
@@ -104,5 +115,13 @@ func routes(_ app: Application) throws {
         _ = ws.onClose.always { _ in
             timer.cancel()
         }
+    }
+}
+
+private struct HealthCheckResponse: Content {
+    let status: String
+
+    init(status: HTTPResponseStatus) {
+        self.status = status == .ok ? "pass" : "fail"
     }
 }
