@@ -32,7 +32,7 @@ spec:
     kind: Deployment
     name: runner-v542
   minReplicas: 1
-  maxReplicas: 10
+  maxReplicas: 4
   metrics:
     - type: Resource
       resource:
@@ -65,8 +65,8 @@ spec:
       labels:
         app.kubernetes.io/name: runner-v542
       annotations:
-        commit_sha: "f44ce5f386f921fca23689705d1f07e91d750d07"
-        timestamp: "1629226822200"
+        commit_sha: "ffbd4792ba444b6f8bc4bcb782def7b938c2d53b"
+        timestamp: "1629253434276"
     spec:
       containers:
         - image: us.gcr.io/swift-playground-fbe87/runner:5.4.2
@@ -154,7 +154,7 @@ spec:
     kind: Deployment
     name: runner-v541
   minReplicas: 1
-  maxReplicas: 10
+  maxReplicas: 4
   metrics:
     - type: Resource
       resource:
@@ -187,8 +187,8 @@ spec:
       labels:
         app.kubernetes.io/name: runner-v541
       annotations:
-        commit_sha: "f44ce5f386f921fca23689705d1f07e91d750d07"
-        timestamp: "1629226822200"
+        commit_sha: "ffbd4792ba444b6f8bc4bcb782def7b938c2d53b"
+        timestamp: "1629253434276"
     spec:
       containers:
         - image: us.gcr.io/swift-playground-fbe87/runner:5.4.1
@@ -276,7 +276,7 @@ spec:
     kind: Deployment
     name: runner-v54
   minReplicas: 1
-  maxReplicas: 10
+  maxReplicas: 4
   metrics:
     - type: Resource
       resource:
@@ -309,8 +309,8 @@ spec:
       labels:
         app.kubernetes.io/name: runner-v54
       annotations:
-        commit_sha: "f44ce5f386f921fca23689705d1f07e91d750d07"
-        timestamp: "1629226822200"
+        commit_sha: "ffbd4792ba444b6f8bc4bcb782def7b938c2d53b"
+        timestamp: "1629253434276"
     spec:
       containers:
         - image: us.gcr.io/swift-playground-fbe87/runner:5.4
@@ -398,7 +398,7 @@ spec:
     kind: Deployment
     name: runner-v533
   minReplicas: 1
-  maxReplicas: 10
+  maxReplicas: 4
   metrics:
     - type: Resource
       resource:
@@ -431,8 +431,8 @@ spec:
       labels:
         app.kubernetes.io/name: runner-v533
       annotations:
-        commit_sha: "f44ce5f386f921fca23689705d1f07e91d750d07"
-        timestamp: "1629226822200"
+        commit_sha: "ffbd4792ba444b6f8bc4bcb782def7b938c2d53b"
+        timestamp: "1629253434276"
     spec:
       containers:
         - image: us.gcr.io/swift-playground-fbe87/runner:5.3.3
@@ -520,7 +520,7 @@ spec:
     kind: Deployment
     name: runner-v532
   minReplicas: 1
-  maxReplicas: 10
+  maxReplicas: 4
   metrics:
     - type: Resource
       resource:
@@ -553,8 +553,8 @@ spec:
       labels:
         app.kubernetes.io/name: runner-v532
       annotations:
-        commit_sha: "f44ce5f386f921fca23689705d1f07e91d750d07"
-        timestamp: "1629226822200"
+        commit_sha: "ffbd4792ba444b6f8bc4bcb782def7b938c2d53b"
+        timestamp: "1629253434276"
     spec:
       containers:
         - image: us.gcr.io/swift-playground-fbe87/runner:5.3.2
@@ -642,7 +642,7 @@ spec:
     kind: Deployment
     name: runner-v531
   minReplicas: 1
-  maxReplicas: 10
+  maxReplicas: 4
   metrics:
     - type: Resource
       resource:
@@ -675,8 +675,8 @@ spec:
       labels:
         app.kubernetes.io/name: runner-v531
       annotations:
-        commit_sha: "f44ce5f386f921fca23689705d1f07e91d750d07"
-        timestamp: "1629226822200"
+        commit_sha: "ffbd4792ba444b6f8bc4bcb782def7b938c2d53b"
+        timestamp: "1629253434276"
     spec:
       containers:
         - image: us.gcr.io/swift-playground-fbe87/runner:5.3.1
@@ -764,7 +764,7 @@ spec:
     kind: Deployment
     name: runner-v53
   minReplicas: 1
-  maxReplicas: 10
+  maxReplicas: 4
   metrics:
     - type: Resource
       resource:
@@ -797,8 +797,8 @@ spec:
       labels:
         app.kubernetes.io/name: runner-v53
       annotations:
-        commit_sha: "f44ce5f386f921fca23689705d1f07e91d750d07"
-        timestamp: "1629226822200"
+        commit_sha: "ffbd4792ba444b6f8bc4bcb782def7b938c2d53b"
+        timestamp: "1629253434276"
     spec:
       containers:
         - image: us.gcr.io/swift-playground-fbe87/runner:5.3
@@ -886,7 +886,7 @@ spec:
     kind: Deployment
     name: runner-v525
   minReplicas: 1
-  maxReplicas: 10
+  maxReplicas: 4
   metrics:
     - type: Resource
       resource:
@@ -919,8 +919,8 @@ spec:
       labels:
         app.kubernetes.io/name: runner-v525
       annotations:
-        commit_sha: "f44ce5f386f921fca23689705d1f07e91d750d07"
-        timestamp: "1629226822200"
+        commit_sha: "ffbd4792ba444b6f8bc4bcb782def7b938c2d53b"
+        timestamp: "1629253434276"
     spec:
       containers:
         - image: us.gcr.io/swift-playground-fbe87/runner:5.2.5
@@ -1008,7 +1008,7 @@ spec:
     kind: Deployment
     name: runner-v524
   minReplicas: 1
-  maxReplicas: 10
+  maxReplicas: 4
   metrics:
     - type: Resource
       resource:
@@ -1041,8 +1041,8 @@ spec:
       labels:
         app.kubernetes.io/name: runner-v524
       annotations:
-        commit_sha: "f44ce5f386f921fca23689705d1f07e91d750d07"
-        timestamp: "1629226822200"
+        commit_sha: "ffbd4792ba444b6f8bc4bcb782def7b938c2d53b"
+        timestamp: "1629253434276"
     spec:
       containers:
         - image: us.gcr.io/swift-playground-fbe87/runner:5.2.4
@@ -1130,7 +1130,7 @@ spec:
     kind: Deployment
     name: runner-v523
   minReplicas: 1
-  maxReplicas: 10
+  maxReplicas: 4
   metrics:
     - type: Resource
       resource:
@@ -1163,8 +1163,8 @@ spec:
       labels:
         app.kubernetes.io/name: runner-v523
       annotations:
-        commit_sha: "f44ce5f386f921fca23689705d1f07e91d750d07"
-        timestamp: "1629226822200"
+        commit_sha: "ffbd4792ba444b6f8bc4bcb782def7b938c2d53b"
+        timestamp: "1629253434276"
     spec:
       containers:
         - image: us.gcr.io/swift-playground-fbe87/runner:5.2.3
@@ -1252,7 +1252,7 @@ spec:
     kind: Deployment
     name: runner-v522
   minReplicas: 1
-  maxReplicas: 10
+  maxReplicas: 4
   metrics:
     - type: Resource
       resource:
@@ -1285,8 +1285,8 @@ spec:
       labels:
         app.kubernetes.io/name: runner-v522
       annotations:
-        commit_sha: "f44ce5f386f921fca23689705d1f07e91d750d07"
-        timestamp: "1629226822200"
+        commit_sha: "ffbd4792ba444b6f8bc4bcb782def7b938c2d53b"
+        timestamp: "1629253434276"
     spec:
       containers:
         - image: us.gcr.io/swift-playground-fbe87/runner:5.2.2
@@ -1374,7 +1374,7 @@ spec:
     kind: Deployment
     name: runner-v521
   minReplicas: 1
-  maxReplicas: 10
+  maxReplicas: 4
   metrics:
     - type: Resource
       resource:
@@ -1407,8 +1407,8 @@ spec:
       labels:
         app.kubernetes.io/name: runner-v521
       annotations:
-        commit_sha: "f44ce5f386f921fca23689705d1f07e91d750d07"
-        timestamp: "1629226822200"
+        commit_sha: "ffbd4792ba444b6f8bc4bcb782def7b938c2d53b"
+        timestamp: "1629253434276"
     spec:
       containers:
         - image: us.gcr.io/swift-playground-fbe87/runner:5.2.1
@@ -1496,7 +1496,7 @@ spec:
     kind: Deployment
     name: runner-v52
   minReplicas: 1
-  maxReplicas: 10
+  maxReplicas: 4
   metrics:
     - type: Resource
       resource:
@@ -1529,8 +1529,8 @@ spec:
       labels:
         app.kubernetes.io/name: runner-v52
       annotations:
-        commit_sha: "f44ce5f386f921fca23689705d1f07e91d750d07"
-        timestamp: "1629226822200"
+        commit_sha: "ffbd4792ba444b6f8bc4bcb782def7b938c2d53b"
+        timestamp: "1629253434276"
     spec:
       containers:
         - image: us.gcr.io/swift-playground-fbe87/runner:5.2
@@ -1618,7 +1618,7 @@ spec:
     kind: Deployment
     name: runner-v51
   minReplicas: 1
-  maxReplicas: 10
+  maxReplicas: 4
   metrics:
     - type: Resource
       resource:
@@ -1651,8 +1651,8 @@ spec:
       labels:
         app.kubernetes.io/name: runner-v51
       annotations:
-        commit_sha: "f44ce5f386f921fca23689705d1f07e91d750d07"
-        timestamp: "1629226822200"
+        commit_sha: "ffbd4792ba444b6f8bc4bcb782def7b938c2d53b"
+        timestamp: "1629253434276"
     spec:
       containers:
         - image: us.gcr.io/swift-playground-fbe87/runner:5.1
@@ -1740,7 +1740,7 @@ spec:
     kind: Deployment
     name: runner-v50
   minReplicas: 1
-  maxReplicas: 10
+  maxReplicas: 4
   metrics:
     - type: Resource
       resource:
@@ -1773,8 +1773,8 @@ spec:
       labels:
         app.kubernetes.io/name: runner-v50
       annotations:
-        commit_sha: "f44ce5f386f921fca23689705d1f07e91d750d07"
-        timestamp: "1629226822200"
+        commit_sha: "ffbd4792ba444b6f8bc4bcb782def7b938c2d53b"
+        timestamp: "1629253434276"
     spec:
       containers:
         - image: us.gcr.io/swift-playground-fbe87/runner:5.0
@@ -1862,7 +1862,7 @@ spec:
     kind: Deployment
     name: runner-v42
   minReplicas: 1
-  maxReplicas: 10
+  maxReplicas: 4
   metrics:
     - type: Resource
       resource:
@@ -1895,8 +1895,8 @@ spec:
       labels:
         app.kubernetes.io/name: runner-v42
       annotations:
-        commit_sha: "f44ce5f386f921fca23689705d1f07e91d750d07"
-        timestamp: "1629226822200"
+        commit_sha: "ffbd4792ba444b6f8bc4bcb782def7b938c2d53b"
+        timestamp: "1629253434276"
     spec:
       containers:
         - image: us.gcr.io/swift-playground-fbe87/runner:4.2
@@ -1984,7 +1984,7 @@ spec:
     kind: Deployment
     name: runner-v40
   minReplicas: 1
-  maxReplicas: 10
+  maxReplicas: 4
   metrics:
     - type: Resource
       resource:
@@ -2017,8 +2017,8 @@ spec:
       labels:
         app.kubernetes.io/name: runner-v40
       annotations:
-        commit_sha: "f44ce5f386f921fca23689705d1f07e91d750d07"
-        timestamp: "1629226822200"
+        commit_sha: "ffbd4792ba444b6f8bc4bcb782def7b938c2d53b"
+        timestamp: "1629253434276"
     spec:
       containers:
         - image: us.gcr.io/swift-playground-fbe87/runner:4.0
@@ -2106,7 +2106,7 @@ spec:
     kind: Deployment
     name: runner-v30
   minReplicas: 1
-  maxReplicas: 10
+  maxReplicas: 4
   metrics:
     - type: Resource
       resource:
@@ -2139,8 +2139,8 @@ spec:
       labels:
         app.kubernetes.io/name: runner-v30
       annotations:
-        commit_sha: "f44ce5f386f921fca23689705d1f07e91d750d07"
-        timestamp: "1629226822200"
+        commit_sha: "ffbd4792ba444b6f8bc4bcb782def7b938c2d53b"
+        timestamp: "1629253434276"
     spec:
       containers:
         - image: us.gcr.io/swift-playground-fbe87/runner:3.0
@@ -2228,7 +2228,7 @@ spec:
     kind: Deployment
     name: runner-v22
   minReplicas: 1
-  maxReplicas: 10
+  maxReplicas: 4
   metrics:
     - type: Resource
       resource:
@@ -2261,8 +2261,8 @@ spec:
       labels:
         app.kubernetes.io/name: runner-v22
       annotations:
-        commit_sha: "f44ce5f386f921fca23689705d1f07e91d750d07"
-        timestamp: "1629226822200"
+        commit_sha: "ffbd4792ba444b6f8bc4bcb782def7b938c2d53b"
+        timestamp: "1629253434276"
     spec:
       containers:
         - image: us.gcr.io/swift-playground-fbe87/runner:2.2
@@ -2350,7 +2350,7 @@ spec:
     kind: Deployment
     name: runner-vnightly-main
   minReplicas: 1
-  maxReplicas: 10
+  maxReplicas: 4
   metrics:
     - type: Resource
       resource:
@@ -2383,8 +2383,8 @@ spec:
       labels:
         app.kubernetes.io/name: runner-vnightly-main
       annotations:
-        commit_sha: "f44ce5f386f921fca23689705d1f07e91d750d07"
-        timestamp: "1629226822200"
+        commit_sha: "ffbd4792ba444b6f8bc4bcb782def7b938c2d53b"
+        timestamp: "1629253434276"
     spec:
       containers:
         - image: us.gcr.io/swift-playground-fbe87/runner:nightly-main
@@ -2472,7 +2472,7 @@ spec:
     kind: Deployment
     name: runner-vnightly-55
   minReplicas: 1
-  maxReplicas: 10
+  maxReplicas: 4
   metrics:
     - type: Resource
       resource:
@@ -2505,8 +2505,8 @@ spec:
       labels:
         app.kubernetes.io/name: runner-vnightly-55
       annotations:
-        commit_sha: "f44ce5f386f921fca23689705d1f07e91d750d07"
-        timestamp: "1629226822200"
+        commit_sha: "ffbd4792ba444b6f8bc4bcb782def7b938c2d53b"
+        timestamp: "1629253434276"
     spec:
       containers:
         - image: us.gcr.io/swift-playground-fbe87/runner:nightly-5.5
@@ -2594,7 +2594,7 @@ spec:
     kind: Deployment
     name: runner-vnightly-54
   minReplicas: 1
-  maxReplicas: 10
+  maxReplicas: 4
   metrics:
     - type: Resource
       resource:
@@ -2627,8 +2627,8 @@ spec:
       labels:
         app.kubernetes.io/name: runner-vnightly-54
       annotations:
-        commit_sha: "f44ce5f386f921fca23689705d1f07e91d750d07"
-        timestamp: "1629226822200"
+        commit_sha: "ffbd4792ba444b6f8bc4bcb782def7b938c2d53b"
+        timestamp: "1629253434276"
     spec:
       containers:
         - image: us.gcr.io/swift-playground-fbe87/runner:nightly-5.4
@@ -2716,7 +2716,7 @@ spec:
     kind: Deployment
     name: runner-vnightly-53
   minReplicas: 1
-  maxReplicas: 10
+  maxReplicas: 4
   metrics:
     - type: Resource
       resource:
@@ -2749,8 +2749,8 @@ spec:
       labels:
         app.kubernetes.io/name: runner-vnightly-53
       annotations:
-        commit_sha: "f44ce5f386f921fca23689705d1f07e91d750d07"
-        timestamp: "1629226822200"
+        commit_sha: "ffbd4792ba444b6f8bc4bcb782def7b938c2d53b"
+        timestamp: "1629253434276"
     spec:
       containers:
         - image: us.gcr.io/swift-playground-fbe87/runner:nightly-5.3
