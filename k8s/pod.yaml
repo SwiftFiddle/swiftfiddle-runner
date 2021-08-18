@@ -54,19 +54,24 @@ metadata:
   labels:
     app.kubernetes.io/name: runner-v542
 spec:
-  replicas: 2
   selector:
     matchLabels:
       app.kubernetes.io/name: runner-v542
+  replicas: 2
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1
+      maxSurge: 0
   minReadySeconds: 60
-  progressDeadlineSeconds: 10800
+  progressDeadlineSeconds: 3600
   template:
     metadata:
       labels:
         app.kubernetes.io/name: runner-v542
       annotations:
-        commit_sha: "74e715fd02ca9cba50ff72658bcc620da073b03c"
-        timestamp: "1629283762450"
+        commit_sha: "605ffed993b0e6607699104e396e092de26b4b83"
+        timestamp: "1629314367986"
     spec:
       containers:
         - image: us.gcr.io/swift-playground-fbe87/runner:5.4.2
@@ -176,19 +181,24 @@ metadata:
   labels:
     app.kubernetes.io/name: runner-v541
 spec:
-  replicas: 2
   selector:
     matchLabels:
       app.kubernetes.io/name: runner-v541
+  replicas: 2
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1
+      maxSurge: 0
   minReadySeconds: 60
-  progressDeadlineSeconds: 10800
+  progressDeadlineSeconds: 3600
   template:
     metadata:
       labels:
         app.kubernetes.io/name: runner-v541
       annotations:
-        commit_sha: "74e715fd02ca9cba50ff72658bcc620da073b03c"
-        timestamp: "1629283762450"
+        commit_sha: "605ffed993b0e6607699104e396e092de26b4b83"
+        timestamp: "1629314367986"
     spec:
       containers:
         - image: us.gcr.io/swift-playground-fbe87/runner:5.4.1
@@ -298,19 +308,24 @@ metadata:
   labels:
     app.kubernetes.io/name: runner-v54
 spec:
-  replicas: 2
   selector:
     matchLabels:
       app.kubernetes.io/name: runner-v54
+  replicas: 2
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1
+      maxSurge: 0
   minReadySeconds: 60
-  progressDeadlineSeconds: 10800
+  progressDeadlineSeconds: 3600
   template:
     metadata:
       labels:
         app.kubernetes.io/name: runner-v54
       annotations:
-        commit_sha: "74e715fd02ca9cba50ff72658bcc620da073b03c"
-        timestamp: "1629283762450"
+        commit_sha: "605ffed993b0e6607699104e396e092de26b4b83"
+        timestamp: "1629314367986"
     spec:
       containers:
         - image: us.gcr.io/swift-playground-fbe87/runner:5.4
@@ -420,19 +435,24 @@ metadata:
   labels:
     app.kubernetes.io/name: runner-v533
 spec:
-  replicas: 2
   selector:
     matchLabels:
       app.kubernetes.io/name: runner-v533
+  replicas: 2
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1
+      maxSurge: 0
   minReadySeconds: 60
-  progressDeadlineSeconds: 10800
+  progressDeadlineSeconds: 3600
   template:
     metadata:
       labels:
         app.kubernetes.io/name: runner-v533
       annotations:
-        commit_sha: "74e715fd02ca9cba50ff72658bcc620da073b03c"
-        timestamp: "1629283762450"
+        commit_sha: "605ffed993b0e6607699104e396e092de26b4b83"
+        timestamp: "1629314367986"
     spec:
       containers:
         - image: us.gcr.io/swift-playground-fbe87/runner:5.3.3
@@ -542,19 +562,24 @@ metadata:
   labels:
     app.kubernetes.io/name: runner-v532
 spec:
-  replicas: 2
   selector:
     matchLabels:
       app.kubernetes.io/name: runner-v532
+  replicas: 2
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1
+      maxSurge: 0
   minReadySeconds: 60
-  progressDeadlineSeconds: 10800
+  progressDeadlineSeconds: 3600
   template:
     metadata:
       labels:
         app.kubernetes.io/name: runner-v532
       annotations:
-        commit_sha: "74e715fd02ca9cba50ff72658bcc620da073b03c"
-        timestamp: "1629283762450"
+        commit_sha: "605ffed993b0e6607699104e396e092de26b4b83"
+        timestamp: "1629314367986"
     spec:
       containers:
         - image: us.gcr.io/swift-playground-fbe87/runner:5.3.2
@@ -664,19 +689,24 @@ metadata:
   labels:
     app.kubernetes.io/name: runner-v531
 spec:
-  replicas: 2
   selector:
     matchLabels:
       app.kubernetes.io/name: runner-v531
+  replicas: 2
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1
+      maxSurge: 0
   minReadySeconds: 60
-  progressDeadlineSeconds: 10800
+  progressDeadlineSeconds: 3600
   template:
     metadata:
       labels:
         app.kubernetes.io/name: runner-v531
       annotations:
-        commit_sha: "74e715fd02ca9cba50ff72658bcc620da073b03c"
-        timestamp: "1629283762450"
+        commit_sha: "605ffed993b0e6607699104e396e092de26b4b83"
+        timestamp: "1629314367986"
     spec:
       containers:
         - image: us.gcr.io/swift-playground-fbe87/runner:5.3.1
@@ -786,19 +816,24 @@ metadata:
   labels:
     app.kubernetes.io/name: runner-v53
 spec:
-  replicas: 2
   selector:
     matchLabels:
       app.kubernetes.io/name: runner-v53
+  replicas: 2
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1
+      maxSurge: 0
   minReadySeconds: 60
-  progressDeadlineSeconds: 10800
+  progressDeadlineSeconds: 3600
   template:
     metadata:
       labels:
         app.kubernetes.io/name: runner-v53
       annotations:
-        commit_sha: "74e715fd02ca9cba50ff72658bcc620da073b03c"
-        timestamp: "1629283762450"
+        commit_sha: "605ffed993b0e6607699104e396e092de26b4b83"
+        timestamp: "1629314367986"
     spec:
       containers:
         - image: us.gcr.io/swift-playground-fbe87/runner:5.3
@@ -908,19 +943,24 @@ metadata:
   labels:
     app.kubernetes.io/name: runner-v525
 spec:
-  replicas: 2
   selector:
     matchLabels:
       app.kubernetes.io/name: runner-v525
+  replicas: 2
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1
+      maxSurge: 0
   minReadySeconds: 60
-  progressDeadlineSeconds: 10800
+  progressDeadlineSeconds: 3600
   template:
     metadata:
       labels:
         app.kubernetes.io/name: runner-v525
       annotations:
-        commit_sha: "74e715fd02ca9cba50ff72658bcc620da073b03c"
-        timestamp: "1629283762450"
+        commit_sha: "605ffed993b0e6607699104e396e092de26b4b83"
+        timestamp: "1629314367986"
     spec:
       containers:
         - image: us.gcr.io/swift-playground-fbe87/runner:5.2.5
@@ -1030,19 +1070,24 @@ metadata:
   labels:
     app.kubernetes.io/name: runner-v524
 spec:
-  replicas: 2
   selector:
     matchLabels:
       app.kubernetes.io/name: runner-v524
+  replicas: 2
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1
+      maxSurge: 0
   minReadySeconds: 60
-  progressDeadlineSeconds: 10800
+  progressDeadlineSeconds: 3600
   template:
     metadata:
       labels:
         app.kubernetes.io/name: runner-v524
       annotations:
-        commit_sha: "74e715fd02ca9cba50ff72658bcc620da073b03c"
-        timestamp: "1629283762450"
+        commit_sha: "605ffed993b0e6607699104e396e092de26b4b83"
+        timestamp: "1629314367986"
     spec:
       containers:
         - image: us.gcr.io/swift-playground-fbe87/runner:5.2.4
@@ -1152,19 +1197,24 @@ metadata:
   labels:
     app.kubernetes.io/name: runner-v523
 spec:
-  replicas: 2
   selector:
     matchLabels:
       app.kubernetes.io/name: runner-v523
+  replicas: 2
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1
+      maxSurge: 0
   minReadySeconds: 60
-  progressDeadlineSeconds: 10800
+  progressDeadlineSeconds: 3600
   template:
     metadata:
       labels:
         app.kubernetes.io/name: runner-v523
       annotations:
-        commit_sha: "74e715fd02ca9cba50ff72658bcc620da073b03c"
-        timestamp: "1629283762450"
+        commit_sha: "605ffed993b0e6607699104e396e092de26b4b83"
+        timestamp: "1629314367986"
     spec:
       containers:
         - image: us.gcr.io/swift-playground-fbe87/runner:5.2.3
@@ -1274,19 +1324,24 @@ metadata:
   labels:
     app.kubernetes.io/name: runner-v522
 spec:
-  replicas: 2
   selector:
     matchLabels:
       app.kubernetes.io/name: runner-v522
+  replicas: 2
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1
+      maxSurge: 0
   minReadySeconds: 60
-  progressDeadlineSeconds: 10800
+  progressDeadlineSeconds: 3600
   template:
     metadata:
       labels:
         app.kubernetes.io/name: runner-v522
       annotations:
-        commit_sha: "74e715fd02ca9cba50ff72658bcc620da073b03c"
-        timestamp: "1629283762450"
+        commit_sha: "605ffed993b0e6607699104e396e092de26b4b83"
+        timestamp: "1629314367986"
     spec:
       containers:
         - image: us.gcr.io/swift-playground-fbe87/runner:5.2.2
@@ -1396,19 +1451,24 @@ metadata:
   labels:
     app.kubernetes.io/name: runner-v521
 spec:
-  replicas: 2
   selector:
     matchLabels:
       app.kubernetes.io/name: runner-v521
+  replicas: 2
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1
+      maxSurge: 0
   minReadySeconds: 60
-  progressDeadlineSeconds: 10800
+  progressDeadlineSeconds: 3600
   template:
     metadata:
       labels:
         app.kubernetes.io/name: runner-v521
       annotations:
-        commit_sha: "74e715fd02ca9cba50ff72658bcc620da073b03c"
-        timestamp: "1629283762450"
+        commit_sha: "605ffed993b0e6607699104e396e092de26b4b83"
+        timestamp: "1629314367986"
     spec:
       containers:
         - image: us.gcr.io/swift-playground-fbe87/runner:5.2.1
@@ -1518,19 +1578,24 @@ metadata:
   labels:
     app.kubernetes.io/name: runner-v52
 spec:
-  replicas: 2
   selector:
     matchLabels:
       app.kubernetes.io/name: runner-v52
+  replicas: 2
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1
+      maxSurge: 0
   minReadySeconds: 60
-  progressDeadlineSeconds: 10800
+  progressDeadlineSeconds: 3600
   template:
     metadata:
       labels:
         app.kubernetes.io/name: runner-v52
       annotations:
-        commit_sha: "74e715fd02ca9cba50ff72658bcc620da073b03c"
-        timestamp: "1629283762450"
+        commit_sha: "605ffed993b0e6607699104e396e092de26b4b83"
+        timestamp: "1629314367986"
     spec:
       containers:
         - image: us.gcr.io/swift-playground-fbe87/runner:5.2
@@ -1640,19 +1705,24 @@ metadata:
   labels:
     app.kubernetes.io/name: runner-v51
 spec:
-  replicas: 2
   selector:
     matchLabels:
       app.kubernetes.io/name: runner-v51
+  replicas: 2
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1
+      maxSurge: 0
   minReadySeconds: 60
-  progressDeadlineSeconds: 10800
+  progressDeadlineSeconds: 3600
   template:
     metadata:
       labels:
         app.kubernetes.io/name: runner-v51
       annotations:
-        commit_sha: "74e715fd02ca9cba50ff72658bcc620da073b03c"
-        timestamp: "1629283762450"
+        commit_sha: "605ffed993b0e6607699104e396e092de26b4b83"
+        timestamp: "1629314367986"
     spec:
       containers:
         - image: us.gcr.io/swift-playground-fbe87/runner:5.1
@@ -1762,19 +1832,24 @@ metadata:
   labels:
     app.kubernetes.io/name: runner-v50
 spec:
-  replicas: 2
   selector:
     matchLabels:
       app.kubernetes.io/name: runner-v50
+  replicas: 2
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1
+      maxSurge: 0
   minReadySeconds: 60
-  progressDeadlineSeconds: 10800
+  progressDeadlineSeconds: 3600
   template:
     metadata:
       labels:
         app.kubernetes.io/name: runner-v50
       annotations:
-        commit_sha: "74e715fd02ca9cba50ff72658bcc620da073b03c"
-        timestamp: "1629283762450"
+        commit_sha: "605ffed993b0e6607699104e396e092de26b4b83"
+        timestamp: "1629314367986"
     spec:
       containers:
         - image: us.gcr.io/swift-playground-fbe87/runner:5.0
@@ -1884,19 +1959,24 @@ metadata:
   labels:
     app.kubernetes.io/name: runner-v42
 spec:
-  replicas: 2
   selector:
     matchLabels:
       app.kubernetes.io/name: runner-v42
+  replicas: 2
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1
+      maxSurge: 0
   minReadySeconds: 60
-  progressDeadlineSeconds: 10800
+  progressDeadlineSeconds: 3600
   template:
     metadata:
       labels:
         app.kubernetes.io/name: runner-v42
       annotations:
-        commit_sha: "74e715fd02ca9cba50ff72658bcc620da073b03c"
-        timestamp: "1629283762450"
+        commit_sha: "605ffed993b0e6607699104e396e092de26b4b83"
+        timestamp: "1629314367986"
     spec:
       containers:
         - image: us.gcr.io/swift-playground-fbe87/runner:4.2
@@ -2006,19 +2086,24 @@ metadata:
   labels:
     app.kubernetes.io/name: runner-v40
 spec:
-  replicas: 2
   selector:
     matchLabels:
       app.kubernetes.io/name: runner-v40
+  replicas: 2
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1
+      maxSurge: 0
   minReadySeconds: 60
-  progressDeadlineSeconds: 10800
+  progressDeadlineSeconds: 3600
   template:
     metadata:
       labels:
         app.kubernetes.io/name: runner-v40
       annotations:
-        commit_sha: "74e715fd02ca9cba50ff72658bcc620da073b03c"
-        timestamp: "1629283762450"
+        commit_sha: "605ffed993b0e6607699104e396e092de26b4b83"
+        timestamp: "1629314367986"
     spec:
       containers:
         - image: us.gcr.io/swift-playground-fbe87/runner:4.0
@@ -2128,19 +2213,24 @@ metadata:
   labels:
     app.kubernetes.io/name: runner-v30
 spec:
-  replicas: 2
   selector:
     matchLabels:
       app.kubernetes.io/name: runner-v30
+  replicas: 2
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1
+      maxSurge: 0
   minReadySeconds: 60
-  progressDeadlineSeconds: 10800
+  progressDeadlineSeconds: 3600
   template:
     metadata:
       labels:
         app.kubernetes.io/name: runner-v30
       annotations:
-        commit_sha: "74e715fd02ca9cba50ff72658bcc620da073b03c"
-        timestamp: "1629283762450"
+        commit_sha: "605ffed993b0e6607699104e396e092de26b4b83"
+        timestamp: "1629314367986"
     spec:
       containers:
         - image: us.gcr.io/swift-playground-fbe87/runner:3.0
@@ -2250,19 +2340,24 @@ metadata:
   labels:
     app.kubernetes.io/name: runner-v22
 spec:
-  replicas: 2
   selector:
     matchLabels:
       app.kubernetes.io/name: runner-v22
+  replicas: 2
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1
+      maxSurge: 0
   minReadySeconds: 60
-  progressDeadlineSeconds: 10800
+  progressDeadlineSeconds: 3600
   template:
     metadata:
       labels:
         app.kubernetes.io/name: runner-v22
       annotations:
-        commit_sha: "74e715fd02ca9cba50ff72658bcc620da073b03c"
-        timestamp: "1629283762450"
+        commit_sha: "605ffed993b0e6607699104e396e092de26b4b83"
+        timestamp: "1629314367986"
     spec:
       containers:
         - image: us.gcr.io/swift-playground-fbe87/runner:2.2
@@ -2372,19 +2467,24 @@ metadata:
   labels:
     app.kubernetes.io/name: runner-vnightly-main
 spec:
-  replicas: 2
   selector:
     matchLabels:
       app.kubernetes.io/name: runner-vnightly-main
+  replicas: 2
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1
+      maxSurge: 0
   minReadySeconds: 60
-  progressDeadlineSeconds: 10800
+  progressDeadlineSeconds: 3600
   template:
     metadata:
       labels:
         app.kubernetes.io/name: runner-vnightly-main
       annotations:
-        commit_sha: "74e715fd02ca9cba50ff72658bcc620da073b03c"
-        timestamp: "1629283762450"
+        commit_sha: "605ffed993b0e6607699104e396e092de26b4b83"
+        timestamp: "1629314367986"
     spec:
       containers:
         - image: us.gcr.io/swift-playground-fbe87/runner:nightly-main
@@ -2494,19 +2594,24 @@ metadata:
   labels:
     app.kubernetes.io/name: runner-vnightly-55
 spec:
-  replicas: 2
   selector:
     matchLabels:
       app.kubernetes.io/name: runner-vnightly-55
+  replicas: 2
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1
+      maxSurge: 0
   minReadySeconds: 60
-  progressDeadlineSeconds: 10800
+  progressDeadlineSeconds: 3600
   template:
     metadata:
       labels:
         app.kubernetes.io/name: runner-vnightly-55
       annotations:
-        commit_sha: "74e715fd02ca9cba50ff72658bcc620da073b03c"
-        timestamp: "1629283762450"
+        commit_sha: "605ffed993b0e6607699104e396e092de26b4b83"
+        timestamp: "1629314367986"
     spec:
       containers:
         - image: us.gcr.io/swift-playground-fbe87/runner:nightly-5.5
@@ -2616,19 +2721,24 @@ metadata:
   labels:
     app.kubernetes.io/name: runner-vnightly-54
 spec:
-  replicas: 2
   selector:
     matchLabels:
       app.kubernetes.io/name: runner-vnightly-54
+  replicas: 2
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1
+      maxSurge: 0
   minReadySeconds: 60
-  progressDeadlineSeconds: 10800
+  progressDeadlineSeconds: 3600
   template:
     metadata:
       labels:
         app.kubernetes.io/name: runner-vnightly-54
       annotations:
-        commit_sha: "74e715fd02ca9cba50ff72658bcc620da073b03c"
-        timestamp: "1629283762450"
+        commit_sha: "605ffed993b0e6607699104e396e092de26b4b83"
+        timestamp: "1629314367986"
     spec:
       containers:
         - image: us.gcr.io/swift-playground-fbe87/runner:nightly-5.4
@@ -2738,19 +2848,24 @@ metadata:
   labels:
     app.kubernetes.io/name: runner-vnightly-53
 spec:
-  replicas: 2
   selector:
     matchLabels:
       app.kubernetes.io/name: runner-vnightly-53
+  replicas: 2
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1
+      maxSurge: 0
   minReadySeconds: 60
-  progressDeadlineSeconds: 10800
+  progressDeadlineSeconds: 3600
   template:
     metadata:
       labels:
         app.kubernetes.io/name: runner-vnightly-53
       annotations:
-        commit_sha: "74e715fd02ca9cba50ff72658bcc620da073b03c"
-        timestamp: "1629283762450"
+        commit_sha: "605ffed993b0e6607699104e396e092de26b4b83"
+        timestamp: "1629314367986"
     spec:
       containers:
         - image: us.gcr.io/swift-playground-fbe87/runner:nightly-5.3
