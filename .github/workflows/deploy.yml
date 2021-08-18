@@ -81,9 +81,12 @@ jobs:
             name="runner-v$(sed 's/\.//g' <<<"$version")"
 
             /bin/bash k8s/pod.yaml.sh "$version" "$name" "$timestamp"
-          done
 
-          kubectl apply -f k8s/pod.yaml
+            kubectl apply -f k8s/pod.yaml
+            kubectl rollout status deployment/$name
+
+            kubectl get services -o wide
+          done
 
       - name: Commit and Push
         run: |
