@@ -89,9 +89,6 @@ jobs:
           done
 
           kubectl apply -f k8s/pod.yaml
-          kubectl rollout status deployment/$name
-
-          kubectl get services -o wide
 
       - name: Commit and Push
         run: |
@@ -103,22 +100,3 @@ jobs:
           git add k8s/pod.yaml
           git commit -m "Update k8s/pod.yaml"
           git push origin main
-
-  test:
-    runs-on: ubuntu-latest
-    needs: deploy
-    steps:
-      - uses: actions/checkout@v2
-      - name: Test
-        run: |
-          set -ex
-
-          versions=($(cat versions.txt | tr "\n" " "))
-          for versionGroup in "${versions[@]}"; do
-            read -r -a group <<< $(echo $versionGroup | sed "s/,/ /g")
-            for version in ${group[@]}; do
-              curl --silent --show-error --fail -i -X POST "https://swiftfiddle.com/runner/$version/run" \
-                -H "Content-Type:application/json" \
-                --data "{\"code\":\"print(\\\"Hello, World!\\\")\"}"
-            done
-          done

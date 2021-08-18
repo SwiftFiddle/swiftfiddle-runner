@@ -7,10 +7,18 @@ func routes(_ app: Application) throws {
     
     app.get("runner", ":version", "health") { (req) -> EventLoopFuture<Response> in
         guard let version = req.parameters.get("version") else { throw Abort(.badRequest) }
+        
+        let image: String
+        if version.hasPrefix("nightly") {
+            image = "swiftlang/swift:\(version)"
+        } else {
+            image = "swiftfiddle/swift:\(version)"
+        }
+
+        let headers = HTTPHeaders([("Cache-Control", "no-store")])
 
         let promise = req.eventLoop.makePromise(of: Response.self)
         let timer = DispatchSource.makeTimerSource()
-        let headers = HTTPHeaders([("Cache-Control", "no-store")])
 
         let process = Process()
         process.executableURL = URL(fileURLWithPath: "/usr/bin/env")
@@ -18,7 +26,7 @@ func routes(_ app: Application) throws {
             "docker",
             "run",
             "--rm",
-            "swiftfiddle/swift:\(version)",
+            image,
             "sh",
             "-c",
             "echo '()' | swiftc -"
