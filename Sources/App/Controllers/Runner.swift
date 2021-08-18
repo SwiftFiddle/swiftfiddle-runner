@@ -160,13 +160,6 @@ struct Runner {
                 throw Abort(.badRequest)
             }
 
-            let image: String
-            if version.hasPrefix("nightly") {
-                image = "swiftlang/swift:\(version)"
-            } else {
-                image = "swiftfiddle/swift:\(version)"
-            }
-
             guard let code = parameter.code else { throw Abort(.badRequest) }
 
             self.command = command
@@ -174,10 +167,20 @@ struct Runner {
             self.timeout = max(30, min(600, timeout))
             self.nonce = nonce
             self.environment = environment
-            self.image = image
+            self.image = imageTag(from: version)
             self.code = code
         }
     }
+}
+
+func imageTag(from version: String) -> String {
+    let image: String
+    if version.hasPrefix("nightly") {
+        image = "swiftlang/swift:\(version)"
+    } else {
+        image = "swiftfiddle/swift:\(version)"
+    }
+    return image
 }
 
 let regex = try! NSRegularExpression(pattern: #"\/main\.swift:(\d+):(\d+):\s"#, options: [])

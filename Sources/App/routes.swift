@@ -8,13 +8,6 @@ func routes(_ app: Application) throws {
     app.get("runner", ":version", "health") { (req) -> EventLoopFuture<Response> in
         guard let version = req.parameters.get("version") else { throw Abort(.badRequest) }
 
-        let image: String
-        if version.hasPrefix("nightly") {
-            image = "swiftlang/swift:\(version)"
-        } else {
-            image = "swiftfiddle/swift:\(version)"
-        }
-
         let promise = req.eventLoop.makePromise(of: Response.self)
 
         let process = Process()
@@ -25,7 +18,7 @@ func routes(_ app: Application) throws {
             "--rm",
             "--pull",
             "never",
-            image,
+            imageTag(from: version),
             "sh",
             "-c",
             "echo '()' | timeout 10 swiftc -"
