@@ -7,7 +7,7 @@ func routes(_ app: Application) throws {
     
     app.get("runner", ":version", "health") { (req) -> EventLoopFuture<Response> in
         guard let version = req.parameters.get("version") else { throw Abort(.badRequest) }
-        
+
         let image: String
         if version.hasPrefix("nightly") {
             image = "swiftlang/swift:\(version)"
@@ -15,10 +15,7 @@ func routes(_ app: Application) throws {
             image = "swiftfiddle/swift:\(version)"
         }
 
-        let headers = HTTPHeaders([("Cache-Control", "no-store")])
-
         let promise = req.eventLoop.makePromise(of: Response.self)
-        let timer = DispatchSource.makeTimerSource()
 
         let process = Process()
         process.executableURL = URL(fileURLWithPath: "/usr/bin/env")
@@ -26,32 +23,24 @@ func routes(_ app: Application) throws {
             "docker",
             "run",
             "--rm",
+            "--pull",
+            "never",
             image,
             "sh",
             "-c",
-            "echo '()' | swiftc -"
+            "echo '()' | timeout 10 swiftc -"
         ]
         process.terminationHandler = { (process) in
-            timer.cancel()
-
             let status: HTTPResponseStatus = process.terminationStatus == 0 ? .ok : .internalServerError
             HealthCheckResponse(status: status)
-                .encodeResponse(status: status, headers: headers, for: req)
+                .encodeResponse(
+                    status: status,
+                    headers: HTTPHeaders([("Cache-Control", "no-store")]),
+                    for: req
+                )
                 .cascade(to: promise)
         }
         process.launch()
-
-        timer.setEventHandler {
-            timer.cancel()
-            process.terminate()
-
-            let status: HTTPResponseStatus = .internalServerError
-            HealthCheckResponse(status: status)
-                .encodeResponse(status: status, headers: headers, for: req)
-                .cascade(to: promise)
-        }
-        timer.schedule(deadline: .now() + .seconds(20))
-        timer.resume()
 
         return promise.futureResult
     }
