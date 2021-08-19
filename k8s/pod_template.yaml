@@ -64,7 +64,7 @@ spec:
       maxUnavailable: 0
       maxSurge: 1
   minReadySeconds: 60
-  progressDeadlineSeconds: 3600
+  progressDeadlineSeconds: 1800
   template:
     metadata:
       labels:
