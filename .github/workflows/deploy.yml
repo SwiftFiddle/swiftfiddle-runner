@@ -36,17 +36,10 @@ jobs:
         run: |
           set -ex
 
-          rm -f k8s/pod.yaml
-
-          timestamp=$(date +%s%3N)
-
           versions=($(cat versions.txt | tr "\n" " "))
           for versionGroup in "${versions[@]}"; do
             read -r -a group <<< $(echo $versionGroup | sed "s/,/ /g")
             version=${group[${#group[@]}-1]}
             name="runner-v$(sed 's/\.//g' <<<"$version")"
-
-            /bin/bash k8s/pod.yaml.sh "$version" "$name" "$timestamp"
+            kubectl rollout restart deploy $name
           done
-
-          kubectl apply -f k8s/pod.yaml
