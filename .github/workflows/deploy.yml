@@ -51,8 +51,9 @@ jobs:
         run: |
           set -ex
 
-          version=$(echo [${{ matrix.versionGroup }}] | jq '.[0]')
-          versions=$(echo [${{ matrix.versionGroup }}] | jq 'join(" ")')
+          versionGroup="[${{ matrix.versionGroup }}]"
+          version=$(echo $versionGroup | jq -r '.[0]')
+          versions=$(echo $versionGroup | jq -r 'join(" ")')
           IMAGE_TAG=${{ env.GCR_HOSTNAME }}/${{ env.PROJECT_ID }}/runner:$version
 
           docker build --rm \
