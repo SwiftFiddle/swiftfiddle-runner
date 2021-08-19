@@ -3,13 +3,13 @@ set -ex
 
 echo "$DOCKER_HUB_ACCESS_TOKEN" | docker login --username="$DOCKER_HUB_USERNAME" --password-stdin
 
-if [[ $RUNNER_VERSION == nightly* ]] ;
-then
-  docker pull "swiftlang/swift:$RUNNER_VERSION"
-else
-  for version in $(echo $RUNNER_VERSION | sed "s/,/ /g"); do
+for version in $RUNNER_VERSIONS; do
+  if [[ "$version" == nightly* ]] ;
+  then
+    docker pull "swiftlang/swift:$version"
+  else
     docker pull "swiftfiddle/swift:$version"
-  done
-fi
+  fi
+done
 
 ./Run serve --env production --hostname "0.0.0.0" --port 8080

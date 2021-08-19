@@ -37,6 +37,6 @@ ARG access_token
 ARG version
 ENV DOCKER_HUB_USERNAME=${username}
 ENV DOCKER_HUB_ACCESS_TOKEN=${access_token}
-ENV RUNNER_VERSION=${version}
+ENV RUNNER_VERSIONS=${versions}
 ENTRYPOINT ["/bin/bash", "entrypoint.sh"]
 CMD ["serve", "--env", "production", "--hostname", "0.0.0.0", "--port", "8080"]

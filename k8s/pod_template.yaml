@@ -71,7 +71,6 @@ spec:
         app.kubernetes.io/name: %NAME%
       annotations:
         commit_sha: "%COMMIT_SHA%"
-        timestamp: "%TIMESTAMP%"
     spec:
       containers:
         - image: %IMAGE%

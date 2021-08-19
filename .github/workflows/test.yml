@@ -1,25 +1,46 @@
 name: Test
 on:
   pull_request:
-    branches: [master]
+    branches: [main]
   workflow_dispatch:
 
+env:
+  DOCKER_HUB_USERNAME: ${{ secrets.DOCKER_HUB_USERNAME }}
+  DOCKER_HUB_ACCESS_TOKEN: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
+
 jobs:
-  test:
+  matrix:
     runs-on: ubuntu-latest
+    outputs:
+      versionGroup: ${{ steps.set-matrix.outputs.versionGroup }}
     steps:
       - uses: actions/checkout@v2
+
+      - id: set-matrix
+        run: |
+          versionGroup=$(cat versions.json | jq '.[] | map("\\\"" + . + "\\\"") | join(",")' | jq -s | tr -d "\n")
+          echo "::set-output name=versionGroup::$versionGroup"
+
+  test:
+    runs-on: ubuntu-latest
+    needs: matrix
+    strategy:
+      fail-fast: false
+      matrix:
+        versionGroup: ${{ fromJson(needs.matrix.outputs.versionGroup) }}
+    steps:
+      - uses: actions/checkout@v2
+
       - name: Build
         run: |
           set -ex
 
-          versions=($(cat versions.txt | tr "\n" " "))
-          for versionGroup in "${versions[@]}"; do
-            for version in $(echo $versionGroup | sed "s/,/ /g"); do
-              docker build \
-                --build-arg username="${{ env.DOCKER_HUB_USERNAME}}" \
-                --build-arg access_token="${{ env.DOCKER_HUB_ACCESS_TOKEN}}" \
-                --build-arg version="$versionGroup" \
-                --rm --tag .
-            done
-          done
+          version=$(echo [${{ matrix.versionGroup }}] | jq '.[0]')
+          versions=$(echo [${{ matrix.versionGroup }}] | jq 'join(" ")')
+          IMAGE_TAG=${{ env.GCR_HOSTNAME }}/${{ env.PROJECT_ID }}/runner:$version
+
+          docker build --rm \
+            --build-arg username="${{ env.DOCKER_HUB_USERNAME}}" \
+            --build-arg access_token="${{ env.DOCKER_HUB_ACCESS_TOKEN}}" \
+            --build-arg versions="$versions" \
+            .
