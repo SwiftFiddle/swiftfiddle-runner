@@ -58,10 +58,10 @@ jobs:
 
           rm -f k8s/pod.yaml
 
-          version=$(echo [${{ matrix.versionGroup }}] | jq '.[0]')
+          version=$(echo [${{ matrix.versionGroup }}] | jq -r '.[0]')
           name="runner-v$(sed 's/\.//g' <<<"$version")"
 
-          /bin/bash k8s/pod.yaml.sh "$version" "$name" | kubectl apply --dry-run=server -f -
+          /bin/bash k8s/pod.yaml.sh "$version" "$name" | kubectl apply -f -
 
           kubectl rollout status deployment/$name
           kubectl get services -o wide
