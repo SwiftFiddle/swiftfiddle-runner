@@ -34,7 +34,7 @@ EXPOSE 8080
 
 ARG username
 ARG access_token
-ARG version
+ARG versions
 ENV DOCKER_HUB_USERNAME=${username}
 ENV DOCKER_HUB_ACCESS_TOKEN=${access_token}
 ENV RUNNER_VERSIONS=${versions}
