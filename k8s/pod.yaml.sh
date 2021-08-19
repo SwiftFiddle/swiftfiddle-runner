@@ -3,7 +3,7 @@ set -e
 
 CWD=$(cd $(dirname $0); pwd)
 
-commit_sha=${{ github.sha }}
+commit_sha=$(git rev-parse HEAD)
 version=$1
 name=$2
 image="us.gcr.io\/swift-playground-fbe87\/runner:$version"
