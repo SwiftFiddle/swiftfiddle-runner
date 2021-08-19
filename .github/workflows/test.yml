@@ -35,8 +35,9 @@ jobs:
         run: |
           set -ex
 
-          version=$(echo [${{ matrix.versionGroup }}] | jq '.[0]')
-          versions=$(echo [${{ matrix.versionGroup }}] | jq 'join(" ")')
+          versionGroup="[${{ matrix.versionGroup }}]"
+          version=$(echo $versionGroup | jq -r '.[0]')
+          versions=$(echo $versionGroup | jq -r 'join(" ")')
 
           docker build --rm \
             --build-arg username="${{ env.DOCKER_HUB_USERNAME}}" \

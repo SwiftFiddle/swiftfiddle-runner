@@ -15,7 +15,6 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       versionGroup: ${{ steps.set-matrix.outputs.versionGroup }}
-      version: ${{ steps.set-matrix.outputs.version }}
     steps:
       - uses: actions/checkout@v2
 
@@ -25,7 +24,9 @@ jobs:
             cat versions.json \
             | jq '.[] | map(select(startswith("nightly"))) | flatten[]' \
             | jq -s . \
-            | jq '. | map("\\\"" + . + "\\\"") | join(",")'
+            | jq '. | map("\\\"" + . + "\\\"") | join(",")' \
+            | jq -s \
+            | tr -d "\n"
           )
           echo "::set-output name=versionGroup::$versionGroup"
 
