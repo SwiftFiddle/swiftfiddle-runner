@@ -5,10 +5,9 @@ on:
   workflow_dispatch:
 
 env:
-  PROJECT_ID: ${{ secrets.GCP_PROJECT }}
-  GCP_SA_KEY: ${{ secrets.GCP_SA_KEY }}
-  GKE_CLUSTER: swiftfiddle-cluster
-  GKE_ZONE: us-central1-c
+  AZURE_CREDENTIALS: ${{ secrets.AZURE_CREDENTIALS }}
+  CLUSTER_NAME: swiftfiddle
+  CLUSTER_RESOURCE_GROUP: swiftfiddle
 
 jobs:
   matrix:
@@ -40,18 +39,13 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Setup Cloud SDK
-        uses: google-github-actions/setup-gcloud@v0.2.1
-        with:
-          project_id: ${{ env.PROJECT_ID }}
-          service_account_key: ${{ env.GCP_SA_KEY }}
-          export_default_credentials: true
+      - uses: azure/setup-kubectl@v1
 
-      - uses: google-github-actions/get-gke-credentials@v0.3.0
+      - uses: azure/aks-set-context@v1
         with:
-          cluster_name: ${{ env.GKE_CLUSTER }}
-          location: ${{ env.GKE_ZONE }}
-          credentials: ${{ env.GCP_SA_KEY }}
+          creds: ${{ env.AZURE_CREDENTIALS }}
+          cluster-name: ${{ env.CLUSTER_NAME }}
+          resource-group: ${{ env.CLUSTER_RESOURCE_GROUP }}
 
       - name: Deploy
         run: |
