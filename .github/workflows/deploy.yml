@@ -13,6 +13,12 @@ env:
   DOCKER_HUB_USERNAME: ${{ secrets.DOCKER_HUB_USERNAME }}
   DOCKER_HUB_ACCESS_TOKEN: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
 
+  REGISTRY_NAME: swiftfiddle.azurecr.io
+  CLUSTER_NAME: swiftfiddle
+  CLUSTER_RESOURCE_GROUP: swiftfiddle
+  NAMESPACE: default
+  APP_NAME: swiftfiddle/runner
+
 jobs:
   matrix:
     runs-on: ubuntu-latest
@@ -36,15 +42,11 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Setup Cloud SDK
-        uses: google-github-actions/setup-gcloud@v0.2.1
+      - uses: azure/docker-login@v1
         with:
-          project_id: ${{ env.PROJECT_ID }}
-          service_account_key: ${{ env.GCP_SA_KEY }}
-          export_default_credentials: true
-
-      - name: Authorize Docker push
-        run: gcloud auth configure-docker
+          login-server: ${{ env.REGISTRY_NAME }}
+          username: ${{ secrets.REGISTRY_USERNAME }}
+          password: ${{ secrets.REGISTRY_PASSWORD }}
 
       - name: Build and Push Docker Images
         run: |
@@ -53,7 +55,7 @@ jobs:
           versionGroup="[${{ matrix.versionGroup }}]"
           version=$(echo $versionGroup | jq -r '.[0]')
           versions=$(echo $versionGroup | jq -r 'join(" ")')
-          IMAGE_TAG=${{ env.GCR_HOSTNAME }}/${{ env.PROJECT_ID }}/runner:$version
+          IMAGE_TAG=${{ env.REGISTRY_NAME }}/${{ env.APP_NAME }}:$version
 
           docker build --rm \
             --build-arg username="${{ env.DOCKER_HUB_USERNAME}}" \
@@ -74,24 +76,17 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Setup Cloud SDK
-        uses: google-github-actions/setup-gcloud@v0.2.1
-        with:
-          project_id: ${{ env.PROJECT_ID }}
-          service_account_key: ${{ env.GCP_SA_KEY }}
-          export_default_credentials: true
+      - uses: azure/setup-kubectl@v1
 
-      - uses: google-github-actions/get-gke-credentials@v0.3.0
+      - uses: azure/aks-set-context@v1
         with:
-          cluster_name: ${{ env.GKE_CLUSTER }}
-          location: ${{ env.GKE_ZONE }}
-          credentials: ${{ env.GCP_SA_KEY }}
+          creds: "${{ secrets.AZURE_CREDENTIALS }}"
+          cluster-name: ${{ env.CLUSTER_NAME }}
+          resource-group: ${{ env.CLUSTER_RESOURCE_GROUP }}
 
       - name: Deploy
         run: |
           set -ex
-
-          rm -f k8s/pod.yaml
 
           version=$(echo [${{ matrix.versionGroup }}] | jq -r '.[0]')
           name="runner-v$(sed 's/\.//g' <<<"$version")"
