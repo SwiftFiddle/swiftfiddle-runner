@@ -61,6 +61,8 @@ spec:
       annotations:
         commit_sha: "%COMMIT_SHA%"
     spec:
+      nodeSelector:
+        name: defaultpool
       containers:
         - image: %IMAGE%
           name: %NAME%
