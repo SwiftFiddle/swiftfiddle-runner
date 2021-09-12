@@ -7,7 +7,7 @@ on:
 env:
   AZURE_CREDENTIALS: ${{ secrets.AZURE_CREDENTIALS }}
   CLUSTER_NAME: swiftfiddle
-  CLUSTER_RESOURCE_GROUP: swiftfiddle
+  RESOURCE_GROUP: swiftfiddle
 
 jobs:
   matrix:
@@ -45,7 +45,7 @@ jobs:
         with:
           creds: ${{ env.AZURE_CREDENTIALS }}
           cluster-name: ${{ env.CLUSTER_NAME }}
-          resource-group: ${{ env.CLUSTER_RESOURCE_GROUP }}
+          resource-group: ${{ env.RESOURCE_GROUP }}
 
       - name: Deploy
         run: |

@@ -10,8 +10,8 @@ env:
   REGISTRY_USERNAME: ${{ secrets.REGISTRY_USERNAME }}
   REGISTRY_PASSWORD: ${{ secrets.REGISTRY_PASSWORD }}
   CLUSTER_NAME: swiftfiddle
-  CLUSTER_RESOURCE_GROUP: swiftfiddle
-  APP_NAME: swiftfiddle/runner
+  RESOURCE_GROUP: swiftfiddle
+  SERVICE_NAME: runner
 
   DOCKER_HUB_USERNAME: ${{ secrets.DOCKER_HUB_USERNAME }}
   DOCKER_HUB_ACCESS_TOKEN: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
@@ -52,7 +52,7 @@ jobs:
           versionGroup="[${{ matrix.versionGroup }}]"
           version=$(echo $versionGroup | jq -r '.[0]')
           versions=$(echo $versionGroup | jq -r 'join(" ")')
-          IMAGE_TAG=${{ env.REGISTRY_NAME }}/${{ env.APP_NAME }}:$version
+          IMAGE_TAG=${{ env.REGISTRY_NAME }}/${{ env.RESOURCE_GROUP }}/${{ env.SERVICE_NAME }}:$version
 
           docker build --rm \
             --build-arg username="${{ env.DOCKER_HUB_USERNAME}}" \
@@ -78,7 +78,7 @@ jobs:
         with:
           creds: ${{ env.AZURE_CREDENTIALS }}
           cluster-name: ${{ env.CLUSTER_NAME }}
-          resource-group: ${{ env.CLUSTER_RESOURCE_GROUP }}
+          resource-group: ${{ env.RESOURCE_GROUP }}
 
       - name: Deploy
         run: |
