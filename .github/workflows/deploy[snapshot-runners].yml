@@ -56,7 +56,7 @@ jobs:
           version=$(echo [${{ matrix.versionGroup }}] | jq -r '.[0]')
           name="runner-v$(sed 's/\.//g' <<<"$version")"
 
-          /bin/bash k8s/pod.yaml.sh "$version" "$name" | kubectl apply -f -
+          /bin/bash k8s/pod.yaml.sh "$version" "$name" "1" | kubectl apply -f -
 
           kubectl rollout status deployment/$name
           kubectl get services -o wide
