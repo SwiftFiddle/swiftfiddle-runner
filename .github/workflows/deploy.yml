@@ -70,6 +70,7 @@ jobs:
       fail-fast: false
       matrix:
         versionGroup: ${{ fromJson(needs.matrix.outputs.versionGroup) }}
+    concurrency: deploy
     steps:
       - uses: actions/checkout@v2
 
