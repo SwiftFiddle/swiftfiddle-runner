@@ -2,8 +2,6 @@ import Foundation
 import Vapor
 import TSCBasic
 
-private var timers = [URL: DispatchSourceTimer]()
-
 struct Runner {
     private let version: String
     private let sandboxPath: URL
@@ -79,7 +77,6 @@ struct Runner {
         let interval = 0.2
         var counter: Double = 0
         let timer = DispatchSource.makeTimerSource()
-        timers[path] = timer
 
         let completedPath = path.appendingPathComponent("completed")
         let stdoutPath = path.appendingPathComponent("stdout")
@@ -87,7 +84,7 @@ struct Runner {
         let versionPath = path.appendingPathComponent("version")
 
         let fileManager = FileManager()
-        timer.setEventHandler { [weak timer] in
+        timer.setEventHandler {
             counter += 1
             if let completed = try? String(contentsOf: completedPath) {
                 let stderr = (try? String(contentsOf: stderrPath)) ?? ""
@@ -103,8 +100,7 @@ struct Runner {
 
                 WorkingDirectoryRegistry.shared.remove(path: path);
                 try? fileManager.removeItem(at: path)
-                timer?.cancel()
-                timers[path] = nil
+                timer.cancel()
             } else if interval * counter < Double(timeout) {
                 return
             } else {
@@ -123,8 +119,7 @@ struct Runner {
 
                 WorkingDirectoryRegistry.shared.remove(path: path);
                 try? fileManager.removeItem(at: path)
-                timer?.cancel()
-                timers[path] = nil
+                timer.cancel()
             }
         }
         timer.schedule(deadline: .now() + .milliseconds(200), repeating: .milliseconds(200))

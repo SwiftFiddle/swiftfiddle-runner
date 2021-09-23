@@ -1,7 +1,5 @@
 import Vapor
 
-private var timers = [String: DispatchSourceTimer]()
-
 func routes(_ app: Application) throws {
     app.get { (req) -> [String: String] in
         return ["status": "pass"]
@@ -73,9 +71,7 @@ func routes(_ app: Application) throws {
         }
 
         let timer = DispatchSource.makeTimerSource()
-        timers[nonce] = timer
-
-        timer.setEventHandler { [weak ws, weak timer] in
+        timer.setEventHandler {
             guard let path = WorkingDirectoryRegistry.shared.get(prefix: nonce) else { return }
 
             let completedPath = path.appendingPathComponent("completed")
@@ -95,13 +91,12 @@ func routes(_ app: Application) throws {
                 version: version
             )
             if let response = try? String(data: encoder.encode(response), encoding: .utf8) {
-                ws?.send(response)
+                ws.send(response)
             }
 
             if let _ = (try? String(contentsOf: completedPath)) {
-                timer?.cancel()
-                timers[nonce] = nil
-                _ = ws?.close()
+                timer.cancel()
+                _ = ws.close()
             }
         }
         timer.schedule(deadline: .now() + .milliseconds(200), repeating: .milliseconds(200))
@@ -109,7 +104,6 @@ func routes(_ app: Application) throws {
 
         _ = ws.onClose.always { _ in
             timer.cancel()
-            timers[nonce] = nil
         }
     }
 }
