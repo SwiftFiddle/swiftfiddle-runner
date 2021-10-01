@@ -87,8 +87,9 @@ jobs:
 
           version=$(echo [${{ matrix.versionGroup }}] | jq -r '.[0]')
           name="runner-v$(sed 's/\.//g' <<<"$version")"
+          timestamp=$(date +%s%3N)
 
-          /bin/bash k8s/pod.yaml.sh "$version" "$name" | kubectl apply -f -
+          /bin/bash k8s/pod.yaml.sh "$version" "$name" "$timestamp" | kubectl apply -f -
 
           kubectl rollout status deployment/$name
           kubectl get services -o wide
