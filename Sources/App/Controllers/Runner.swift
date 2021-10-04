@@ -138,9 +138,6 @@ struct Runner {
         init(version: String, parameter: ExecutionRequestParameter) throws {
             let command = parameter.command ?? "swift"
             let options = parameter.options ?? {
-                if version == "nightly-main" {
-                    return "-Xfrontend -enable-experimental-concurrency"
-                }
                 if version.compare("5.3", options: .numeric) != .orderedAscending {
                     return "-I ./swiftfiddle.com/_Packages/.build/release/ -L ./swiftfiddle.com/_Packages/.build/release/ -l_Packages"
                 }
