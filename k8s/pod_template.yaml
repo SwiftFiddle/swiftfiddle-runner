@@ -74,9 +74,9 @@ spec:
             httpGet:
               path: /runner/%VERSION%/health
               port: 8080
-            initialDelaySeconds: 600
-            timeoutSeconds: 60
-            periodSeconds: 60
+            initialDelaySeconds: 300
+            timeoutSeconds: 20
+            periodSeconds: 30
             failureThreshold: 2
           readinessProbe:
             httpGet:
@@ -91,7 +91,7 @@ spec:
               path: /runner/%VERSION%/health
               port: 8080
             initialDelaySeconds: 60
-            timeoutSeconds: 60
+            timeoutSeconds: 20
             periodSeconds: 60
             failureThreshold: 2
           resources:
