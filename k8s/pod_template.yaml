@@ -67,6 +67,9 @@ spec:
       initContainers:
         - image: %IMAGE%-init
           name: %NAME%-init
+          volumeMounts:
+            - name: docker-socket
+              mountPath: /var/run/docker.sock
       containers:
         - image: %IMAGE%
           name: %NAME%
