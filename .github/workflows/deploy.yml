@@ -60,7 +60,7 @@ jobs:
             --build-arg username="${{ env.DOCKER_HUB_USERNAME}}" \
             --build-arg access_token="${{ env.DOCKER_HUB_ACCESS_TOKEN}}" \
             --build-arg versions="$versions" \
-            --tag ${IMAGE_TAG} ./k8s/init-container/
+            --tag ${IMAGE_TAG} -f  ./k8s/init-container/Dockerfile ./k8s/init-container/
 
           IMAGE_TAG=${{ env.REGISTRY_NAME }}/${{ env.RESOURCE_GROUP }}/${{ env.SERVICE_NAME }}:$version
 
