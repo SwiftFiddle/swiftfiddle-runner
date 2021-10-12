@@ -61,9 +61,9 @@ jobs:
             --build-arg access_token="${{ env.DOCKER_HUB_ACCESS_TOKEN}}" \
             --build-arg versions="$versions" \
             --tag ${IMAGE_TAG} -f ./k8s/init_container/Dockerfile ./k8s/init_container
+          docker push ${IMAGE_TAG}
 
           IMAGE_TAG=${{ env.REGISTRY_NAME }}/${{ env.RESOURCE_GROUP }}/${{ env.SERVICE_NAME }}:$version
-
           docker build --rm --tag ${IMAGE_TAG} .
           docker push ${IMAGE_TAG}
 
