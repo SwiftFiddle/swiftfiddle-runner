@@ -54,13 +54,17 @@ jobs:
           versionGroup="[${{ matrix.versionGroup }}]"
           version=$(echo $versionGroup | jq -r '.[0]')
           versions=$(echo $versionGroup | jq -r 'join(" ")')
-          IMAGE_TAG=${{ env.REGISTRY_NAME }}/${{ env.RESOURCE_GROUP }}/${{ env.SERVICE_NAME }}:$version
 
+          IMAGE_TAG=${{ env.REGISTRY_NAME }}/${{ env.RESOURCE_GROUP }}/${{ env.SERVICE_NAME }}:$version-init
           docker build --rm \
             --build-arg username="${{ env.DOCKER_HUB_USERNAME}}" \
             --build-arg access_token="${{ env.DOCKER_HUB_ACCESS_TOKEN}}" \
             --build-arg versions="$versions" \
             --tag ${IMAGE_TAG} .
+
+          IMAGE_TAG=${{ env.REGISTRY_NAME }}/${{ env.RESOURCE_GROUP }}/${{ env.SERVICE_NAME }}:$version
+
+          docker build --rm --tag ${IMAGE_TAG} .
           docker push ${IMAGE_TAG}
 
   deploy:

@@ -64,6 +64,9 @@ spec:
     spec:
       nodeSelector:
         name: defaultpool
+      initContainers:
+        - image: %IMAGE%-init
+          name: %NAME%-init
       containers:
         - image: %IMAGE%
           name: %NAME%
