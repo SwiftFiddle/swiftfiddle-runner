@@ -13,8 +13,7 @@ RUN swift build -c release
 
 WORKDIR /staging
 RUN cp "$(swift build --package-path /build -c release --show-bin-path)/Run" ./ \
-    && mv /build/Resources ./Resources && chmod -R a-w ./Resources \
-    && cp /build/entrypoint.sh .
+    && mv /build/Resources ./Resources && chmod -R a-w ./Resources
 
 FROM swift:5.5-focal-slim
 
