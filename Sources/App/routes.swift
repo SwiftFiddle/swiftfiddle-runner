@@ -17,11 +17,11 @@ func routes(_ app: Application) throws {
             "run",
             "--rm",
             "--pull",
-            "never",
+            "missing",
             imageTag(from: version),
             "sh",
             "-c",
-            "echo '()' | timeout 10 swiftc -"
+            "echo '()' | timeout 10 swiftc -",
         ]
         process.terminationHandler = { (process) in
             let status: HTTPResponseStatus = process.terminationStatus == 0 ? .ok : .internalServerError

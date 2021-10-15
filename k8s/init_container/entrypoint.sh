@@ -11,5 +11,3 @@ for version in $RUNNER_VERSIONS; do
     docker pull "swiftfiddle/swift:$version"
   fi
 done
-
-docker images
