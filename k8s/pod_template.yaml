@@ -51,9 +51,9 @@ spec:
     type: RollingUpdate
     rollingUpdate:
       maxUnavailable: 0
-      maxSurge: 2
-  minReadySeconds: 60
-  progressDeadlineSeconds: 1800
+      maxSurge: 1
+  minReadySeconds: 20
+  progressDeadlineSeconds: 600
   template:
     metadata:
       labels:
@@ -102,6 +102,6 @@ spec:
         - name: sandbox
           hostPath:
             path: /tmp
-      terminationGracePeriodSeconds: 60
+      terminationGracePeriodSeconds: 30
 ---
 
