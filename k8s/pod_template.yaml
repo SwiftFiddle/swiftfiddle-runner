@@ -51,7 +51,7 @@ spec:
     type: RollingUpdate
     rollingUpdate:
       maxUnavailable: 0
-      maxSurge: 1
+      maxSurge: 2
   minReadySeconds: 60
   progressDeadlineSeconds: 1800
   template:
