@@ -1,8 +1,6 @@
 #!/bin/bash
 set -ex
 
-docker image prune --force
-
 echo "$DOCKER_HUB_ACCESS_TOKEN" | docker login --username="$DOCKER_HUB_USERNAME" --password-stdin
 
 for version in $RUNNER_VERSIONS; do
@@ -15,3 +13,4 @@ for version in $RUNNER_VERSIONS; do
 done
 
 docker image prune --force
+docker images
