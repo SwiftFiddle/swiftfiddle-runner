@@ -17,7 +17,7 @@ func routes(_ app: Application) throws {
             "run",
             "--rm",
             "--pull",
-            "missing",
+            "never",
             imageTag(from: version),
             "sh",
             "-c",
@@ -32,6 +32,41 @@ func routes(_ app: Application) throws {
                     for: req
                 )
                 .cascade(to: promise)
+        }
+        process.launch()
+
+        return promise.futureResult
+    }
+
+    app.get("runner", ":version", "env") { (req) -> EventLoopFuture<Response> in
+        let promise = req.eventLoop.makePromise(of: Response.self)
+
+        let process = Process()
+        process.executableURL = URL(fileURLWithPath: "/usr/bin/env")
+        process.arguments = [
+            "docker",
+            "images",
+        ]
+
+        let stdout = Pipe()
+        process.standardOutput = stdout
+
+        process.terminationHandler = { (process) in
+            guard let data = try? stdout.fileHandleForReading.readToEnd(), let output = String(data: data, encoding: .utf8) else {
+                promise.fail(Abort(.internalServerError))
+                return
+            }
+
+            EnvResponse(
+                version: req.parameters.get("version"),
+                images: output.split(separator: "\n").map { String($0) }
+            )
+            .encodeResponse(
+                status: .ok,
+                headers: HTTPHeaders([("Cache-Control", "no-store")]),
+                for: req
+            )
+            .cascade(to: promise)
         }
         process.launch()
 
@@ -114,4 +149,9 @@ private struct HealthCheckResponse: Content {
     init(status: HTTPResponseStatus) {
         self.status = status == .ok ? "pass" : "fail"
     }
+}
+
+private struct EnvResponse: Content {
+    let version: String?
+    let images: [String]
 }

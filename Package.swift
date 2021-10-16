@@ -4,7 +4,7 @@ import PackageDescription
 let package = Package(
     name: "swiftfiddle-runner",
     platforms: [
-        .macOS(.v10_15)
+        .macOS(.v11)
     ],
     dependencies: [
         .package(url: "https://github.com/vapor/vapor.git", from: "4.49.2"),
