@@ -1,10 +1,10 @@
-// swift-tools-version:5.4
+// swift-tools-version:5.5
 import PackageDescription
 
 let package = Package(
     name: "swiftfiddle-runner",
     platforms: [
-        .macOS(.v11)
+        .macOS(.v12)
     ],
     dependencies: [
         .package(url: "https://github.com/vapor/vapor.git", from: "4.52.1"),
