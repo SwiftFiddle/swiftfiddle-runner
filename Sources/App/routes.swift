@@ -4,11 +4,9 @@ func routes(_ app: Application) throws {
     app.get { (req) -> [String: String] in
         return ["status": "pass"]
     }
-    
-    app.get("runner", ":version", "health") { (req) -> EventLoopFuture<Response> in
-        guard let version = req.parameters.get("version") else { throw Abort(.badRequest) }
 
-        let promise = req.eventLoop.makePromise(of: Response.self)
+    app.get("runner", ":version", "health") { (req) -> Response in
+        guard let version = req.parameters.get("version") else { throw Abort(.badRequest) }
 
         let process = Process()
         process.executableURL = URL(fileURLWithPath: "/usr/bin/env")
@@ -23,24 +21,23 @@ func routes(_ app: Application) throws {
             "-c",
             "echo '()' | timeout 10 swiftc -",
         ]
-        process.terminationHandler = { (process) in
-            let status: HTTPResponseStatus = process.terminationStatus == 0 ? .ok : .internalServerError
-            HealthCheckResponse(status: status)
-                .encodeResponse(
-                    status: status,
-                    headers: HTTPHeaders([("Cache-Control", "no-store")]),
-                    for: req
-                )
-                .cascade(to: promise)
-        }
-        process.launch()
 
-        return promise.futureResult
+        let status: HTTPResponseStatus = await withCheckedContinuation { (continuation) in
+            process.terminationHandler = { (process) in
+                let status: HTTPResponseStatus = process.terminationStatus == 0 ? .ok : .internalServerError
+                continuation.resume(returning: status)
+            }
+            process.launch()
+        }
+        return try await HealthCheckResponse(status: status)
+            .encodeResponse(
+                status: status,
+                headers: HTTPHeaders([("Cache-Control", "no-store")]),
+                for: req
+            )
     }
 
-    app.get("runner", ":version", "env") { (req) -> EventLoopFuture<Response> in
-        let promise = req.eventLoop.makePromise(of: Response.self)
-
+    app.get("runner", ":version", "env") { (req) -> Response in
         let process = Process()
         process.executableURL = URL(fileURLWithPath: "/usr/bin/env")
         process.arguments = [
@@ -51,13 +48,20 @@ func routes(_ app: Application) throws {
         let stdout = Pipe()
         process.standardOutput = stdout
 
-        process.terminationHandler = { (process) in
-            guard let data = try? stdout.fileHandleForReading.readToEnd(), let output = String(data: data, encoding: .utf8) else {
-                promise.fail(Abort(.internalServerError))
-                return
+        let output: Result<String, Error> = await withCheckedContinuation { (continuation) in
+            process.terminationHandler = { (process) in
+                guard let data = try? stdout.fileHandleForReading.readToEnd(), let output = String(data: data, encoding: .utf8) else {
+                    continuation.resume(returning: .failure(Abort(.internalServerError)))
+                    return
+                }
+                continuation.resume(returning: .success(output))
             }
+            process.launch()
+        }
 
-            EnvResponse(
+        switch output {
+        case .success(let output):
+            return try await EnvResponse(
                 version: req.parameters.get("version"),
                 images: output.split(separator: "\n").map { String($0) }
             )
@@ -66,37 +70,41 @@ func routes(_ app: Application) throws {
                 headers: HTTPHeaders([("Cache-Control", "no-store")]),
                 for: req
             )
-            .cascade(to: promise)
+        case .failure(let error):
+            throw error
         }
-        process.launch()
-
-        return promise.futureResult
     }
 
-    app.on(.POST, "runner", ":version", "run", body: .collect(maxSize: "10mb")) { (req) -> EventLoopFuture<ExecutionResponse> in
+    app.on(.POST, "runner", ":version", "run", body: .collect(maxSize: "10mb")) { (req) -> ExecutionResponse in
         guard let version = req.parameters.get("version") else { throw Abort(.badRequest) }
         
         let parameter = try req.content.decode(ExecutionRequestParameter.self)
         let sandboxPath = URL(fileURLWithPath: app.directory.resourcesDirectory).appendingPathComponent("Sandbox")
         let runner = Runner( version: version, sandboxPath: sandboxPath)
 
-        let promise = req.eventLoop.makePromise(of: ExecutionResponse.self)
-        do {
-            try runner.run(
-                parameter: parameter,
-                onComplete: { (response) in
-                    promise.succeed(response)
-                },
-                onTimeout: { (response) in
-                    promise.succeed(response)
-                }
-            )
-        } catch {
+        let response: Result<ExecutionResponse, Error> = await withCheckedContinuation { (continuation) in
+            do {
+                try runner.run(
+                    parameter: parameter,
+                    onComplete: { (response) in
+                        continuation.resume(returning: .success(response))
+                    },
+                    onTimeout: { (response) in
+                        continuation.resume(returning: .success(response))
+                    }
+                )
+            } catch {
+                continuation.resume(returning: .failure(error))
+            }
+        }
+
+        switch response {
+        case .success(let response):
+            return response
+        case .failure(let error):
             req.logger.error("\(error)")
             throw error
         }
-
-        return promise.futureResult
     }
 
     app.webSocket("runner", ":version", "logs", ":nonce") { (req, ws) in
