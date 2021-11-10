@@ -12,5 +12,6 @@ for version in $RUNNER_VERSIONS; do
   fi
 done
 
+docker container prune --force
 docker image prune --force
 docker images
