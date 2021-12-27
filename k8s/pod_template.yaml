@@ -20,7 +20,7 @@ spec:
     apiVersion: apps/v1
     kind: Deployment
     name: %NAME%
-  minReplicas: 2
+  minReplicas: 3
   maxReplicas: 6
   metrics:
     - type: Resource
@@ -46,7 +46,7 @@ spec:
   selector:
     matchLabels:
       app.kubernetes.io/name: %NAME%
-  replicas: 2
+  replicas: 3
   strategy:
     type: RollingUpdate
     rollingUpdate:
