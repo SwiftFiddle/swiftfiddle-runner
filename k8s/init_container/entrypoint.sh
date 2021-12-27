@@ -12,6 +12,6 @@ for version in $RUNNER_VERSIONS; do
   fi
 done
 
-docker container prune --force
+docker container prune --force --filter "until=6h"
 docker image prune --force
 docker images
