@@ -34,7 +34,7 @@ spec:
         name: memory
         target:
           type: AverageValue
-          averageValue: 128Mi
+          averageValue: 256Mi
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -89,8 +89,8 @@ spec:
               cpu: 100m
               memory: 512Mi
             requests:
-              cpu: 10m
-              memory: 32Mi
+              cpu: 40m
+              memory: 128Mi
           volumeMounts:
             - name: docker-socket
               mountPath: /var/run/docker.sock
