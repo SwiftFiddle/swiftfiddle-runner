@@ -49,7 +49,7 @@ struct Runner {
                 .write(to: temporaryPath.appendingPathComponent("main.swift"))
 
             let process = Process(
-                args: "sh", temporaryPath.appendingPathComponent("sandobox.sh").path,
+                args: "sh", temporaryPath.appendingPathComponent("sandbox.sh").path,
                 "\(timeout)s",
                 "--volume",
                 "\(temporaryPath.path):/[REDACTED]",
@@ -153,6 +153,9 @@ struct Runner {
             guard ["swift", "swiftc"].contains(command) else { throw Abort(.badRequest) }
 
             // Security check
+            [";", "&", "&&", "||", "`", "(", ")", "#"].contains { <#String#> in
+                <#code#>
+            }
             if [";", "&", "&&", "||", "`", "(", ")", "#"].contains(where: { options.contains($0) }) {
                 throw Abort(.badRequest)
             }
