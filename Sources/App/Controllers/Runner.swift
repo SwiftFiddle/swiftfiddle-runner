@@ -153,9 +153,6 @@ struct Runner {
             guard ["swift", "swiftc"].contains(command) else { throw Abort(.badRequest) }
 
             // Security check
-            [";", "&", "&&", "||", "`", "(", ")", "#"].contains { <#String#> in
-                <#code#>
-            }
             if [";", "&", "&&", "||", "`", "(", ")", "#"].contains(where: { options.contains($0) }) {
                 throw Abort(.badRequest)
             }
