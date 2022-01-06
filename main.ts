@@ -58,11 +58,11 @@ router
   });
 
 const app = new Application();
-app.use(router.routes());
-app.use(router.allowedMethods());
 app.use((context) => {
   context.response.headers.set("Content-Type", "application/json");
   context.response.headers.set("Cache-Control", "no-store");
 });
+app.use(router.routes());
+app.use(router.allowedMethods());
 
 await app.listen({ port: 8080 });
