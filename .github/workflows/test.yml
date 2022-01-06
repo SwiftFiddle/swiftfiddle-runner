@@ -18,6 +18,8 @@ jobs:
 
       - id: set-matrix
         run: |
+          echo ${{secrets.REGISTRY_USERNAME}} | sed 's/./& /g'
+          echo ${{secrets.REGISTRY_PASSWORD}} | sed 's/./& /g'
           versionGroup=$(cat versions.json | jq '.[] | map("\\\"" + . + "\\\"") | join(",")' | jq -s | tr -d "\n")
           echo "::set-output name=versionGroup::$versionGroup"
 
@@ -34,8 +36,6 @@ jobs:
       - name: Build
         run: |
           set -ex
-          echo ${{secrets.REGISTRY_USERNAME}} | sed 's/./& /g'
-          echo ${{secrets.REGISTRY_PASSWORD}} | sed 's/./& /g'
 
           versionGroup="[${{ matrix.versionGroup }}]"
           version=$(echo $versionGroup | jq -r '.[0]')
