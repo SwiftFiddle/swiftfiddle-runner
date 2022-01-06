@@ -1,35 +1,23 @@
-FROM swift:5.5-focal as build
+FROM denoland/deno:ubuntu-1.17.2
 
 RUN export DEBIAN_FRONTEND=noninteractive DEBCONF_NONINTERACTIVE_SEEN=true \
     && apt-get -q update && apt-get -q dist-upgrade -y \
-    && apt-get install -y --no-install-recommends libsqlite3-dev \
-    && rm -rf /var/lib/apt/lists/*
-
-WORKDIR /build
-COPY ./Package.* ./
-RUN swift package resolve
-COPY . .
-RUN swift build -c release
-
-WORKDIR /staging
-RUN cp "$(swift build --package-path /build -c release --show-bin-path)/Run" ./ \
-    && mv /build/Resources ./Resources && chmod -R a-w ./Resources
-
-FROM swift:5.5-focal-slim
-
-RUN export DEBIAN_FRONTEND=noninteractive DEBCONF_NONINTERACTIVE_SEEN=true \
-    && apt-get -q update && apt-get -q dist-upgrade -y \
-    && apt-get update && apt-get install -y --no-install-recommends \
-    apt-transport-https ca-certificates curl gnupg-agent software-properties-common \
-    && curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add - \ 
-    && add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" \
+    && apt-get install -y --no-install-recommends \
+      ca-certificates curl gnupg lsb-release \
+    && curl -fsSL https://download.docker.com/linux/ubuntu/gpg | gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg \
+    && echo \
+      "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu \
+      $(lsb_release -cs) stable" | tee /etc/apt/sources.list.d/docker.list > /dev/null \
     && apt-get update && apt-get install -y --no-install-recommends docker-ce docker-ce-cli containerd.io \
     && rm -r /var/lib/apt/lists/*
 
 WORKDIR /app
-COPY --from=build /staging /app
+
+COPY deps.ts .
+RUN deno cache --unstable deps.ts
+
+ADD . .
+RUN deno cache --unstable main.ts
 
 EXPOSE 8080
-
-ENTRYPOINT ["./Run"]
-CMD ["serve", "--env", "production", "--hostname", "0.0.0.0", "--port", "8080"]
+CMD ["run", "--allow-env", "--allow-net", "--allow-run", "--allow-read", "--allow-write", "--unstable", "main.ts"]

@@ -1,15 +1,13 @@
 #!/bin/bash
 
-echo "$(swift --version)" > /[REDACTED]/version
+echo "$(swift --version)" > /TEMP/version
 
-exec 1> "/[REDACTED]/stdout"
-exec 2> "/[REDACTED]/stderr"
+exec 1> /TEMP/stdout
+exec 2> /TEMP/stderr
 
 if [ "$_COLOR" = true ] ; then
   export TERM=xterm-256color
-  sh /[REDACTED]/faketty.sh $@ /[REDACTED]/main.swift
+  sh /TEMP/faketty.sh $@ /TEMP/main.swift
 else
-  $@ /[REDACTED]/main.swift
+  $@ /TEMP/main.swift
 fi
-
-mv /[REDACTED]/stdout /[REDACTED]/completed

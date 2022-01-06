@@ -1,2 +1,8 @@
-.build/
-.swiftpm/
+.DS_Store
+.dockerignore
+.git
+.github
+.gitignore
+.vscode
+Dockerfile
+k8s/

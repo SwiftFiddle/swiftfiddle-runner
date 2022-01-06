@@ -16,15 +16,13 @@ fi
 containerId=$(docker run --pull never --env _COLOR=$_COLOR --rm --detach --ulimit fsize=10000000:10000000 --pids-limit 20 --memory 256m --cpus="0.2" "$@")
 status=$($timeoutCommand "$to" docker wait "$containerId" || true)
 docker kill $containerId &> /dev/null
-docker rm -f $containerId &> /dev/null
 
-statusFile="${2%:/\[REDACTED]}/status"
-/bin/echo -n "status: " > "$statusFile"
+statusFile="${2%:/\TEMP}/status"
 if [ -z "$status" ]; then
-  /bin/echo 'timeout' >> "$statusFile"
+  /bin/echo -n 'timeout' >> "$statusFile"
 else
-  /bin/echo "exited($status)" >> "$statusFile"
+  /bin/echo -n "$status" >> "$statusFile"
 fi
 
 docker logs $containerId | sed 's/^/\t/'
-docker rm $containerId &> /dev/null
+docker rm -f $containerId &> /dev/null
