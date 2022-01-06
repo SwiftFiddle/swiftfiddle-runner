@@ -23,21 +23,33 @@ router
       ],
     });
 
-    const processStatus = await process.status();
+    context.response.headers.set("Cache-Control", "no-store");
     context.response.body = {
-      status: processStatus.success ? "pass" : "fail",
+      status: await process.status() ? "pass" : "fail",
       version,
     };
   })
   .post("/runner/:version/run", async (context) => {
     const version = context.params.version;
-    const body = await context.request.body();
+    const versions = JSON
+      .parse(
+        await Deno.readTextFile(path.join(Deno.cwd(), "versions.json")),
+      )
+      .flat();
+    if (!versions.includes(version)) {
+      context.response.status = 400;
+      context.response.body = {
+        status: "fail",
+        error: `Version ${version} is not supported.`,
+      };
+      return;
+    }
 
-    const parameter: RunnerParameters = await body.value;
-    const sandboxPath = path.join(Deno.cwd(), "sandbox");
-    const runner = new Runner(version, sandboxPath);
+    const parameter: RunnerParameters = await context.request.body().value;
 
+    const runner = new Runner(version, path.join(Deno.cwd(), "sandbox"));
     const result = await runner.run(parameter);
+
     context.response.body = result;
   })
   .get("/runner/:version/logs/:nonce", (context) => {
