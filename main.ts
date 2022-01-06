@@ -34,7 +34,7 @@ router
     const body = await context.request.body();
 
     const parameter: RunnerParameters = await body.value;
-    const sandboxPath = path.join(Deno.cwd(), "resources", "sandbox");
+    const sandboxPath = path.join(Deno.cwd(), "sandbox");
     const runner = new Runner(version, sandboxPath);
 
     const result = await runner.run(parameter);
