@@ -2,25 +2,25 @@ import { copy, os, path, Status } from "./deps.ts";
 
 export class Runner {
   private version: string;
-  private sandboxPath: string;
+  private sandbox: string;
   private static workspaces: { [key: string]: string } = {};
 
-  constructor(version: string, sandboxPath: string) {
+  constructor(version: string, sandbox: string) {
     this.version = version;
-    this.sandboxPath = sandboxPath;
+    this.sandbox = sandbox;
   }
 
   async run(parameters: RunnerParameters): Promise<{ [key: string]: string }> {
-    const configuration = new Configuration(this.version, parameters);
+    const cfg = new Configuration(this.version, parameters);
 
     const random = crypto.randomUUID();
     const tmpdir = os.tmpdir() || "/tmp";
     const workspace = path.join(
       tmpdir,
-      `${configuration.nonce}_${random}`,
+      `${cfg.nonce}_${random}`,
     );
-    Runner.workspaces[configuration.nonce] = workspace;
-    await copy(this.sandboxPath, workspace);
+    Runner.workspaces[cfg.nonce] = workspace;
+    await copy(this.sandbox, workspace);
 
     await Deno.writeTextFile(
       path.join(workspace, "main.swift"),
@@ -28,7 +28,7 @@ export class Runner {
 setbuf(stdout, nil)
 
 /* Start user code. Do not edit comment generated here */
-${configuration.code}
+${cfg.code}
 /* End user code. Do not edit comment generated here */
 `,
     );
@@ -37,25 +37,20 @@ ${configuration.code}
       cmd: [
         "sh",
         path.join(workspace, "sandbox.sh"),
-        `${configuration.timeout}s`,
+        `${cfg.timeout}s`,
         "--volume",
         `${workspace}:/TEMP`,
-        configuration.image,
+        cfg.image,
         "sh",
         "/TEMP/run.sh",
-        [configuration.command, configuration.options].join(" "),
+        [cfg.command, cfg.options].join(" "),
       ],
-      env: configuration.environment.toObject(),
+      env: cfg.environment.toObject(),
     });
-
-    const interval = 0.2;
-    let counter = 0;
 
     const promise = new Promise<{ [key: string]: string }>(
       (resolve, _reject) => {
         const id = setInterval(async () => {
-          counter++;
-
           const status = await readFile(
             path.join(workspace, "status"),
           );
@@ -75,19 +70,20 @@ ${configuration.code}
 
           let additionalError = "";
           if (status.trim() === "timeout") {
-            const timeout = configuration.timeout;
+            const timeout = cfg.timeout;
             additionalError =
               `Maximum execution time of ${timeout} seconds exceeded.\n`;
           }
+
+          await Deno.remove(workspace, { recursive: true });
+          clearInterval(id);
+
           resolve({
             output: stdout,
             errors: fixLineNumber(`${stderr}${additionalError}`),
             version,
           });
-
-          await Deno.remove(workspace, { recursive: true });
-          clearInterval(id);
-        }, interval * 1000);
+        }, 200);
       },
     );
 

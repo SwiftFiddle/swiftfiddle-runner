@@ -51,6 +51,7 @@ router
     const runner = new Runner(version, path.join(Deno.cwd(), "sandbox"));
     const result = await runner.run(parameter);
 
+    context.response.headers.set("Cache-Control", "no-store");
     context.response.body = result;
   })
   .get("/runner/:version/logs/:nonce", async (context) => {
