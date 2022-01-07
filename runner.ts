@@ -3,7 +3,7 @@ import { copy, os, path, Status } from "./deps.ts";
 export class Runner {
   private version: string;
   private sandboxPath: string;
-  private static workingDirectries: { [key: string]: string } = {};
+  private static workspaces: { [key: string]: string } = {};
 
   constructor(version: string, sandboxPath: string) {
     this.version = version;
@@ -15,15 +15,15 @@ export class Runner {
 
     const random = crypto.randomUUID();
     const tmpdir = os.tmpdir() || "/tmp";
-    const workingDirectory = path.join(
+    const workspace = path.join(
       tmpdir,
       `${configuration.nonce}_${random}`,
     );
-    Runner.workingDirectries[configuration.nonce] = workingDirectory;
-    await copy(this.sandboxPath, workingDirectory);
+    Runner.workspaces[configuration.nonce] = workspace;
+    await copy(this.sandboxPath, workspace);
 
     await Deno.writeTextFile(
-      path.join(workingDirectory, "main.swift"),
+      path.join(workspace, "main.swift"),
       `import Glibc
 setbuf(stdout, nil)
 
@@ -36,10 +36,10 @@ ${configuration.code}
     Deno.run({
       cmd: [
         "sh",
-        path.join(workingDirectory, "sandbox.sh"),
+        path.join(workspace, "sandbox.sh"),
         `${configuration.timeout}s`,
         "--volume",
-        `${workingDirectory}:/TEMP`,
+        `${workspace}:/TEMP`,
         configuration.image,
         "sh",
         "/TEMP/run.sh",
@@ -57,23 +57,23 @@ ${configuration.code}
           counter++;
 
           const status = await readFile(
-            path.join(workingDirectory, "status"),
+            path.join(workspace, "status"),
           );
           if (!status) {
             return;
           }
 
           const stdout = await readFile(
-            path.join(workingDirectory, "stdout"),
+            path.join(workspace, "stdout"),
           ) || "";
           const stderr = await readFile(
-            path.join(workingDirectory, "stderr"),
+            path.join(workspace, "stderr"),
           ) || "";
           const version = await readFile(
-            path.join(workingDirectory, "version"),
+            path.join(workspace, "version"),
           ) || "N/A";
 
-          await Deno.remove(workingDirectory, { recursive: true });
+          await Deno.remove(workspace, { recursive: true });
           clearInterval(id);
 
           let additionalError = "";
@@ -111,18 +111,18 @@ ${configuration.code}
     }
 
     private async interval(): Promise<void> {
-      const workingDirectory = Runner.workingDirectory(this.nonce);
-      if (workingDirectory === undefined) {
+      const workspace = Runner.workspace(this.nonce);
+      if (workspace === undefined) {
         return;
       }
 
-      const version = await readFile(path.join(workingDirectory, "version"));
+      const version = await readFile(path.join(workspace, "version"));
       if (!version) {
         return;
       }
-      const stderr = await readFile(path.join(workingDirectory, "stderr")) ||
+      const stderr = await readFile(path.join(workspace, "stderr")) ||
         "";
-      const stdout = await readFile(path.join(workingDirectory, "stdout")) ||
+      const stdout = await readFile(path.join(workspace, "stdout")) ||
         "";
 
       this.onmessage({
@@ -132,10 +132,11 @@ ${configuration.code}
       });
 
       const status = await readFile(
-        path.join(workingDirectory, "status"),
+        path.join(workspace, "status"),
       );
       if (status) {
         clearInterval(this.id);
+        delete Runner.workspaces[this.nonce];
       }
     }
   };
@@ -150,24 +151,18 @@ ${configuration.code}
     return tag;
   }
 
-  private static workingDirectory(nonce: string): string {
-    return Runner.workingDirectries[nonce];
+  private static workspace(nonce: string): string {
+    return Runner.workspaces[nonce];
   }
 }
 
-async function readFile(filename: string): Promise<string | undefined> {
-  try {
-    return await Deno.readTextFile(filename);
-  } catch {
-    return undefined;
-  }
-}
-
-function fixLineNumber(message: string): string {
-  const regexp = /\/TEMP\/main\.swift:(\d+):(\d+):\s/g;
-  return message.replace(regexp, (_match, line, column) => {
-    return `/main.swift:${line - 4}:${column}: `;
-  });
+export interface RunnerParameters {
+  command?: string;
+  options?: string;
+  code?: string;
+  timeout?: number;
+  _color?: boolean;
+  _nonce?: string;
 }
 
 class Configuration {
@@ -217,11 +212,17 @@ class Configuration {
   }
 }
 
-export interface RunnerParameters {
-  command?: string;
-  options?: string;
-  code?: string;
-  timeout?: number;
-  _color?: boolean;
-  _nonce?: string;
+async function readFile(filename: string): Promise<string | undefined> {
+  try {
+    return await Deno.readTextFile(filename);
+  } catch {
+    return undefined;
+  }
+}
+
+function fixLineNumber(message: string): string {
+  const regexp = /\/TEMP\/main\.swift:(\d+):(\d+):\s/g;
+  return message.replace(regexp, (_match, line, column) => {
+    return `/main.swift:${line - 4}:${column}: `;
+  });
 }
