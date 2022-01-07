@@ -54,9 +54,9 @@ router
 
     context.response.body = result;
   })
-  .get("/runner/:version/logs/:nonce", (context) => {
+  .get("/runner/:version/logs/:nonce", async (context) => {
     const nonce = context.params.nonce;
-    const socket = context.upgrade();
+    const socket = await context.upgrade();
     sockets.add(socket);
 
     socket.onopen = () => {
