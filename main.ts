@@ -1,8 +1,6 @@
 import { Application, path, Router } from "./deps.ts";
 import { Runner, RunnerParameters } from "./runner.ts";
 
-const sockets = new Set<WebSocket>();
-
 const router = new Router();
 router
   .get("/", (context) => {
@@ -47,7 +45,8 @@ router
       return;
     }
 
-    const parameter: RunnerParameters = await context.request.body().value;
+    const body = await context.request.body();
+    const parameter: RunnerParameters = await body.value;
 
     const runner = new Runner(version, path.join(Deno.cwd(), "sandbox"));
     const result = await runner.run(parameter);
@@ -57,7 +56,6 @@ router
   .get("/runner/:version/logs/:nonce", async (context) => {
     const nonce = context.params.nonce;
     const socket = await context.upgrade();
-    sockets.add(socket);
 
     socket.onopen = () => {
       const observer = new Runner.Observer(nonce);
@@ -68,7 +66,6 @@ router
       };
       socket.onclose = () => {
         observer.stop();
-        sockets.delete(socket);
       };
     };
   });

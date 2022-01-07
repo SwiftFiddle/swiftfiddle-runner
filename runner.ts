@@ -73,9 +73,6 @@ ${configuration.code}
             path.join(workspace, "version"),
           ) || "N/A";
 
-          await Deno.remove(workspace, { recursive: true });
-          clearInterval(id);
-
           let additionalError = "";
           if (status.trim() === "timeout") {
             const timeout = configuration.timeout;
@@ -87,6 +84,9 @@ ${configuration.code}
             errors: fixLineNumber(`${stderr}${additionalError}`),
             version,
           });
+
+          await Deno.remove(workspace, { recursive: true });
+          clearInterval(id);
         }, interval * 1000);
       },
     );
