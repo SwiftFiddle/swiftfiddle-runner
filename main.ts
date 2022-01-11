@@ -19,7 +19,7 @@ router
         Runner.imageTag(version),
         "sh",
         "-c",
-        "echo '()' | timeout 10 swiftc -",
+        "echo '()' | timeout 20 swiftc -",
       ],
     });
 
