@@ -6,7 +6,8 @@ echo "$DOCKER_HUB_ACCESS_TOKEN" | docker login --username="$DOCKER_HUB_USERNAME"
 for version in $RUNNER_VERSIONS; do
   if [[ "$version" == nightly* ]] ;
   then
-    docker pull "swiftlang/swift:$version"
+    docker pull "swiftlang/swift:$version-bionic"
+    docker tag "swiftlang/swift:$version-bionic" "swiftlang/swift:$version"
   else
     docker pull "swiftfiddle/swift:$version"
   fi
