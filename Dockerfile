@@ -1,4 +1,21 @@
-FROM denoland/deno:ubuntu-1.17.2
+FROM swift:5.5-focal as build
+
+RUN export DEBIAN_FRONTEND=noninteractive DEBCONF_NONINTERACTIVE_SEEN=true \
+    && apt-get -q update && apt-get -q dist-upgrade -y \
+    && apt-get install -y --no-install-recommends libsqlite3-dev \
+    && rm -rf /var/lib/apt/lists/*
+
+WORKDIR /build
+COPY ./Package.* ./
+RUN swift package resolve
+COPY . .
+RUN swift build -c release
+
+WORKDIR /staging
+RUN cp "$(swift build --package-path /build -c release --show-bin-path)/Run" ./ \
+    && mv /build/Resources ./Resources && chmod -R a-w ./Resources
+
+FROM swift:5.5-focal-slim
 
 RUN export DEBIAN_FRONTEND=noninteractive DEBCONF_NONINTERACTIVE_SEEN=true \
     && apt-get -q update && apt-get -q dist-upgrade -y \
@@ -12,12 +29,9 @@ RUN export DEBIAN_FRONTEND=noninteractive DEBCONF_NONINTERACTIVE_SEEN=true \
     && rm -r /var/lib/apt/lists/*
 
 WORKDIR /app
-
-COPY deps.ts .
-RUN deno cache --unstable deps.ts
-
-ADD . .
-RUN deno cache --unstable main.ts
+COPY --from=build /staging /app
 
 EXPOSE 8080
-CMD ["run", "--allow-env", "--allow-net", "--allow-run", "--allow-read", "--allow-write", "--unstable", "main.ts"]
+
+ENTRYPOINT ["./Run"]
+CMD ["serve", "--env", "production", "--hostname", "0.0.0.0", "--port", "8080"]
