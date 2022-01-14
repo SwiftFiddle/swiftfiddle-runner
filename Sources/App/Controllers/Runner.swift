@@ -166,7 +166,7 @@ func imageTag(from version: String) -> String {
 
 let regex = try! NSRegularExpression(pattern: #"\/main\.swift:(\d+):(\d+):\s"#, options: [])
 func fixLineNumber(message: String) -> String {
-    var message = message.replacingOccurrences(of: "/[REDACTED]", with: "")
+    var message = message.replacingOccurrences(of: "/TEMP", with: "")
 
     let matches = regex.matches(
         in: message,
