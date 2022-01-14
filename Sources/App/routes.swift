@@ -32,7 +32,6 @@ func routes(_ app: Application) throws {
             } catch {
                 continuation.resume(throwing: error)
             }
-            process.launch()
         }
         return try await HealthCheckResponse(status: status)
             .encodeResponse(
