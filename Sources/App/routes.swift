@@ -22,10 +22,15 @@ func routes(_ app: Application) throws {
             "echo '()' | timeout 10 swiftc -",
         ]
 
-        let status: HTTPResponseStatus = await withCheckedContinuation { (continuation) in
+        let status: HTTPResponseStatus = try await withCheckedThrowingContinuation { (continuation) in
             process.terminationHandler = { (process) in
                 let status: HTTPResponseStatus = process.terminationStatus == 0 ? .ok : .internalServerError
                 continuation.resume(returning: status)
+            }
+            do {
+                try process.run()
+            } catch {
+                continuation.resume(throwing: error)
             }
             process.launch()
         }
@@ -35,44 +40,6 @@ func routes(_ app: Application) throws {
                 headers: HTTPHeaders([("Cache-Control", "no-store")]),
                 for: req
             )
-    }
-
-    app.get("runner", ":version", "env") { (req) -> Response in
-        let process = Process()
-        process.executableURL = URL(fileURLWithPath: "/usr/bin/env")
-        process.arguments = [
-            "docker",
-            "images",
-        ]
-
-        let stdout = Pipe()
-        process.standardOutput = stdout
-
-        let output: Result<String, Error> = await withCheckedContinuation { (continuation) in
-            process.terminationHandler = { (process) in
-                guard let data = try? stdout.fileHandleForReading.readToEnd(), let output = String(data: data, encoding: .utf8) else {
-                    continuation.resume(returning: .failure(Abort(.internalServerError)))
-                    return
-                }
-                continuation.resume(returning: .success(output))
-            }
-            process.launch()
-        }
-
-        switch output {
-        case .success(let output):
-            return try await EnvResponse(
-                version: req.parameters.get("version"),
-                images: output.split(separator: "\n").map { String($0) }
-            )
-            .encodeResponse(
-                status: .ok,
-                headers: HTTPHeaders([("Cache-Control", "no-store")]),
-                for: req
-            )
-        case .failure(let error):
-            throw error
-        }
     }
 
     app.on(.POST, "runner", ":version", "run", body: .collect(maxSize: "10mb")) { (req) -> ExecutionResponse in
