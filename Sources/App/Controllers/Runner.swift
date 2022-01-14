@@ -17,7 +17,7 @@ struct Runner {
         let options = parameter.options
         let timeout = parameter.timeout
         let nonce = parameter.nonce
-        let envVars = parameter.environment
+        let environmet = parameter.environment
         let image = parameter.image
         let code = parameter.code
 
@@ -55,7 +55,7 @@ struct Runner {
                 "/TEMP/run.sh",
                 [command, options].joined(separator: " "),
             ]
-            process.environment = envVars
+            process.environment = environmet
             try process.run()
         } catch {
             WorkingDirectoryRegistry.shared.remove(path: temporaryPath)
