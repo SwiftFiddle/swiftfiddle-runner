@@ -56,7 +56,7 @@ struct Runner {
                 [command, options].joined(separator: " "),
             ]
             process.environment = envVars
-            process.run()
+            try process.run()
         } catch {
             WorkingDirectoryRegistry.shared.remove(path: temporaryPath)
             try? fileManager.removeItem(at: temporaryPath)
