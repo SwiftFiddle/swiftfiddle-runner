@@ -38,7 +38,6 @@ struct Runner {
 
                 /* Start user code. Do not edit comment generated here */
                 \(code)
-                /* End user code. Do not edit comment generated here */
                 """
                 .data(using: .utf8)?
                 .write(to: temporaryPath.appendingPathComponent("main.swift"))
