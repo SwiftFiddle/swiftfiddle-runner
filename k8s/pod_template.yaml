@@ -84,12 +84,13 @@ spec:
             timeoutSeconds: 20
             periodSeconds: 30
             failureThreshold: 1
-          startupProbe:
+          readinessProbe:
             httpGet:
               path: /runner/%VERSION%/health
               port: 8080
-            failureThreshold: 30
-            periodSeconds: 20
+            timeoutSeconds: 20
+            periodSeconds: 30
+            failureThreshold: 1
           resources:
             limits:
               cpu: 100m
