@@ -88,8 +88,8 @@ spec:
             httpGet:
               path: /runner/%VERSION%/health
               port: 8080
-            failureThreshold: 10
-            periodSeconds: 30
+            failureThreshold: 30
+            periodSeconds: 20
           resources:
             limits:
               cpu: 100m
