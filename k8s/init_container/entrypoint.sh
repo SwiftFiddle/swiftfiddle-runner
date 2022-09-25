@@ -4,8 +4,11 @@ set -ex
 echo "$DOCKER_HUB_ACCESS_TOKEN" | docker login --username="$DOCKER_HUB_USERNAME" --password-stdin
 
 for version in $RUNNER_VERSIONS; do
-  if [[ "$version" == nightly* ]] ;
+  if [[ "$version" == nightly-main ]] ;
   then
+    docker pull "swiftlang/swift:$version-focal"
+    docker tag "swiftlang/swift:$version-focal" "swiftlang/swift:$version"
+  elif [[ "$version" == nightly* ]] ;
     docker pull "swiftlang/swift:$version-bionic"
     docker tag "swiftlang/swift:$version-bionic" "swiftlang/swift:$version"
   else
