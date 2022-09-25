@@ -9,6 +9,7 @@ for version in $RUNNER_VERSIONS; do
     docker pull "swiftlang/swift:$version-focal"
     docker tag "swiftlang/swift:$version-focal" "swiftlang/swift:$version"
   elif [[ "$version" == nightly* ]] ;
+  then
     docker pull "swiftlang/swift:$version-bionic"
     docker tag "swiftlang/swift:$version-bionic" "swiftlang/swift:$version"
   else
