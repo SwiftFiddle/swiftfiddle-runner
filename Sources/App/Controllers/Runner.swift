@@ -121,8 +121,9 @@ struct Runner {
         init(version: String, parameter: ExecutionRequestParameter) throws {
             let command = parameter.command ?? "swift"
             let options = parameter.options ?? {
+                let enableBareSlashRegexLiteral = version >= "5.7" ? "-enable-bare-slash-regex-literal" : ""
                 if version.compare("5.3", options: .numeric) != .orderedAscending {
-                    return "-I ./swiftfiddle.com/_Packages/.build/release/ -L ./swiftfiddle.com/_Packages/.build/release/ -l_Packages"
+                    return "-I ./swiftfiddle.com/_Packages/.build/release/ -L ./swiftfiddle.com/_Packages/.build/release/ -l_Packages \(enableBareSlashRegexLiteral)"
                 }
                 return ""
             }()
