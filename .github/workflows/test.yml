@@ -19,7 +19,7 @@ jobs:
       - id: set-matrix
         run: |
           versionGroup=$(cat versions.json | jq '.[] | map("\\\"" + . + "\\\"") | join(",")' | jq -s | tr -d "\n")
-          echo "::set-output name=versionGroup::$versionGroup"
+          echo "versionGroup=$versionGroup" >> $GITHUB_OUTPUT
 
   test:
     runs-on: ubuntu-latest
