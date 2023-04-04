@@ -4,7 +4,7 @@ set -ex
 echo "$DOCKER_HUB_ACCESS_TOKEN" | docker login --username="$DOCKER_HUB_USERNAME" --password-stdin
 
 for version in $RUNNER_VERSIONS; do
-  if [[ "$version" == nightly-main || "$version" == nightly-5.8 ]] ;
+  if [[ "$version" == nightly-main || "$version" == nightly-5.8 || "$version" == nightly-5.9 ]] ;
   then
     docker pull "swiftlang/swift:$version-focal"
     docker tag "swiftlang/swift:$version-focal" "swiftlang/swift:$version"
