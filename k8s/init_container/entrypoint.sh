@@ -14,7 +14,7 @@ for version in $RUNNER_VERSIONS; do
     docker tag "swiftlang/swift:$version-bionic" "swiftlang/swift:$version"
   elif [[ "$version" == 2.2 ]] ;
   then
-    ;
+    :
   else
     docker pull "swiftfiddle/swift:$version"
   fi
