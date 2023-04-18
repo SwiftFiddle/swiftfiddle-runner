@@ -46,7 +46,7 @@ func routes(_ app: Application) throws {
         guard let data = req.body.data else { throw Abort(.badRequest) }
 
         switch version {
-        case "2.2", "2.2.1":
+        case "2.2", "2.2.1", "3.0", "3.0.1", "3.0.2", "3.1", "3.1.1":
             let clientRequest = ClientRequest(
                 method: .POST,
                 url: URI(
