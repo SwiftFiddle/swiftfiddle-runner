@@ -43,6 +43,25 @@ func routes(_ app: Application) throws {
 
     app.on(.POST, "runner", ":version", "run", body: .collect(maxSize: "10mb")) { (req) -> ExecutionResponse in
         guard let version = req.parameters.get("version") else { throw Abort(.badRequest) }
+        guard let data = req.body.data else { throw Abort(.badRequest) }
+
+        switch version {
+        case "2.2":
+            let clientRequest = ClientRequest(
+                method: .POST,
+                url: URI(
+                    scheme: .https,
+                    host: "swiftfiddle-runner-functions-22.blackwater-cac8eec1.westus2.azurecontainerapps.io",
+                    path: "/runner/2.2/run"
+                ),
+                headers: HTTPHeaders([("Content-type", "application/json")]),
+                body: data
+            )
+            return try await req.client.send(clientRequest)
+                .content.decode(ExecutionResponse.self)
+        default:
+            break
+        }
         
         let parameter = try req.content.decode(ExecutionRequestParameter.self)
         let sandboxPath = URL(fileURLWithPath: app.directory.resourcesDirectory).appendingPathComponent("Sandbox")
