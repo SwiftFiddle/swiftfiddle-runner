@@ -57,8 +57,12 @@ func routes(_ app: Application) throws {
                 headers: HTTPHeaders([("Content-type", "application/json")]),
                 body: data
             )
-            return try await req.client.send(clientRequest)
-                .content.decode(ExecutionResponse.self)
+
+            guard let byteBuffer = try await req.client.send(clientRequest).body else { throw Abort(.internalServerError) }
+            guard let response = try byteBuffer.getJSONDecodable(ExecutionResponse.self, at: 0, length: byteBuffer.readableBytes) else {
+                throw Abort(.internalServerError)
+            }
+            return response
         default:
             break
         }
