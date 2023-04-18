@@ -46,13 +46,13 @@ func routes(_ app: Application) throws {
         guard let data = req.body.data else { throw Abort(.badRequest) }
 
         switch version {
-        case "2.2":
+        case "2.2", "2.2.1":
             let clientRequest = ClientRequest(
                 method: .POST,
                 url: URI(
                     scheme: .https,
-                    host: "swiftfiddle-runner-functions-22.blackwater-cac8eec1.westus2.azurecontainerapps.io",
-                    path: "/runner/2.2/run"
+                    host: "swiftfiddle-runner-functions-\(version.split(separator: ".").joined()).blackwater-cac8eec1.westus2.azurecontainerapps.io",
+                    path: "/runner/\(version)/run"
                 ),
                 headers: HTTPHeaders([("Content-type", "application/json")]),
                 body: data
