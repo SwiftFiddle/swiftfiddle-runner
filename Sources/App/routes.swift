@@ -65,7 +65,7 @@ func routes(_ app: Application) throws {
                 method: .POST,
                 url: URI(
                     scheme: .https,
-                    host: "runner-functions-\(version.split(separator: ".").joined()).blackwater-cac8eec1.westus2.azurecontainerapps.io",
+                    host: "runner-functions-\(version.split(separator: ".").joined().split(separator: "-").joined()).blackwater-cac8eec1.westus2.azurecontainerapps.io",
                     path: "/runner/\(version)/run"
                 ),
                 headers: HTTPHeaders([("Content-type", "application/json")]),
