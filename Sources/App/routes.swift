@@ -9,7 +9,8 @@ func routes(_ app: Application) throws {
         guard let version = req.parameters.get("version") else { throw Abort(.badRequest) }
 
         switch version {
-        case "2.2", "2.2.1", "3.0", "3.0.1", "3.0.2", "3.1", "3.1.1":
+        case "2.2", "2.2.1", "3.0", "3.0.1", "3.0.2", "3.1", "3.1.1",
+            "nightly-5.3", "nightly-5.4", "nightly-5.5", "nightly-5.6":
             let status = HTTPResponseStatus.ok
             return try await HealthCheckResponse(status: status)
                 .encodeResponse(
@@ -59,6 +60,23 @@ func routes(_ app: Application) throws {
         guard let data = req.body.data else { throw Abort(.badRequest) }
 
         switch version {
+        case "nightly-5.3", "nightly-5.4", "nightly-5.5", "nightly-5.6":
+            let clientRequest = ClientRequest(
+                method: .POST,
+                url: URI(
+                    scheme: .https,
+                    host: "runner-functions-\(version.split(separator: ".").joined()).blackwater-cac8eec1.westus2.azurecontainerapps.io",
+                    path: "/runner/\(version)/run"
+                ),
+                headers: HTTPHeaders([("Content-type", "application/json")]),
+                body: data
+            )
+
+            guard let byteBuffer = try await req.client.send(clientRequest).body else { throw Abort(.internalServerError) }
+            guard let response = try byteBuffer.getJSONDecodable(ExecutionResponse.self, at: 0, length: byteBuffer.readableBytes) else {
+                throw Abort(.internalServerError)
+            }
+            return response
         case "2.2", "2.2.1", "3.0", "3.0.1", "3.0.2", "3.1", "3.1.1":
             let clientRequest = ClientRequest(
                 method: .POST,
