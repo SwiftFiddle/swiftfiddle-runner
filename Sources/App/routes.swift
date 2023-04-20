@@ -8,6 +8,19 @@ func routes(_ app: Application) throws {
     app.get("runner", ":version", "health") { (req) -> Response in
         guard let version = req.parameters.get("version") else { throw Abort(.badRequest) }
 
+        switch version {
+        case "2.2", "2.2.1", "3.0", "3.0.1", "3.0.2", "3.1", "3.1.1":
+            let status = HTTPResponseStatus.ok
+            return try await HealthCheckResponse(status: status)
+                .encodeResponse(
+                    status: status,
+                    headers: HTTPHeaders([("Cache-Control", "no-store")]),
+                    for: req
+                )
+        default:
+            break
+        }
+
         let process = Process()
         process.executableURL = URL(fileURLWithPath: "/usr/bin/env")
         process.arguments = [
@@ -22,7 +35,7 @@ func routes(_ app: Application) throws {
             "echo '()' | timeout 10 swiftc -",
         ]
 
-        let status: HTTPResponseStatus = try await withCheckedThrowingContinuation { (continuation) in
+        let status = try await withCheckedThrowingContinuation { (continuation) in
             process.terminationHandler = { (process) in
                 let status: HTTPResponseStatus = process.terminationStatus == 0 ? .ok : .internalServerError
                 continuation.resume(returning: status)
