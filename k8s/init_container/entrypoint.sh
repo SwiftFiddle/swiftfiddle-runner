@@ -4,10 +4,10 @@ set -ex
 echo "$DOCKER_HUB_ACCESS_TOKEN" | docker login --username="$DOCKER_HUB_USERNAME" --password-stdin
 
 for version in $RUNNER_VERSIONS; do
-  if [[ "$version" == nightly-main || "$version" == nightly-5.7 || "$version" == nightly-5.8 || "$version" == nightly-5.9 ]] ;
+  if [[ "$version" == nightly-main || "$version" == nightly-5.7 || "$version" == nightly-5.8 || "$version" == nightly-5.9 || "$version" == nightly-5.10 ]] ;
   then
-    docker pull "swiftlang/swift:$version-focal"
-    docker tag "swiftlang/swift:$version-focal" "swiftlang/swift:$version"
+    docker pull "swiftlang/swift:$version-jammy"
+    docker tag "swiftlang/swift:$version-jammy" "swiftlang/swift:$version"
   elif [[ "$version" == nightly* ]] ;
   then
     :
