@@ -1,4 +1,4 @@
-FROM swift:5.8-focal as build
+FROM swift:5.9-focal as build
 
 RUN export DEBIAN_FRONTEND=noninteractive DEBCONF_NONINTERACTIVE_SEEN=true \
     && apt-get -q update && apt-get -q dist-upgrade -y \
@@ -15,7 +15,7 @@ WORKDIR /staging
 RUN cp "$(swift build --package-path /build -c release --show-bin-path)/Run" ./ \
     && mv /build/Resources ./Resources && chmod -R a-w ./Resources
 
-FROM swift:5.8-focal-slim
+FROM swift:5.9-focal-slim
 
 RUN export DEBIAN_FRONTEND=noninteractive DEBCONF_NONINTERACTIVE_SEEN=true \
     && apt-get -q update && apt-get -q dist-upgrade -y \
