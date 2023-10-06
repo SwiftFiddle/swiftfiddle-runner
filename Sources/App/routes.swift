@@ -10,7 +10,7 @@ func routes(_ app: Application) throws {
 
     switch version {
     case "2.2", "2.2.1", "3.0", "3.0.1", "3.0.2", "3.1", "3.1.1",
-      "5.0", "5.0.1", "5.0.2", "5.0.3",
+      "5.0", "5.0.1", "5.0.2", "5.0.3", "5.1", "5.1.1", "5.1.2", "5.1.3", "5.1.4", "5.1.5",
       "nightly-5.3", "nightly-5.4", "nightly-5.5", "nightly-5.6":
       let status = HTTPResponseStatus.ok
       return try await HealthCheckResponse(status: status)
@@ -78,7 +78,7 @@ func routes(_ app: Application) throws {
         throw Abort(.internalServerError)
       }
       return response
-    case "2.2", "2.2.1", "3.0", "3.0.1", "3.0.2", "3.1", "3.1.1", "5.0", "5.0.1", "5.0.2", "5.0.3":
+    case "2.2", "2.2.1", "3.0", "3.0.1", "3.0.2", "3.1", "3.1.1", "5.0", "5.0.1", "5.0.2", "5.0.3", "5.1", "5.1.1", "5.1.2", "5.1.3", "5.1.4", "5.1.5":
       let clientRequest = ClientRequest(
         method: .POST,
         url: URI(
