@@ -24,7 +24,7 @@ jobs:
     outputs:
       versionGroup: ${{ steps.set-matrix.outputs.versionGroup }}
     steps:
-      - uses: actions/checkout@8ade135a41bc03ea155e62e844d188df1ea18608 # v4
+      - uses: actions/checkout@v4
 
       - id: set-matrix
         run: |
@@ -39,7 +39,7 @@ jobs:
       matrix:
         versionGroup: ${{ fromJson(needs.matrix.outputs.versionGroup) }}
     steps:
-      - uses: actions/checkout@8ade135a41bc03ea155e62e844d188df1ea18608 # v4
+      - uses: actions/checkout@v4
 
       - uses: azure/docker-login@v1
         with:
@@ -78,7 +78,7 @@ jobs:
         versionGroup: ${{ fromJson(needs.matrix.outputs.versionGroup) }}
       max-parallel: 1
     steps:
-      - uses: actions/checkout@8ade135a41bc03ea155e62e844d188df1ea18608 # v4
+      - uses: actions/checkout@v4
 
       - uses: azure/setup-kubectl@v3
       - uses: azure/login@v1
