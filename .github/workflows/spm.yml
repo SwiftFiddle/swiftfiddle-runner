@@ -15,6 +15,7 @@ jobs:
           set -ex
           swift package update
           swift build
+          git config --global --add safe.directory /__w/swiftfiddle-runner/swiftfiddle-runner
           git add Package.resolved
           git diff-index --quiet HEAD || git commit -m "Update Package.resolved"
           git push origin main
