@@ -1,21 +1,8 @@
-FROM swift:5.9-focal as build
+FROM denoland/deno:ubuntu-1.38.4
 
-RUN export DEBIAN_FRONTEND=noninteractive DEBCONF_NONINTERACTIVE_SEEN=true \
-    && apt-get -q update && apt-get -q dist-upgrade -y \
-    && apt-get install -y --no-install-recommends libsqlite3-dev \
-    && rm -rf /var/lib/apt/lists/*
+EXPOSE 8080
 
-WORKDIR /build
-COPY ./Package.* ./
-RUN swift package resolve
-COPY . .
-RUN swift build -c release
-
-WORKDIR /staging
-RUN cp "$(swift build --package-path /build -c release --show-bin-path)/Run" ./ \
-    && mv /build/Resources ./Resources && chmod -R a-w ./Resources
-
-FROM swift:5.9-focal-slim
+WORKDIR /app
 
 RUN export DEBIAN_FRONTEND=noninteractive DEBCONF_NONINTERACTIVE_SEEN=true \
     && apt-get -q update && apt-get -q dist-upgrade -y \
@@ -28,10 +15,10 @@ RUN export DEBIAN_FRONTEND=noninteractive DEBCONF_NONINTERACTIVE_SEEN=true \
     && apt-get update && apt-get install -y --no-install-recommends docker-ce docker-ce-cli containerd.io \
     && rm -r /var/lib/apt/lists/*
 
-WORKDIR /app
-COPY --from=build /staging /app
+COPY deps.ts .
+RUN deno cache deps.ts
 
-EXPOSE 8080
+COPY . .
+RUN deno cache main.ts
 
-ENTRYPOINT ["./Run"]
-CMD ["serve", "--env", "production", "--hostname", "0.0.0.0", "--port", "8080"]
+CMD ["run", "--allow-net", "--allow-run", "main.ts"]
