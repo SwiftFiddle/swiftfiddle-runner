@@ -132,13 +132,19 @@ async function runOutput(
 }
 
 function runStream(
-  version: string,
+  v: string,
   parameters: RequestParameters,
 ): Response {
+  const versionResponse = spawn(makeVersionCommand(v), "version", "version");
+  const swiftResponse = spawn(
+    makeSwiftCommand(v, parameters),
+    "stdout",
+    "stderr",
+  );
   return new Response(
     mergeReadableStreams(
-      spawn(makeVersionCommand(version), "version", "version"),
-      spawn(makeSwiftCommand(version, parameters), "stdout", "stderr"),
+      versionResponse,
+      swiftResponse,
     ),
     {
       headers: {
