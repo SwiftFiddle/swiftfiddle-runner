@@ -183,15 +183,16 @@ function makeSwiftCommand(
 ): Deno.Command {
   const command = parameters.command || "swift";
   const options = parameters.options || (() => {
+    let enableBareSlashRegex = "";
     if (version.startsWith("nightly")) {
       if (version === "nightly-5.7" || version === "nightly-main") {
-        return "-enable-bare-slash-regex";
+        enableBareSlashRegex = "-enable-bare-slash-regex";
       }
     } else if (version >= "5.7") {
-      return "-enable-bare-slash-regex";
+      enableBareSlashRegex = "-enable-bare-slash-regex";
     }
     if (version >= "5.3") {
-      return "-I ./swiftfiddle.com/_Packages/.build/release/ -L ./swiftfiddle.com/_Packages/.build/release/ -l_Packages -enable-bare-slash-regex";
+      return `-I ./swiftfiddle.com/_Packages/.build/release/ -L ./swiftfiddle.com/_Packages/.build/release/ -l_Packages ${enableBareSlashRegex}`;
     }
     return "";
   })();
