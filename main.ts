@@ -192,13 +192,19 @@ function makeSwiftCommand(
   })();
   const timeout = parameters.timeout || 60;
   const image = imageTag(version);
+  const faketty = (() => {
+    if (version.startsWith("nightly")) {
+      return "";
+    }
+    return "-e LD_PRELOAD=./faketty.so";
+  })();
 
   return new Deno.Command(
     "sh",
     {
       args: [
         "-c",
-        `echo '${parameters.code}' | timeout ${timeout} docker run --pull never --rm -i -e TERM=xterm-256color -e LD_PRELOAD=./faketty.so ${image} ${command} ${options} -`,
+        `echo '${parameters.code}' | timeout ${timeout} docker run --pull never --rm -i -e TERM=xterm-256color ${faketty} ${image} ${command} ${options} -`,
       ],
       stdout: "piped",
       stderr: "piped",
