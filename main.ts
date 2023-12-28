@@ -1,4 +1,4 @@
-import { router, zipReadableStreams } from "./deps.ts";
+import { mergeReadableStreams, router, zipReadableStreams } from "./deps.ts";
 
 Deno.serve(
   { port: 8080 },
@@ -73,6 +73,18 @@ Deno.serve(
         case "3.0.2":
         case "3.1":
         case "3.1.1":
+        case "4.0":
+        case "4.0.2":
+        case "4.0.3":
+        case "4.1":
+        case "4.1.1":
+        case "4.1.2":
+        case "4.1.3":
+        case "4.2":
+        case "4.2.1":
+        case "4.2.2":
+        case "4.2.3":
+        case "4.2.4":
         case "5.0":
         case "5.0.1":
         case "5.0.2":
@@ -154,7 +166,7 @@ function spawn(
   stderrKey: string,
 ): ReadableStream<Uint8Array> {
   const process = command.spawn();
-  return zipReadableStreams(
+  return mergeReadableStreams(
     makeStreamResponse(process.stdout, stdoutKey),
     makeStreamResponse(process.stderr, stderrKey),
   );
@@ -200,9 +212,13 @@ function makeSwiftCommand(
   })();
 
   return new Deno.Command(
-    "sh",
+    "stdbuf",
     {
       args: [
+        "-i0",
+        "-oL",
+        "-eL",
+        "sh",
         "-c",
         `echo '${parameters.code}' | timeout ${timeout} docker run --pull never --rm -i -e TERM=xterm-256color ${faketty} ${image} ${command} ${options} -`,
       ],
