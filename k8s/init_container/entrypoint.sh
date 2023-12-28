@@ -11,7 +11,7 @@ for version in $RUNNER_VERSIONS; do
   elif [[ "$version" == nightly* ]] ;
   then
     :
-  elif [[ "$version" == 2.2 || "$version" == 2.2.1 || "$version" == 3.0 || "$version" == 3.0.1 || "$version" == 3.0.2 || "$version" == 3.1 || "$version" == 3.1.1 || "$version" == 5.0 || "$version" == 5.0.1 || "$version" == 5.0.2 || "$version" == 5.0.3 || "$version" == 5.1 || "$version" == 5.1.1 || "$version" == 5.1.2 || "$version" == 5.1.3 || "$version" == 5.1.4 || "$version" == 5.1.5 ]] ;
+  elif [[ "$version" == 2.2 || "$version" == 2.2.1 || "$version" == 3.0 || "$version" == 3.0.1 || "$version" == 3.0.2 || "$version" == 3.1 || "$version" == 3.1.1 || "$version" == 4.0 || "$version" == 4.0.2 || "$version" == 4.0.3 || "$version" == 4.1 || "$version" == 4.1.1 || "$version" == 4.1.2 || "$version" == 4.1.3 || "$version" == 4.2 || "$version" == 4.2.1 || "$version" == 4.2.2 || "$version" == 4.2.3 || "$version" == 4.2.4 || "$version" == 5.0 || "$version" == 5.0.1 || "$version" == 5.0.2 || "$version" == 5.0.3 || "$version" == 5.1 || "$version" == 5.1.1 || "$version" == 5.1.2 || "$version" == 5.1.3 || "$version" == 5.1.4 || "$version" == 5.1.5 ]] ;
   then
     :
   else
