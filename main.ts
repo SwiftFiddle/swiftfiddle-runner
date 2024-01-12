@@ -149,8 +149,18 @@ function runStream(
 ): Response {
   return new Response(
     zipReadableStreams(
-      spawn(makeVersionCommand(v), "version", "version"),
-      spawn(makeSwiftCommand(v, parameters), "stdout", "stderr"),
+      spawn(
+        makeVersionCommand(v),
+        undefined,
+        "version",
+        "version",
+      ),
+      spawn(
+        makeSwiftCommand(v, parameters),
+        parameters.code,
+        "stdout",
+        "stderr",
+      ),
     ),
     {
       headers: {
@@ -162,10 +172,20 @@ function runStream(
 
 function spawn(
   command: Deno.Command,
+  input: string | undefined,
   stdoutKey: string,
   stderrKey: string,
 ): ReadableStream<Uint8Array> {
   const process = command.spawn();
+
+  if (input) {
+    const stdin = process.stdin;
+    const writer = stdin.getWriter();
+    writer.write(new TextEncoder().encode(input));
+    writer.releaseLock();
+    stdin.close();
+  }
+
   return mergeReadableStreams(
     makeStreamResponse(process.stdout, stdoutKey),
     makeStreamResponse(process.stderr, stderrKey),
@@ -211,30 +231,34 @@ function makeSwiftCommand(
     return "-e LD_PRELOAD=./faketty.so";
   })();
 
+  const args = [
+    "-i0",
+    "-oL",
+    "-eL",
+    "timeout",
+    `${timeout}`,
+    "docker",
+    "run",
+    "--pull",
+    "never",
+    "--rm",
+    "-i",
+    "-e",
+    "TERM=xterm-256color",
+    `${faketty}`,
+    `${image}`,
+    `${command}`,
+  ];
+  if (options) {
+    args.push(...options.split(" "));
+  }
+  args.push("-");
+
   return new Deno.Command(
     "stdbuf",
     {
-      args: [
-        "-i0",
-        "-oL",
-        "-eL",
-        "timeout",
-        `${timeout}`,
-        "docker",
-        "run",
-        "--pull",
-        "never",
-        "--rm",
-        "-i",
-        "-e",
-        "TERM=xterm-256color",
-        `${faketty}`,
-        `${image}`,
-        `${command}`,
-        `${options}`,
-        "-e",
-        `${parameters.code}`,
-      ],
+      args: args,
+      stdin: "piped",
       stdout: "piped",
       stderr: "piped",
     },
