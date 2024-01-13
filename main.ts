@@ -129,8 +129,19 @@ async function runOutput(
   parameters: RequestParameters,
 ): Promise<Response> {
   const version = await swiftVersion(v);
+  const command = makeSwiftCommand(v, parameters);
+  const process = command.spawn();
 
-  const { stdout, stderr } = await makeSwiftCommand(v, parameters).output();
+  if (parameters.code) {
+    const stdin = process.stdin;
+    const writer = stdin.getWriter();
+    writer.write(new TextEncoder().encode(parameters.code));
+    writer.releaseLock();
+    stdin.close();
+  }
+
+  const { stdout, stderr } = await process.output();
+
   const output = new TextDecoder().decode(stdout);
   const errors = new TextDecoder().decode(stderr);
 
