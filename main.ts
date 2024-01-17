@@ -135,7 +135,7 @@ async function runOutput(
   if (parameters.code) {
     const stdin = process.stdin;
     const writer = stdin.getWriter();
-    writer.write(new TextEncoder().encode(parameters.code));
+    await writer.write(new TextEncoder().encode(parameters.code));
     writer.releaseLock();
     stdin.close();
   }
