@@ -256,13 +256,19 @@ function makeSwiftCommand(
     "-i",
     "-e",
     "TERM=xterm-256color",
-    `${faketty}`,
-    `${image}`,
-    `${command}`,
   ];
+
+  if (faketty) {
+    args.push(faketty);
+  }
+
+  args.push(image);
+  args.push(command);
+
   if (options) {
     args.push(...options.split(" "));
   }
+
   args.push("-");
 
   return new Deno.Command(
