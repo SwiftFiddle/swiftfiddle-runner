@@ -1,24 +1,24 @@
-FROM denoland/deno:ubuntu-1.38.4
-
-EXPOSE 8080
+FROM denoland/deno:bin-1.39.0 AS deno
+FROM swift:5.10.0-jammy
 
 WORKDIR /app
 
-RUN export DEBIAN_FRONTEND=noninteractive DEBCONF_NONINTERACTIVE_SEEN=true \
-    && apt-get -q update && apt-get -q dist-upgrade -y \
-    && apt-get install -y --no-install-recommends \
-      ca-certificates curl gnupg lsb-release \
-    && curl -fsSL https://download.docker.com/linux/ubuntu/gpg | gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg \
-    && echo \
-      "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu \
-      $(lsb_release -cs) stable" | tee /etc/apt/sources.list.d/docker.list > /dev/null \
-    && apt-get update && apt-get install -y --no-install-recommends docker-ce docker-ce-cli containerd.io \
-    && rm -r /var/lib/apt/lists/*
+COPY ./_Packages/ ./swiftfiddle.com/_Packages/
+RUN cd ./swiftfiddle.com/_Packages/ \
+    && swift build -c release \
+    && rm -rf .build/checkouts/ .build/repositories/
+
+RUN echo 'int isatty(int fd) { return 1; }' | \
+  clang -O2 -fpic -shared -ldl -o faketty.so -xc -
+RUN strip faketty.so && chmod 400 faketty.so
+
+COPY --from=deno /deno /usr/local/bin/deno
 
 COPY deps.ts .
 RUN deno cache deps.ts
 
-COPY . .
+ADD . .
 RUN deno cache main.ts
 
-CMD ["run", "--allow-net", "--allow-run", "main.ts"]
+EXPOSE 8080
+CMD ["deno", "run", "--allow-net", "--allow-run", "main.ts"]
