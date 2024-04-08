@@ -1,147 +1,50 @@
 import { mergeReadableStreams, router, zipReadableStreams } from "./deps.ts";
 
 Deno.serve(
-  { port: 8080 },
+  { port: 8000 },
   router({
-    "/runner/:version{/}?": () => {
+    "/": () => {
       return responseJSON({ status: "pass" });
     },
-    "/runner/:version/health{z}?{/}?": async (_req, _, { version }) => {
-      switch (version) {
-        case "2.2":
-        case "2.2.1":
-        case "3.0":
-        case "3.0.1":
-        case "3.0.2":
-        case "3.1":
-        case "3.1.1":
-        case "5.0":
-        case "5.0.1":
-        case "5.0.2":
-        case "5.0.3":
-        case "5.1":
-        case "5.1.1":
-        case "5.1.2":
-        case "5.1.3":
-        case "5.1.4":
-        case "5.1.5":
-        case "nightly-5.3":
-        case "nightly-5.4":
-        case "nightly-5.5":
-        case "nightly-5.6": {
-          return responseJSON({ status: "pass" });
-        }
-      }
-
-      return await responseHealthCheck(version);
+    "/health{z}?{/}?": () => {
+      return responseJSON({ status: "pass" });
     },
-    "/runner/:version/run{/}?": async (req, _, { version }) => {
+    "/runner/:version{/}?": async () => {
+      return await responseHealthCheck();
+    },
+    "/runner/:version/health{z}?{/}?": async () => {
+      return await responseHealthCheck();
+    },
+    "/runner/:version/run{/}?": async (req) => {
       if (req.method !== "POST") {
         return resposeError("Bad request", 400);
       }
       if (!req.body) {
         return resposeError("Bad request", 400);
       }
-
       const parameters: RequestParameters = await req.json();
       if (!parameters.code) {
         return resposeError("Bad request", 400);
       }
 
-      switch (version) {
-        case "nightly-5.3":
-        case "nightly-5.4":
-        case "nightly-5.5":
-        case "nightly-5.6": {
-          return await fetch(
-            `https://runner-functions-${
-              version.split(".").join("").split("-").join("")
-            }.blackwater-cac8eec1.westus2.azurecontainerapps.io/runner/${version}/run`,
-            {
-              method: "POST",
-              body: JSON.stringify(parameters),
-              headers: {
-                "content-type": "application/json",
-              },
-            },
-          );
-        }
-        case "2.2":
-        case "2.2.1":
-        case "3.0":
-        case "3.0.1":
-        case "3.0.2":
-        case "3.1":
-        case "3.1.1":
-        case "4.0":
-        case "4.0.2":
-        case "4.0.3":
-        case "4.1":
-        case "4.1.1":
-        case "4.1.2":
-        case "4.1.3":
-        case "4.2":
-        case "4.2.1":
-        case "4.2.2":
-        case "4.2.3":
-        case "4.2.4":
-        case "5.0":
-        case "5.0.1":
-        case "5.0.2":
-        case "5.0.3":
-        case "5.1":
-        case "5.1.1":
-        case "5.1.2":
-        case "5.1.3":
-        case "5.1.4":
-        case "5.1.5": {
-          return await fetch(
-            `https://swiftfiddle-runner-functions-${
-              version.split(".").join("")
-            }.blackwater-cac8eec1.westus2.azurecontainerapps.io/runner/${version}/run`,
-            {
-              method: "POST",
-              body: JSON.stringify(parameters),
-              headers: {
-                "content-type": "application/json",
-              },
-            },
-          );
-        }
-      }
-
       if (!parameters._streaming) {
-        return runOutput(version, parameters);
+        return runOutput(parameters);
       }
-      return runStream(version, parameters);
+      return runStream(parameters);
     },
   }),
 );
 
-async function swiftVersion(version: string): Promise<string> {
-  const command = makeVersionCommand(version);
+async function swiftVersion(): Promise<string> {
+  const command = makeVersionCommand();
   const { stdout } = await command.output();
   return new TextDecoder().decode(stdout);
 }
 
-async function runOutput(
-  v: string,
-  parameters: RequestParameters,
-): Promise<Response> {
-  const version = await swiftVersion(v);
-  const command = makeSwiftCommand(v, parameters);
-  const process = command.spawn();
+async function runOutput(parameters: RequestParameters): Promise<Response> {
+  const version = await swiftVersion();
 
-  if (parameters.code) {
-    const stdin = process.stdin;
-    const writer = stdin.getWriter();
-    await writer.write(new TextEncoder().encode(parameters.code));
-    writer.releaseLock();
-    stdin.close();
-  }
-
-  const { stdout, stderr } = await process.output();
-
+  const { stdout, stderr } = await makeSwiftCommand(parameters).output();
   const output = new TextDecoder().decode(stdout);
   const errors = new TextDecoder().decode(stderr);
 
@@ -154,24 +57,11 @@ async function runOutput(
   );
 }
 
-function runStream(
-  v: string,
-  parameters: RequestParameters,
-): Response {
+function runStream(parameters: RequestParameters): Response {
   return new Response(
     zipReadableStreams(
-      spawn(
-        makeVersionCommand(v),
-        undefined,
-        "version",
-        "version",
-      ),
-      spawn(
-        makeSwiftCommand(v, parameters),
-        parameters.code,
-        "stdout",
-        "stderr",
-      ),
+      spawn(makeVersionCommand(), undefined, "version", "version"),
+      spawn(makeSwiftCommand(parameters), parameters.code, "stdout", "stderr"),
     ),
     {
       headers: {
@@ -198,16 +88,16 @@ function spawn(
   }
 
   return mergeReadableStreams(
-    makeStreamResponse(process.stdout, stdoutKey),
     makeStreamResponse(process.stderr, stderrKey),
+    makeStreamResponse(process.stdout, stdoutKey),
   );
 }
 
-function makeVersionCommand(version: string): Deno.Command {
+function makeVersionCommand(): Deno.Command {
   return new Deno.Command(
-    "docker",
+    "swift",
     {
-      args: ["run", "--rm", imageTag(version), "swift", "-version"],
+      args: ["-version"],
       stdout: "piped",
       stderr: "piped",
     },
@@ -215,81 +105,42 @@ function makeVersionCommand(version: string): Deno.Command {
 }
 
 function makeSwiftCommand(
-  version: string,
   parameters: RequestParameters,
 ): Deno.Command {
   const command = parameters.command || "swift";
-  const options = parameters.options || (() => {
-    let enableBareSlashRegex = "";
-    if (version.startsWith("nightly")) {
-      if (version === "nightly-5.7" || version === "nightly-main") {
-        enableBareSlashRegex = "-enable-bare-slash-regex";
-      }
-    } else if (version >= "5.7") {
-      enableBareSlashRegex = "-enable-bare-slash-regex";
-    }
-    if (version >= "5.3") {
-      return `-I ./swiftfiddle.com/_Packages/.build/release/ -L ./swiftfiddle.com/_Packages/.build/release/ -l_Packages ${enableBareSlashRegex}`;
-    }
-    return "";
-  })();
+  const options = parameters.options ||
+    "-I ./swiftfiddle.com/_Packages/.build/release/ -L ./swiftfiddle.com/_Packages/.build/release/ -l_Packages -enable-bare-slash-regex";
   const timeout = parameters.timeout || 60;
-  const image = imageTag(version);
-  const faketty = (() => {
-    if (version.startsWith("nightly")) {
-      return "";
+  const color = parameters._color || false;
+  const env = color
+    ? {
+      "TERM": "xterm-256color",
+      "LD_PRELOAD": "./faketty.so",
     }
-    return "-e LD_PRELOAD=./faketty.so";
-  })();
-
+    : undefined;
   const args = [
     "-i0",
     "-oL",
     "-eL",
     "timeout",
     `${timeout}`,
-    "docker",
-    "run",
-    "--pull",
-    "never",
-    "--rm",
-    "-i",
-    "-e",
-    "TERM=xterm-256color",
+    command,
   ];
-
-  if (faketty) {
-    args.push(faketty);
-  }
-
-  args.push(image);
-  args.push(command);
-
   if (options) {
     args.push(...options.split(" "));
   }
-
   args.push("-");
 
   return new Deno.Command(
     "stdbuf",
     {
       args: args,
+      env: env,
       stdin: "piped",
       stdout: "piped",
       stderr: "piped",
     },
   );
-}
-
-function imageTag(version: string): string {
-  let image: string;
-  if (version.startsWith("nightly")) {
-    image = `swiftlang/swift:${version}`;
-  } else {
-    image = `swiftfiddle/swift:${version}`;
-  }
-  return image;
 }
 
 function makeStreamResponse(
@@ -310,8 +161,8 @@ function makeStreamResponse(
   );
 }
 
-async function responseHealthCheck(v: string): Promise<Response> {
-  const version = await swiftVersion(v);
+async function responseHealthCheck(): Promise<Response> {
+  const version = await swiftVersion();
   return responseJSON({ version });
 }
 
