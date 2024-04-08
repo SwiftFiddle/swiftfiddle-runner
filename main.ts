@@ -74,6 +74,8 @@ function runStream(parameters: RequestParameters): Response {
     ),
     {
       headers: {
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "POST",
         "content-type": "text/plain; charset=utf-8",
       },
     },
@@ -180,6 +182,8 @@ function responseJSON(json: unknown): Response {
     JSON.stringify(json),
     {
       headers: {
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "POST",
         "content-type": "application/json; charset=utf-8",
       },
     },
