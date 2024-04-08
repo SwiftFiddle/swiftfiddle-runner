@@ -2,45 +2,13 @@ name: Test
 on:
   pull_request:
     branches: [main]
-  workflow_dispatch:
-
-env:
-  DOCKER_HUB_USERNAME: ${{ secrets.DOCKER_HUB_USERNAME }}
-  DOCKER_HUB_ACCESS_TOKEN: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
 
 jobs:
-  matrix:
-    runs-on: ubuntu-latest
-    outputs:
-      versionGroup: ${{ steps.set-matrix.outputs.versionGroup }}
-    steps:
-      - uses: actions/checkout@v4
-
-      - id: set-matrix
-        run: |
-          versionGroup=$(cat versions.json | jq '.[] | map("\\\"" + . + "\\\"") | join(",")' | jq -s | tr -d "\n")
-          echo "versionGroup=$versionGroup" >> $GITHUB_OUTPUT
-
   test:
     runs-on: ubuntu-latest
-    needs: matrix
-    strategy:
-      fail-fast: false
-      matrix:
-        versionGroup: ${{ fromJson(needs.matrix.outputs.versionGroup) }}
     steps:
       - uses: actions/checkout@v4
-
       - name: Build
         run: |
           set -ex
-
-          versionGroup="[${{ matrix.versionGroup }}]"
-          version=$(echo $versionGroup | jq -r '.[0]')
-          versions=$(echo $versionGroup | jq -r 'join(" ")')
-
-          docker build --rm \
-            --build-arg username="${{ env.DOCKER_HUB_USERNAME}}" \
-            --build-arg access_token="${{ env.DOCKER_HUB_ACCESS_TOKEN}}" \
-            --build-arg versions="$versions" \
-            .
+          docker build --rm --no-cache .
