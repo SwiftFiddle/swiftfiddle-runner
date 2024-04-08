@@ -16,6 +16,15 @@ Deno.serve(
       return await responseHealthCheck();
     },
     "/runner/:version/run{/}?": async (req) => {
+      if (req.method === "OPTIONS") {
+        return new Response(null, {
+          headers: {
+            "Access-Control-Allow-Origin": "*",
+            "Access-Control-Allow-Methods": "POST",
+            "Access-Control-Allow-Headers": "Content-Type",
+          },
+        });
+      }
       if (req.method !== "POST") {
         return resposeError("Bad request", 400);
       }
