@@ -20,10 +20,11 @@ Deno.serve(
         return new Response(null, {
           headers: {
             "Access-Control-Allow-Origin": "*",
-            "Access-Control-Allow-Methods": "POST",
-            "Access-Control-Allow-Headers": "Content-Type",
+            "Access-Control-Allow-Methods": "GET, POST, OPTIONS, DELETE, PUT",
+            "Access-Control-Allow-Headers":
+              "Origin, X-Requested-With, Content-Type, Authorization, Accept",
           },
-          status: 200,
+          status: 204,
         });
       }
       if (req.method !== "POST") {
