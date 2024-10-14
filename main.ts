@@ -23,6 +23,7 @@ Deno.serve(
             "Access-Control-Allow-Methods": "POST",
             "Access-Control-Allow-Headers": "Content-Type",
           },
+          status: 200,
         });
       }
       if (req.method !== "POST") {
