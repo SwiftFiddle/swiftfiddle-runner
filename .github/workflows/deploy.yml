@@ -1,0 +1,35 @@
+name: Deploy
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_PASSWORD }}
+
+      - uses: docker/build-push-action@v6
+        with:
+          context: .
+          push: true
+          tags: swiftfiddle/swiftfiddle-runner:latest
+
+      - uses: appleboy/ssh-action@v1.1.0
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_KEY }}
+          script: |
+            docker pull swiftfiddle/swiftfiddle-runner:latest
+            docker rename swiftfiddle-runner swiftfiddle-runner_
+            docker stop swiftfiddle-runner_
+            docker run -d --rm -p 80:8080 --name swiftfiddle-runner swiftfiddle/swiftfiddle-runner
+            docker image prune -f
