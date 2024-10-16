@@ -122,7 +122,7 @@ function makeSwiftCommand(
 ): Deno.Command {
   const command = parameters.command || "swift";
   const options = parameters.options ||
-    "-I ./swiftfiddle.com/_Packages/.build/release/ -L ./swiftfiddle.com/_Packages/.build/release/ -l_Packages -enable-bare-slash-regex";
+    "-I ./swiftfiddle.com/_Packages/.build/release/Modules/ -L ./swiftfiddle.com/_Packages/.build/release/ -l_Packages -enable-bare-slash-regex";
   const timeout = parameters.timeout || 60;
   const color = parameters._color || false;
   const env = color
