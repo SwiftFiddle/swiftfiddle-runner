@@ -28,8 +28,8 @@ jobs:
           username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_KEY }}
           script: |
-            docker pull swiftfiddle/swiftfiddle-runner:latest
-            docker rename swiftfiddle-runner swiftfiddle-runner_
-            docker stop swiftfiddle-runner_
-            docker run -d --rm -p 80:8000 --name swiftfiddle-runner swiftfiddle/swiftfiddle-runner
-            docker image prune -f
+            cd swiftfiddle-runner
+            git pull --rebase origin main
+
+            docker compose up --force-recreate --build --detach
+            docker image prune --force

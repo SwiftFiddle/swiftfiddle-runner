@@ -1,0 +1,21 @@
+services:
+  web:
+    image: swiftfiddle/swiftfiddle-runner:latest
+    container_name: swiftfiddle-runner
+    ports:
+      - 80:8000
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 5m
+      timeout: 30s
+      retries: 3
+      start_period: 40s
+  autoheal:
+    image: willfarrell/autoheal:latest
+    container_name: autoheal
+    environment:
+      AUTOHEAL_INTERVAL: 60
+      AUTOHEAL_START_PERIOD: 60
+    restart: always
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
