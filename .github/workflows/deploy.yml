@@ -31,5 +31,6 @@ jobs:
             cd swiftfiddle-runner
             git pull --rebase origin main
 
+            docker-compose pull
             docker compose up --force-recreate --build --detach
             docker image prune --force

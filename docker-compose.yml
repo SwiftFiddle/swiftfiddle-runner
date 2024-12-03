@@ -1,6 +1,7 @@
 services:
   web:
     image: swiftfiddle/swiftfiddle-runner:latest
+    pull_policy: always
     container_name: swiftfiddle-runner
     ports:
       - 80:8000
