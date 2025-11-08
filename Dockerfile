@@ -1,5 +1,5 @@
 FROM denoland/deno:bin-1.39.0 AS deno
-FROM swift:6.2.0-jammy
+FROM swift:6.2.1-jammy
 
 WORKDIR /app
 
